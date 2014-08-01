@@ -1,12 +1,12 @@
-# Project Name
+# Next Beer
 
-> Pithy project description
+> Recommendation app that gives beer suggestions and pairing recommendations
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Neil Lobo
+  - __Scrum Master__: Boris Verkhovskiy
+  - __Development Team Members__: Caly Moss, DH Lee
 
 ## Table of Contents
 
