@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic','app.rate','app.services'])
+angular.module('app', ['ionic','app.rate','app.recommend','app.mybeers','app.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,24 +27,6 @@ angular.module('app', ['ionic','app.rate','app.services'])
       url: "/app",
       abstract: true,
       templateUrl: "app/app.html"
-    })
-
-    .state('app.recommend', {
-      url: "/recommend",
-      views: {
-        'menuContent' :{
-          templateUrl: "app/recommend/recommend.html"
-        }
-      }
-    })
-
-    .state('app.mybeers', {
-      url: "/mybeers",
-      views: {
-        'menuContent' :{
-          templateUrl: "app/mybeers/mybeers.html"
-        }
-      }
     });
 
   // if none of the above states are matched, use this as the fallback

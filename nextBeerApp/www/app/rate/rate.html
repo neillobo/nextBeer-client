@@ -5,9 +5,8 @@
   <ion-content class="has-header">
     <h2>Rate some beers</h2>
     <ion-list ng-controller="RateCtrl">
-      <ion-item ng-repeat="item in items">
-      	Hello, {{item}}
-      	{{showBeer}}
+      <ion-item ng-repeat="item in items" ng-click="beerClickEvent(item)">
+         {{item.title}}
       </ion-item>
      </ion-list> 
   </ion-content>
