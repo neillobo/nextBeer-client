@@ -17,19 +17,23 @@ angular.module('app.rate', [])
     })
 })
 
-.controller('RateCtrl',function($scope, $http, $state, ShowBeersFactory){
+.controller('RateCtrl',function($scope, $http, $state, $rootScope, ShowBeersFactory){
   
-  $scope.items = [{title : "Budweiser", img:"./../img/budweiser.jpg"}, {title : "Corona" , img:"./../img/corona_logo.jpg"}];  
+  $scope.items = [{title : "Budweiser", id: 1, img:"./../img/budweiser.jpg"}, {title : "Corona", id: 2, img:"./../img/corona_logo.jpg"},
+                  {title : "Stella" , id: 3, img:"./../img/stella_logo.jpg"},{title : "Natty Light" , id:4, img:"./../img/nattylight_logo.jpg"},
+                  {title : "Tecate" , id:5, img:"./../img/tecate_logo.jpg"},{title : "PBR" , id: 6, img:"./../img/pbr_logo.jpg"}
+                  ];  
 
   $scope.beerClickEvent = function(item){
     console.log("Item is ",item)
-    
+    $rootScope.selectedBeer = item;
     $http({
       method: 'GET', 
-      url: 'http://127.0.0.1:5000/api/v1/5'
+      url: 'http://127.0.0.1:5000/api/v1/' + item.id
     }).
     success(function(data, status, headers, config) {
       console.log(data)
+      $rootScope.recommendedBeer = data.recomendations[0];
       //transition to the next screen and display it
       $state.go('app.recommend');
     }).
@@ -37,6 +41,5 @@ angular.module('app.rate', [])
       console.log("Error: ",status)
     });
   };
-  // $scope.showBeer = ShowBeersFactory.showBeers();
 });
 

@@ -15,9 +15,13 @@ angular.module('app.recommend', [])
         }
       }
     })
-});
+})
 
-// .controller('RateCtrl',function($scope, ShowBeersFactory){
-//   $scope.items = ['A','B','C']
-//   $scope.showBeer = ShowBeersFactory.showBeers();
-// });
+.controller('recommendationCtrl',function($scope, $rootScope, ShowBeersFactory){
+
+
+
+  $scope.showBeer = function() {
+  	return $rootScope.selectedBeer;
+  };
+});
