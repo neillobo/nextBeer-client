@@ -6,6 +6,7 @@
     <h2>Rate some beers</h2>
     <ion-list ng-controller="RateCtrl">
       <ion-item ng-repeat="item in items" ng-click="beerClickEvent(item)">
+      <img ng-src="{{item.img}}">
          {{item.title}}
       </ion-item>
      </ion-list> 
