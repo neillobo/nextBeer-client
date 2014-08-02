@@ -17,7 +17,7 @@ angular.module('app.rate', [])
     })
 })
 
-.controller('RateCtrl',function($scope, $http, ShowBeersFactory){
+.controller('RateCtrl',function($scope, $http, $state, ShowBeersFactory){
   
   $scope.items = [{title : "Budweiser", img:"./../img/budweiser.jpg"}, {title : "Corona" , img:"./../img/corona_logo.jpg"}];  
 
@@ -31,6 +31,7 @@ angular.module('app.rate', [])
     success(function(data, status, headers, config) {
       console.log(data)
       //transition to the next screen and display it
+      $state.go('app.recommend');
     }).
     error(function(data, status, headers, config) {
       console.log("Error: ",status)
