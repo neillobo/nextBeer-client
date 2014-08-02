@@ -19,35 +19,24 @@ angular.module('app.rate', [])
 
 .controller('RateCtrl',function($scope, $http, ShowBeersFactory){
   
+  $scope.items = [{title : "Budweiser", img:"./../img/budweiser.jpg"}, {title : "Corona" , img:"./../img/corona_logo.jpg"}];
+
   $http({
       method: 'GET', 
-      url: 'http://www.google.com'
+      url: 'http://nextbeer.herokuapp.com/api/v1/'
     }).
     success(function(data, status, headers, config) {
       console.log(data)
-    
     }).
     error(function(data, status, headers, config) {
       console.log("Error: ",status)
-        $scope.items = [
-        {
-          title: 'Corona',
-          description : "Great"
-        },
-        {
-          title: 'Budlight',
-          description : "Shitty"
-        },
-        {
-          title: 'Blue Moon',
-          description : "Meh"
-        }];
     });
+  
 
   $scope.beerClickEvent = function(item){
     console.log("Item is ",item)
     
-    delete $http.defaults.headers.common['X-Requested-With'];
+    
     $http({
       method: 'POST', 
       url: 'http://www.google.com',
