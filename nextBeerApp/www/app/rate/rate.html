@@ -1,8 +1,13 @@
-<ion-view title="Rate">
+<ion-view title="Rate Some Beers!">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
     <h2>Rate some beers</h2>
+    <ion-list ng-controller="RateCtrl">
+      <ion-item ng-repeat="item in items" ng-click="beerClickEvent(item)">
+         {{item.title}}
+      </ion-item>
+     </ion-list> 
   </ion-content>
 </ion-view>
