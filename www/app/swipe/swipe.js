@@ -1,4 +1,4 @@
-angular.module('app.swipe', ['ionic', 'ionic.contrib.ui.cards'])
+angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 
 .run(function() {
   
