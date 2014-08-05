@@ -24,24 +24,25 @@ angular.module('app.rate', [])
                   {title : "Tecate" , id:5, img:"./../img/tecate_logo.jpg"},{title : "PBR" , id: 6, img:"./../img/pbr_logo.jpg"}
                   ];  
 
-$scope.showBeer = false;
+//testing simple swipe functionality
+// $scope.showBeer = false;
 
-$scope.doNotLikeBeer = function () {
+// $scope.doNotLikeBeer = function () {
   
-   $scope.showBeer = !$scope.showBeer;
-   console.log("nope!");
-};
+//    $scope.showBeer = !$scope.showBeer;
+//    console.log("nope!");
+// };
 
-$scope.likeBeer = function () {
-   $scope.showBeer = !$scope.showBeer;
-};
+// $scope.likeBeer = function () {
+//    $scope.showBeer = !$scope.showBeer;
+// };
 
   $scope.beerClickEvent = function(item){
     console.log("Item is ",item)
     $rootScope.selectedBeer = item;
     $http({
       method: 'GET', 
-      url: 'http://127.0.0.1:5000/api/v1/' + item.id + "/" + rating
+      url: 'http://127.0.0.1:5000/api/v1/' + item.id
     }).
     success(function(data, status, headers, config) {
       console.log(data)

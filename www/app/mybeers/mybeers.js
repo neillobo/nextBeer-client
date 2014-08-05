@@ -15,4 +15,15 @@ angular.module('app.mybeers', [])
         }
       }
     })
+})
+
+.controller('MyBeersCtrl', function($scope, $rootScope){
+
+
+
+  console.log("mybeers:", $rootScope.myBeers);
+  // $scope.showBeer = function() {
+  // 	return $rootScope.selectedBeer;
+  // };
+  
 });
