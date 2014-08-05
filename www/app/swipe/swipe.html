@@ -5,7 +5,7 @@
   <ion-content class="has-header" scroll="false">
       <h1>test</h1>
       <header-bar type="bar-transparent" title="'Help out'"></header-bar>
-      <p style="color:white">Accepted: {{accepted}}, Rejected: {{rejected}}</p>
+      <p style="color:white">Like: {{accepted}}, Dislike: {{rejected}}</p>
       <swipe-cards>
         <swipe-card on-swipe="cardSwiped()" id="start-card">
           Swipe down for a new card
@@ -16,7 +16,7 @@
               {{card.title}}
             </div>
             <div class="image">
-              <img ng-src="{{card.image}}">
+              <img ng-src="{{card.img}}">
             </div>
             <div class="button-bar">
               <button class="button button-clear button-positive" ng-click="reject()">No</button>
