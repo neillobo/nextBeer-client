@@ -31,10 +31,25 @@ angular.module('app.services',[])
   	},
   	addToQueue: function(beer) {
   		beerQueue.push(beer);
-      console.log(beerQueue);
   	},
   	addToMyBeers: function(beer) {
   		mySelectedBeers.push(beer);
   	}
+  }
+})
+
+.factory('UserFactory', function($http) {
+  var userIdGrabber = function() {
+    return $http({
+      method: 'POST',
+      url: 'next-beer.herokuapp.com/api/v2/users'
+    });
+  };
+  var setHeader = function(userId) {
+    $http.defaults.headers.common.userId = userId;
+  }
+  return {
+    userIdGrabber: userIdGrabber,
+    setHeader: setHeader
   }
 })

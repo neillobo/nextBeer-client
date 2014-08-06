@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybeers','app.swipe', 'app.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,7 +17,17 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybee
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
+  })
+
+
+
+  if (!$window.localStorage.getItem('userId')) {
+    UserFactory.userIdGrabber().then(function(result) {
+      var userId = result.data.user_id;
+      UserFactory.setHeader(userId);
+      $window.localStorage.setItem('userId', userId);
+    })
+  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
