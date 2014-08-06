@@ -10,15 +10,13 @@
         <swipe-card on-swipe="cardSwiped()" id="start-card">
           Swipe left or right to review a new beer!
         </swipe-card>
-        <swipe-card ng-repeat="beer in myBeers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
-          <div ng-controller="CardCtrl">
+        <swipe-card ng-repeat="beer in cards track by $index" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
             <div class="title">
-              {{card.name}}
+              {{beer.name}}
             </div>
             <div class="image">
-              <img ng-src="{{card.url}}">
+              <img ng-src="{{beer.image_url}}">
             </div>
-          </div>
         </swipe-card>
       </swipe-cards>
       <!-- <ion-infinite-scroll></ion-infinite-scroll> -->
