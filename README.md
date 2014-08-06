@@ -22,9 +22,11 @@
 
 > Some usage instructions
 
+
 ## Requirements
 
 - Node 0.10.x
+
 - Redis 2.6.x
 - Postgresql 9.1.x
 - etc
@@ -34,13 +36,13 @@
 
 ### Installing Dependencies
 
-From within the root directory:
+We don't want you to go through the laundry list of dependencies manually. Just let Gulp install all dependencies for you. If you feel uncomfortable delegating this job to Gulp, check the gulpfile.js file to see what it will install for you.
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+npm install -g gulp # sudo, if appropriate
+gulp install # from the project root directory
 ```
+
 
 ### Tasks
 
