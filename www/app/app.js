@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','ionic.contrib.ui.cards','app.mybeers','app.swipe', 'app.services'])
+angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybeers','app.swipe', 'app.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,7 +17,17 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','ionic.con
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
+  })
+
+
+
+  if (!$window.localStorage.getItem('userId')) {
+    UserFactory.userIdGrabber().then(function(result) {
+      var userId = result.data.user_id;
+      UserFactory.setHeader(userId);
+      $window.localStorage.setItem('userId', userId);
+    })
+  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
