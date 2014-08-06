@@ -17,13 +17,8 @@ angular.module('app.mybeers', [])
     })
 })
 
-.controller('MyBeersCtrl', function($scope, $rootScope){
+.controller('MyBeersCtrl', function($scope, BeerService){
 
+  $scope.myBeers = BeerService.myBeers();
 
-
-  console.log("mybeers:", $rootScope.myBeers);
-  // $scope.showBeer = function() {
-  // 	return $rootScope.selectedBeer;
-  // };
-  
 });

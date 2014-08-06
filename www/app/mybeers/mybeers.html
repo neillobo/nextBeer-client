@@ -6,8 +6,8 @@
     <h1>My Favorite Beers</h1>
     <ion-list ng-controller="MyBeersCtrl">
       <ion-item ng-repeat="beer in myBeers track by $id($index)">
-      <img ng-src="{{beer.img}}">
-               {{beer.title}}
+      <img ng-src="{{beer.url}}">
+               {{beer.name}}
       </ion-item>
      </ion-list> 
   </ion-content>

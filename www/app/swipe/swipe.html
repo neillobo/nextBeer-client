@@ -2,28 +2,25 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+    <!-- <ion-content class="has-header"> -->
   <ion-content class="has-header" scroll="false">
-      <h1>test</h1>
+      <h1>Rate Beers</h1>
       <header-bar type="bar-transparent" title="'Help out'"></header-bar>
-      <p style="color:white">Like: {{accepted}}, Dislike: {{rejected}}</p>
       <swipe-cards>
         <swipe-card on-swipe="cardSwiped()" id="start-card">
-          Swipe down for a new card
+          Swipe left or right to review a new beer!
         </swipe-card>
-        <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+        <swipe-card ng-repeat="beer in myBeers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
           <div ng-controller="CardCtrl">
             <div class="title">
-              {{card.title}}
+              {{card.name}}
             </div>
             <div class="image">
-              <img ng-src="{{card.img}}">
-            </div>
-            <div class="button-bar">
-              <button class="button button-clear button-positive" ng-click="reject()">No</button>
-              <button class="button button-clear button-positive" ng-click="accept()">Yes</button>
+              <img ng-src="{{card.url}}">
             </div>
           </div>
         </swipe-card>
       </swipe-cards>
+      <!-- <ion-infinite-scroll></ion-infinite-scroll> -->
   </ion-content>
 </ion-view>

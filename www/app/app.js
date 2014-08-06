@@ -30,6 +30,6 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','ionic.con
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/rate');
+  $urlRouterProvider.otherwise('/app/swipe');
 });
 
