@@ -4,5 +4,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <h1>My Favorite Beers</h1>
+    <ion-list ng-controller="MyBeersCtrl">
+      <ion-item ng-repeat="beer in myBeers track by $id($index)">
+      <img ng-src="{{beer.img}}">
+               {{beer.title}}
+      </ion-item>
+     </ion-list> 
   </ion-content>
 </ion-view>
+
+

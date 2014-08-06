@@ -1,14 +1,17 @@
-angular.module('app.services',[
-
-])
+angular.module('app.services',[])
 
 .factory('ShowBeersFactory', function(){
 
-	var showBeers = function(){
-		return "Beers!!!"
-	}
+	// var showRecBeer = function(beer){
+	// 	return beer;
+	// 	// console.log(beer);
+	// };
 
-	return {
-		showBeers : showBeers
-	};
+	// return {
+	// 	showRecBeer : showRecBeer
+	// };
+})
+
+.service('myBeers', function($rootScope){
+	$rootScope.myBeers = [];
 })

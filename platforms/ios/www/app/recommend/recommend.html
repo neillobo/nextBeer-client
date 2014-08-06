@@ -1,12 +1,11 @@
-<ion-view title="Recommend">
+<ion-view title="Recommendation" ng-controller="recommendationCtrl">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <h2>Recommendations</h2>
-    <ul>
-    	<li>Budlight</li>
-    	<li>Corona</li>
-    </ul>
+    <h2>Recommendation</h2>
+      <div>
+        <p>{{recommendedBeer[0]}}</p>
+      </div>
   </ion-content>
 </ion-view>

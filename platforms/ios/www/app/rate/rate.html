@@ -6,8 +6,24 @@
     <h2>Rate some beers</h2>
     <ion-list ng-controller="RateCtrl">
       <ion-item ng-repeat="item in items" ng-click="beerClickEvent(item)">
+      <img ng-src="{{item.img}}">
          {{item.title}}
       </ion-item>
      </ion-list> 
   </ion-content>
 </ion-view>
+
+<!-- 
+<ion-view title="Rate Some Beers!">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <h2>Rate some beers</h2>
+    <ion-list ng-controller="RateCtrl">
+      <ion-item ng-repeat="item in items" ng-if="!showBeer" ng-swipe-left="doNotLikeBeer()" ng-swipe-right="likeBeer()">
+         {{item.title}}
+      </ion-item>
+     </ion-list> 
+  </ion-content>
+</ion-view> -->
