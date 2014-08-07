@@ -19,9 +19,10 @@ angular.module('app.rate', [])
 
 .controller('RateCtrl',function($scope, $http, $state, $rootScope, ShowBeersFactory){
   
-  $scope.items = [{title : "Budweiser", id: 1, img:"./../img/budweiser.jpg"}, {title : "Corona", id: 2, img:"./../img/corona_logo.jpg"},
-                  {title : "Stella" , id: 3, img:"./../img/stella_logo.jpg"},{title : "Natty Light" , id:4, img:"./../img/nattylight_logo.jpg"},
-                  {title : "Tecate" , id:5, img:"./../img/tecate_logo.jpg"},{title : "PBR" , id: 6, img:"./../img/pbr_logo.jpg"}
+  $scope.items = [{id: 104,name:"Samuel Adams Boston Lager",image_url: "http://cdn.beeradvocate.com/im/beers/104.jpg"}, {id:1212,name: "Blue Moon Belgian White",image_url:"http://cdn.beeradvocate.com/im/beers/1212.jpg"},
+                  {id: 1904,name: "Sierra Nevada Celebration Ale",image_url: "http://cdn.beeradvocate.com/im/beers/1904.jpg"},{id: 754,name:"Guinness Draught",image_url: "http://cdn.beeradvocate.com/im/beers/754.jpg"},
+                  {id: 276,name: "Sierra Nevada Pale Ale",image_url:"http://cdn.beeradvocate.com/im/beers/276.jpg"},{id: 7971,name: "Pliny The Elder",image_url: "http://cdn.beeradvocate.com/im/beers/7971.jpg"}, 
+                  {id:680,name: "Brooklyn Black Chocolate Stout",image_url:"http://cdn.beeradvocate.com/im/beers/680.jpg"}
                   ];  
 
 //testing simple swipe functionality
