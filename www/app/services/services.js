@@ -1,18 +1,5 @@
-angular.module('app.services', ['ngCookies'])
-
-.factory('ShowBeersFactory', function() {
-
-  // var showRecBeer = function(beer){
-  //  return beer;
-  //  // console.log(beer);
-  // };
-
-  // return {
-  //  showRecBeer : showRecBeer
-  // };
-})
-
-.factory('BeerService', function() {
+angular.module('app.services', [])
+.factory('BeerFactory', function() {
   //
   var beerQueue = [{
     id: 104,
