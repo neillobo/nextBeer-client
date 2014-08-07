@@ -45,8 +45,8 @@ angular.module('app.services',[])
       url: 'next-beer.herokuapp.com/api/v2/users'
     });
   };
-  var setHeader = function(userId) {
-    $http.defaults.headers.common.userId = userId;
+  var setHeader = function(cookie) {
+    $http.defaults.headers.common.cookie = cookie;
   }
   return {
     userIdGrabber: userIdGrabber,

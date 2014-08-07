@@ -21,11 +21,11 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybee
 
 
 
-  if (!$window.localStorage.getItem('userId')) {
+  if (!$window.localStorage.getItem('cookie')) {
     UserFactory.userIdGrabber().then(function(result) {
-      var userId = result.data.user_id;
-      UserFactory.setHeader(userId);
-      $window.localStorage.setItem('userId', userId);
+      var cookie = result.data.cookie;
+      UserFactory.setHeader(cookie);
+      $window.localStorage.setItem('cookie', cookie);
     })
   }
 })

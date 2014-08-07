@@ -70,7 +70,7 @@
      * Pop a card from the stack
      */
     popCard: function(animate) {
-      var card = this.cards.pop();
+      var card = this.cards.shift();
       if(animate) {
         card.swipe();
       }
@@ -296,6 +296,7 @@
             onDestroy: function() {
               $timeout(function() {
                 $scope.onDestroy();
+                $element.remove();
               });
             },
           });
