@@ -30,11 +30,6 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
   }
 })
 
-// app.filter('startWith', [function() {
-//     return function(input, index) {
-//         return input.slice(parseInt(index, 10));
-//     };
-// }]);
 
 .controller('CardsCtrl', function($scope, $timeout, $ionicSwipeCardDelegate, $http, $rootScope, BeerService) {
   $rootScope.accepted = 0;
@@ -70,23 +65,6 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
      BeerService.addToQueue($scope.cards[index]);
     }
     $scope.cards.splice(index, 1);
-    //delete that beer from the recommended beer queue
-    // $rootScope.recommendedBeerQueue.splice(index, 1);
   };
-
 })
-
-.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate, $rootScope) {
-  $scope.accept = function () {
-    var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
-    $rootScope.accepted++;
-    card.swipe(true);
-  }
-
-  $scope.reject = function() {
-    var card = $ionicSwipeCardDelegate.getSwipebleCard($scope);
-    $rootScope.rejected++;
-    card.swipe();
-  };
-});
 

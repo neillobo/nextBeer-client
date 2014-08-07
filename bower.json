@@ -8,6 +8,7 @@
     "angular-touch": "~1.2.21",
     "angular-animate": "~1.2.21",
     "angular-ui-router": "~0.2.10",
-    "ionic": "~0.9.27"
+    "ionic": "~0.9.27",
+    "angular-cookies": "~1.2.21"
   }
 }

@@ -2,24 +2,19 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-    <!-- <ion-content class="has-header"> -->
-  <ion-content class="has-header">
+  <ion-content class="has-header" style="overflow:scroll">
       <h1>Rate Beers</h1>
       <header-bar type="bar-transparent" title="'Help out'"></header-bar>
       <swipe-cards>
-        <swipe-card on-swipe="cardSwiped()" id="start-card">
-          Swipe left or right to review a new beer!
-        </swipe-card>
         <swipe-card ng-repeat="beer in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
-            <div class="title">
+            <span class="title">
               {{beer.name}}
-            </div>
+            </span>
             <div class="image">
+              <!-- <img-wit src="{{beer.image_url}}"></img-wit> -->
               <img ng-src="{{beer.image_url}}">
             </div>
         </swipe-card>
       </swipe-cards>
-<!--       <ion-infinite-scroll>
-    </ion-infinite-scroll>
- -->  </ion-content>
+ </ion-content>
 </ion-view>
