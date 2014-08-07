@@ -18,13 +18,15 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate', 'app.recommend', 'app.myb
       StatusBar.styleDefault();
     }
   });
-  UserFactory.setHeader('K6MY7R1XZT');
-  if (!$window.sessionStorage.getItem('Cookie')) {
+  if (!$window.localStorage.getItem('Token')) {
     UserFactory.userIdGrabber().then(function(result) {
-      console.log('session storage is set');
-      // UserFactory.setHeader(result.data.cookie);
-      $window.sessionStorage.setItem('Cookie', result.data.cookie);
+      $window.localStorage.setItem('Token', result.data.token);
+      UserFactory.setHeader(result.data.token);
     });
+  }else{
+    // if token already exists, we set the autorization header
+    // with server-issued token as a safety measure
+    UserFactory.setHeader($window.localStorage.getItem('Token'));
   }
 })
 
