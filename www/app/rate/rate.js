@@ -25,19 +25,6 @@ angular.module('app.rate', [])
                   {id:680,name: "Brooklyn Black Chocolate Stout",image_url:"http://cdn.beeradvocate.com/im/beers/680.jpg"}
                   ];  
 
-//testing simple swipe functionality
-// $scope.showBeer = false;
-
-// $scope.doNotLikeBeer = function () {
-  
-//    $scope.showBeer = !$scope.showBeer;
-//    console.log("nope!");
-// };
-
-// $scope.likeBeer = function () {
-//    $scope.showBeer = !$scope.showBeer;
-// };
-
   $scope.beerClickEvent = function(item){
     console.log("Item is ",item)
     $rootScope.selectedBeer = item;

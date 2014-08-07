@@ -20,12 +20,12 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybee
   })
 
 
-
-  if (!$window.localStorage.getItem('cookie')) {
+  if (!$window.localStorage.getItem('Cookie')) {
     UserFactory.userIdGrabber().then(function(result) {
-      var cookie = result.data.cookie;
-      UserFactory.setHeader(cookie);
-      $window.localStorage.setItem('cookie', cookie);
+        UserFactory.setHeader(result.data.cookie);
+        console.log(result.data.cookie);
+      $window.localStorage.setItem('Cookie', result.data.cookie);
+      console.log("invoked");
     })
   }
 })
