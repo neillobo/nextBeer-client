@@ -46,8 +46,8 @@ angular.module('app.services',['ngCookies'])
     });
   };
   var setHeader = function(string) {
-    // $http.defaults.headers.common.Authorization = string;
-    $cookies.cookie = string;
+    $http.defaults.headers.common['PRIVATE-TOKEN'] = string;
+    // $cookies.cookie = string;
   }
   return {
     userIdGrabber: userIdGrabber,
