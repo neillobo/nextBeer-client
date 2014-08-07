@@ -57,6 +57,7 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
     if (this.swipeCard.positive === true) {
      BeerFactory.addToQueue($scope.cards[index]);
      var beerRating = 1;
+     BeerFactory.addToMyBeers($scope.cards[index]);
     } else {
       var beerRating = -1;
     }
