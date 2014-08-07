@@ -3,5 +3,8 @@ node_modules/
 www/bower_components
 www/lib
 
+# build
+platforms/
+
 # common files
 .DS_store
