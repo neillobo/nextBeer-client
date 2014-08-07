@@ -1,7 +1,7 @@
 angular.module('app.mybeers', [])
 
 .run(function() {
-  
+
 })
 
 .config(function($stateProvider) {
@@ -17,8 +17,8 @@ angular.module('app.mybeers', [])
     })
 })
 
-.controller('MyBeersCtrl', function($scope, BeerService){
+.controller('MyBeersCtrl', function($scope, BeerFactory){
 
-  $scope.myBeers = BeerService.myBeers();
+  $scope.myBeers = BeerFactory.myBeers();
 
 });

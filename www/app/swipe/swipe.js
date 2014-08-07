@@ -1,12 +1,11 @@
 angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 
 .run(function() {
-  
+
 })
 
 .config(function($stateProvider) {
   $stateProvider
-
     .state('app.swipe', {
       url: "/swipe",
       views: {
@@ -14,11 +13,10 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
           templateUrl: "app/swipe/swipe.html"
         }
       }
-    })
+    });
 })
 
 .directive('noScroll', function($document) {
-
   return {
     restrict: 'A',
     link: function($scope, $element, $attr) {
@@ -27,21 +25,21 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
         e.preventDefault();
       });
     }
-  }
+  };
 })
 
 
-.controller('CardsCtrl', function($scope, $timeout, $ionicSwipeCardDelegate, $http, $rootScope, BeerService) {
+.controller('CardsCtrl', function($scope, $timeout, $ionicSwipeCardDelegate, $http, $rootScope, BeerFactory) {
   $rootScope.accepted = 0;
   $rootScope.rejected = 0;
 
-  $scope.cards = BeerService.beerRecQueue();
-  $scope.myBeersView = BeerService.myBeers();
+  $scope.cards = BeerFactory.beerRecQueue();
+  $scope.myBeersView = BeerFactory.myBeers();
 
   $scope.getNewBeerFromDB = function(beer){
     return $http({
-      method: 'GET', 
-      url: 'http://next-beer.herokuapp.com/api/v1/' + beer.id
+      method: 'GET',
+      url: 'http://localhost:5000/api/v1/' + beer.id
     });
   };
 
@@ -62,7 +60,7 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 
   $scope.cardDestroyed = function(index) {
     if (this.swipeCard.positive === true) {
-     BeerService.addToQueue($scope.cards[index]);
+     BeerFactory.addToQueue($scope.cards[index]);
     }
     $scope.cards.splice(index, 1);
   };
