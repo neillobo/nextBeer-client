@@ -5,7 +5,7 @@
   "script": {
     "test": "",
     "start": "ionic serve",
-    "postinstall": "bower isntall"
+    "postinstall": "bower install"
   },
   "dependencies": {
     "gulp": "^3.5.6",
