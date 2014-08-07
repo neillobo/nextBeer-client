@@ -4,29 +4,27 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybeers','app.swipe', 'app.services'])
+angular.module('app', ['ionic', 'ngTouch', 'app.rate', 'app.recommend', 'app.mybeers', 'app.swipe', 'app.services'])
 
 .run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
+    if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  })
-
-
-  if (!$window.localStorage.getItem('Cookie')) {
+  });
+  UserFactory.setHeader('K6MY7R1XZT');
+  if (!$window.sessionStorage.getItem('Cookie')) {
     UserFactory.userIdGrabber().then(function(result) {
-        UserFactory.setHeader(result.data.cookie);
-        console.log(result.data.cookie);
-      $window.localStorage.setItem('Cookie', result.data.cookie);
-      console.log("invoked");
-    })
+      console.log('session storage is set');
+      // UserFactory.setHeader(result.data.cookie);
+      $window.sessionStorage.setItem('Cookie', result.data.cookie);
+    });
   }
 })
 
@@ -42,4 +40,3 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybee
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/swipe');
 });
-
