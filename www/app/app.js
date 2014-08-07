@@ -30,9 +30,9 @@ angular.module('app', ['ionic', 'ngTouch', 'app.rate','app.recommend','app.mybee
   }
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  // $httpProvider.defaults.withCredentials = true;
   $stateProvider
-
     .state('app', {
       url: "/app",
       abstract: true,
