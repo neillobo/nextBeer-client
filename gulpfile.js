@@ -3,22 +3,26 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   minifyCss = require('gulp-minify-css'),
   rename = require('gulp-rename'),
+  jshint = require('gulp-jshint'),
   shell = require('gulp-shell');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  scripts: [],
+  scripts: ['./www/app/**/*.js'],
   html: [],
   css: []
 };
 
 gulp.task('default', ['sass']);
 
+
 // ios-sim is ios simulator for testing
 gulp.task('install', shell.task(['npm install', 'bower install', 'npm install -g ionic cordova ios-sim']));
 
 // for live reload and preview
-gulp.task('preview', shell.task(['echo auto-live preview...', 'ionic serve']));
+gulp.task('preview',['lint', 'serve']);
+
+gulp.task('serve', shell.task(['echo auto-live preview...', 'ionic serve']));
 
 // for testing
 gulp.task('test', shell.task(['echo running tests...', 'karma start']));
@@ -31,7 +35,6 @@ gulp.task('lint', function () {
   return gulp.src(paths.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(refresh(client));
 });
 
 
@@ -39,6 +42,7 @@ gulp.task('lint', function () {
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
+
 
 // and compile into css folder
 gulp.task('sass', function(done) {
