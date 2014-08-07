@@ -1,7 +1,7 @@
 angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 
 .run(function() {
-  
+
 })
 
 .config(function($stateProvider) {
@@ -40,8 +40,8 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 
   $scope.getNewBeerFromDB = function(beer){
     return $http({
-      method: 'GET', 
-      url: 'http://next-beer.herokuapp.com/api/v1/' + beer.id
+      method: 'GET',
+      url: 'http://localhost:5000/api/v1/' + beer.id
     });
   };
 
