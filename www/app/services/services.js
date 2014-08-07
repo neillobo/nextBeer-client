@@ -1,6 +1,5 @@
 angular.module('app.services', [])
 .factory('BeerFactory', function() {
-  //
   var beerQueue = [{
     id: 104,
     name: "Samuel Adams Boston Lager",
