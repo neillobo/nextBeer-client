@@ -36,32 +36,40 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
   $scope.cards = BeerFactory.beerRecQueue();
   $scope.myBeersView = BeerFactory.myBeers();
 
-  $scope.getNewBeerFromDB = function(beer){
-    return $http({
-      method: 'GET',
-      url: 'http://localhost:5000/api/v1/' + beer.id
-    });
-  };
 
   $scope.addCard = function(newCard) {
     $scope.cards.push(newCard);
   };
 
   $scope.cardSwiped = function(index) {
-    $scope.swipedBeer = $scope.cards[index];
-    $scope.getNewBeerFromDB($scope.swipedBeer)
+    // var swipedBeer = $scope.cards[index];
+    // var ratingObject = {beer_id: swipedBeer.beer_id, beer_rating: 1}
+    // BeerFactory.sendRating($scope.swipedBeer)
+    // .then(function(result){
+    //   $scope.addCard(result.data);
+    // })
+    // .catch(function(err){
+    //   console.log(err);
+    // });
+  };
+
+  $scope.cardDestroyed = function(index) {
+    if (this.swipeCard.positive === true) {
+     BeerFactory.addToQueue($scope.cards[index]);
+     var beerRating = 1;
+    } else {
+      var beerRating = -1;
+    }
+
+    var swipedBeer = $scope.cards[index];
+    var ratingObject = {beer_id: swipedBeer.beer_id, beer_rating: beerRating}
+    BeerFactory.sendRating(ratingObject)
     .then(function(result){
       $scope.addCard(result.data);
     })
     .catch(function(err){
       console.log(err);
     });
-  };
-
-  $scope.cardDestroyed = function(index) {
-    if (this.swipeCard.positive === true) {
-     BeerFactory.addToQueue($scope.cards[index]);
-    }
     $scope.cards.splice(index, 1);
   };
 })
