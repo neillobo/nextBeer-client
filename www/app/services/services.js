@@ -21,7 +21,7 @@ angular.module('app.services',['ngCookies'])
                 ];
 
   var mySelectedBeers = [];
-  
+
   return {
   	beerRecQueue: function() {
   		return beerQueue;
@@ -35,22 +35,22 @@ angular.module('app.services',['ngCookies'])
   	addToMyBeers: function(beer) {
   		mySelectedBeers.push(beer);
   	}
-  }
+  };
 })
 
-.factory('UserFactory', function($http, $cookies) {
+.factory('UserFactory', function($http, $window) {
   var userIdGrabber = function() {
     return $http({
       method: 'POST',
       url: 'http://next-beer.herokuapp.com/api/v2/user'
     });
   };
-  var setHeader = function(string) {
-    // $http.defaults.headers.common.Authorization = string;
-    $cookies.cookie = string;
-  }
+  var setHeader = function(cookie) {
+    $http.defaults.headers.common.cookie = cookie;
+    $window.document.cookie = cookie;
+  };
   return {
     userIdGrabber: userIdGrabber,
     setHeader: setHeader
-  }
-})
+  };
+});
