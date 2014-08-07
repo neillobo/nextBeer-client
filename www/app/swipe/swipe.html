@@ -8,11 +8,11 @@
       <swipe-cards>
         <swipe-card ng-repeat="beer in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
             <span class="title">
-              {{beer.name}}
+              {{beer.beer_name}}
             </span>
             <div class="image">
               <!-- <img-wit src="{{beer.image_url}}"></img-wit> -->
-              <img ng-src="{{beer.image_url}}">
+              <img ng-src="{{beer.beer_image_url}}">
             </div>
         </swipe-card>
       </swipe-cards>
