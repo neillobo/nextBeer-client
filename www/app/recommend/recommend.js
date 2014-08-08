@@ -17,11 +17,6 @@ angular.module('app.recommend', [])
     })
 })
 
-.controller('recommendationCtrl',function($scope, $rootScope, ShowBeersFactory){
-
-
-
-  $scope.showBeer = function() {
-  	return $rootScope.selectedBeer;
-  };
+.controller('recommendationCtrl',function($scope, $rootScope, BeerFactory){  
+  	 $scope.beerDetails = BeerFactory.getSelectedBeer();
 });
