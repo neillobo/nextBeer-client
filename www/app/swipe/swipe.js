@@ -20,7 +20,6 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
   return {
     restrict: 'A',
     link: function($scope, $element, $attr) {
-
       $document.on('touchmove', function(e) {
         e.preventDefault();
       });
@@ -29,7 +28,7 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
 })
 
 
-.controller('CardsCtrl', function($scope, $timeout, $ionicSwipeCardDelegate, $http, $rootScope, BeerFactory) {
+.controller('CardsCtrl', function($window, $scope, $timeout, $ionicSwipeCardDelegate, $http, $rootScope, BeerFactory) {
   $rootScope.accepted = 0;
   $rootScope.rejected = 0;
 
@@ -67,7 +66,7 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
     }
 
     var swipedBeer = $scope.cards[index];
-    var ratingObject = {beer_id: swipedBeer.beer_id, beer_rating: beerRating}
+    var ratingObject = {beer_id: swipedBeer.beer_id, beer_rating: beerRating, user_id : $window.localStorage.getItem('Token')}
     BeerFactory.sendRating(ratingObject)
     .then(function(result){
       $scope.addCard(result.data);
