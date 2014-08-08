@@ -7,14 +7,11 @@
       <swipe-cards>
         <swipe-card ng-repeat="beer in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
             <div class="image">
-              <img ng-src="{{beer.beer_image_url}}">
+              <img ng-src="{{beer.beer_image_url}}" ng-click="showDetails($index)" ui-sref="app.recommend">
             </div>
-            <div class="title">
-              {{beer.beer_name}}
-            </div>
-            <div>
+            <!-- div>
               <button ui-sref="app.recommend" ng-click="showDetails($index)"> Details</button>
-            </div>
+            </div> -->
         </swipe-card>
       </swipe-cards>
  </ion-content>
