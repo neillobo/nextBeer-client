@@ -53,6 +53,10 @@ angular.module('app.swipe', ['ionic', 'ngTouch', 'ionic.contrib.ui.cards'])
     // });
   };
 
+  $scope.showDetails= function(index){
+    BeerFactory.setSelectedBeer(index);
+  };
+  
   $scope.cardDestroyed = function(index) {
     if (this.swipeCard.positive === true) {
      BeerFactory.addToQueue($scope.cards[index]);

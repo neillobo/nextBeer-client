@@ -1,18 +1,19 @@
-<ion-view title="swiping" ng-controller="CardsCtrl" class="pane">
+<ion-view title="Recommendations" ng-controller="CardsCtrl" class="pane">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header" style="overflow:scroll">
-      <h1>Rate Beers</h1>
       <header-bar type="bar-transparent" title="'Help out'"></header-bar>
       <swipe-cards>
         <swipe-card ng-repeat="beer in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
-            <span class="title">
-              {{beer.beer_name}}
-            </span>
             <div class="image">
-              <!-- <img-wit src="{{beer.image_url}}"></img-wit> -->
               <img ng-src="{{beer.beer_image_url}}">
+            </div>
+            <div class="title">
+              {{beer.beer_name}}
+            </div>
+            <div>
+              <button ui-sref="app.recommend" ng-click="showDetails($index)"> Details</button>
             </div>
         </swipe-card>
       </swipe-cards>

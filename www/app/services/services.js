@@ -35,13 +35,8 @@ angular.module('app.services', [])
       data: ratingObject
     });
   };
-
-  // var getMyBeers = function(beer){
-  //   return $http({
-  //     method: 'GET',
-  //     url: 'http://localhost:5000/api/v1/' + beer.beer_id
-  //   });
-  // };
+  
+  var selectedBeer;
 
   return {
     beerRecQueue: function() {
@@ -56,7 +51,16 @@ angular.module('app.services', [])
     addToMyBeers: function(beer) {
       mySelectedBeers.push(beer);
     },
-    sendRating: sendRating
+    sendRating: sendRating,
+    showDetails : function(beerIndex){
+      return beerQueue[beerIndex];
+    },
+    getSelectedBeer : function(){
+      return selectedBeer;
+    },
+    setSelectedBeer : function(index){
+      selectedBeer = beerQueue[index];
+    }
   };
 })
 
