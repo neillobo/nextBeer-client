@@ -13,14 +13,17 @@ angular.module('app', ['ionic', 'ngTouch', 'app.recommend', 'app.mybeers', 'app.
     }
   });
   if (!$window.localStorage.getItem('Token')) {
+    
     UserFactory.userIdGrabber().then(function(result) {
-      $window.localStorage.setItem('Token', result.data.token);
-      UserFactory.setHeader(result.data.token);
+      console.log("Result from post resquest",result);
+      $window.localStorage.setItem('Token', result.data.cookie);
+      // UserFactory.setHeader(result.data.token);
     });
   }else{
     // if token already exists, we set the autorization header
+    console.log("Token Exists")
     // with server-issued token as a safety measure
-    UserFactory.setHeader($window.localStorage.getItem('Token'));
+    // UserFactory.setHeader($window.localStorage.getItem('Token'));
   }
 })
 
