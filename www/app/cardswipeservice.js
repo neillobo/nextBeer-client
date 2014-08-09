@@ -169,9 +169,6 @@
       this.transitionOut(positive);
     },
 
-    /**
-     * Fly the card up or down.
-     */
     transitionOut: function(positive) {
       var self = this;
       if((positive === true) || (this.x > 0)) {
@@ -202,6 +199,8 @@
         }, duration * 1000);
       }
     },
+
+    dragThreshold: 0,
 
     /**
      * Bind drag events on the card.
@@ -251,19 +250,27 @@
 
     _doDrag: function(e) {
       var o = e.gesture.deltaX / 3;
+      dragThreshold = Math.abs(o);
 
-      this.rotationAngle = Math.atan(o/this.touchDistance) * this.rotationDirection;
+      if (dragThreshold > 20) {
 
-      if(e.gesture.deltaX < 0) {
-        this.rotationAngle = 0;
+        this.rotationAngle = Math.atan(o/this.touchDistance) * this.rotationDirection;
+
+        if(e.gesture.deltaX < 0) {
+          this.rotationAngle = 0;
+        }
+
+        this.x = this.startX + (e.gesture.deltaX * 0.4);
+
+        this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, ' + this.y  + 'px, 0) rotate(' + (this.rotationAngle || 0) + 'rad)';
       }
-
-      this.x = this.startX + (e.gesture.deltaX * 0.4);
-
-      this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, ' + this.y  + 'px, 0) rotate(' + (this.rotationAngle || 0) + 'rad)';
     },
     _doDragEnd: function(e) {
-      this.transitionOut(e);
+      console.log("drag dist", dragThreshold);
+      if (dragThreshold > 20) {
+        console.log("drag dist", dragThreshold);
+        this.transitionOut(e);
+      }
     }
   });
 
