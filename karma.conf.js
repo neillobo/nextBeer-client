@@ -19,6 +19,7 @@ module.exports = function(config) {
       'www/lib/angular/angular.js',
       'www/lib/angular-touch/angular-touch.js',
       'www/lib/ionic/js/ionic.bundle.js',
+      'node_modules/chai/chai.js',
 
       // our app code
       'www/app/**/*.js',
