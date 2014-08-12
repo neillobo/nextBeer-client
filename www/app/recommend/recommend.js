@@ -1,7 +1,7 @@
 angular.module('app.recommend', [])
 
 .run(function() {
-  
+
 })
 
 .config(function($stateProvider) {
@@ -14,9 +14,9 @@ angular.module('app.recommend', [])
           templateUrl: "app/recommend/recommend.html"
         }
       }
-    })
+    });
 })
 
-.controller('recommendationCtrl',function($scope, $rootScope, BeerFactory){  
+.controller('recommendationCtrl',function($scope, $rootScope, BeerFactory){
   	 $scope.beerDetails = BeerFactory.getSelectedBeer();
 });

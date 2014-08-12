@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'ngTouch', 'app.recommend', 'app.mybeers', 'app.swipe', 'app.services'])
+angular.module('app', ['ionic', 'ngTouch', 'app.beerdetail', 'app.recommend', 'app.mybeers', 'app.swipe', 'app.services', 'app.services.cardswipe'])
 
 .run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {
@@ -13,7 +13,6 @@ angular.module('app', ['ionic', 'ngTouch', 'app.recommend', 'app.mybeers', 'app.
     }
   });
   if (!$window.localStorage.getItem('Token')) {
-    
     UserFactory.userIdGrabber().then(function(result) {
       console.log("Result from post resquest",result);
       $window.localStorage.setItem('Token', result.data.cookie);
@@ -21,9 +20,8 @@ angular.module('app', ['ionic', 'ngTouch', 'app.recommend', 'app.mybeers', 'app.
     });
   }else{
     // if token already exists, we set the autorization header
-    console.log("Token Exists")
-    // with server-issued token as a safety measure
-    // UserFactory.setHeader($window.localStorage.getItem('Token'));
+    // setHeader doesn't persist so we need to set it every time this app gets run
+    UserFactory.setHeader($window.localStorage.getItem('Token'));
   }
 })
 
