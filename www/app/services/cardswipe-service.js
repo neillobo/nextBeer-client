@@ -275,7 +275,7 @@
   });
 
 
-  angular.module('ionic.contrib.ui.cards', ['ionic'])
+  angular.module('app.services.cardswipe', ['ionic'])
 
   .directive('swipeCard', ['$timeout', function($timeout) {
     return {

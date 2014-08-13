@@ -6,19 +6,19 @@ angular.module('app.mybeers', [])
 
 .config(function($stateProvider) {
   $stateProvider
-
     .state('app.mybeers', {
       url: "/mybeers",
       views: {
-        'menuContent' :{
+        'menuContent': {
           templateUrl: "app/mybeers/mybeers.html"
         }
       }
-    })
+    });
 })
 
-.controller('MyBeersCtrl', function($scope, BeerFactory){
-
-  $scope.myBeers = BeerFactory.myBeers();
-
+.controller('MyBeersCtrl', function($scope, BeerFactory) {
+  $scope.myBeers = BeerFactory.getMyBeers();
+  $scope.passSelectedBeer = function(index) {
+    BeerFactory.passSelectedBeer(index);
+  };
 });
