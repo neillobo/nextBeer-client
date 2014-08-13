@@ -79,7 +79,7 @@ angular.module('app.services', [])
       method: 'GET',
       url: 'http://next-beer.herokuapp.com/api/v2/user',
       sucess: function(data) {
-        console.log("Sucess!", data);
+        console.log("Success!", data);
       },
       error: function(data) {
         console.log("Error!", data);
@@ -87,7 +87,7 @@ angular.module('app.services', [])
     });
   };
   var setHeader = function(token) {
-    // $http.defaults.headers.common.Authorization = 'Bearer' + token;
+    $http.defaults.headers.common.Authorization = 'Bearer' + token;
   };
   return {
     userIdGrabber: userIdGrabber,

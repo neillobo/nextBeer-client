@@ -16,22 +16,7 @@ angular.module('app.recommend', [])
     });
 })
 
-// are we using this?
-// .directive('noScroll', function($document) {
-//   return {
-//     restrict: 'A',
-//     link: function($scope, $element, $attr) {
-//       $document.on('touchmove', function(e) {
-//         e.preventDefault();
-//       });
-//     }
-//   };
-// })
-
-
 .controller('CardsCtrl', function($window, $scope, $ionicSwipeCardDelegate,BeerFactory) {
-  // $rootScope.accepted = 0;
-  // $rootScope.rejected = 0;
 
   $scope.cards = BeerFactory.beerRecQueue;
 
