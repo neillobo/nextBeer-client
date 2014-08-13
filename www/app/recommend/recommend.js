@@ -1,4 +1,4 @@
-angular.module('app.swipe', [])
+angular.module('app.recommend', [])
 
 .run(function() {
 
@@ -6,11 +6,11 @@ angular.module('app.swipe', [])
 
 .config(function($stateProvider) {
   $stateProvider
-    .state('app.swipe', {
-      url: "/swipe",
+    .state('app.recommend', {
+      url: "/recommend",
       views: {
         'menuContent': {
-          templateUrl: "app/swipe/swipe.html"
+          templateUrl: "app/recommend/recommend.html"
         }
       }
     });

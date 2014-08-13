@@ -44,13 +44,14 @@ angular.module('app.services', [])
       // currently a user's selected items persist in the local storage
       // but it should eventually persist on the db/server
       // we can only store string typed data in localstorage
-      var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || [];
-      myBeers.push(beer);
+      var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || {};
+      // we use an object to deduplicate the list
+      myBeers[beer.beer_name] = beer;
       $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
     };
 
     var getMyBeers = function(beer) {
-      return $window.localStorage.getItem('myBeers');
+      return JSON.parse($window.localStorage.getItem('myBeers'));
     };
 
     var getSelectedBeer = function() {
@@ -65,12 +66,10 @@ angular.module('app.services', [])
       beerRecQueue: beerRecQueue,
       addToQueue: addToQueue,
       addToMyBeers: addToMyBeers,
+      getMyBeers: getMyBeers,
       sendRating: sendRating,
       getSelectedBeer: getSelectedBeer,
       passSelectedBeer: passSelectedBeer
-      // showDetails: function(beerIndex) {
-      //   return beerRecQueue[beerIndex];
-      // }
     };
   })
 

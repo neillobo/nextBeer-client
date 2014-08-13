@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'ngTouch','app.recommend', 'app.mybeers', 'app.swipe', 'app.services', 'app.services.cardswipe'])
+angular.module('app', ['ionic', 'ngTouch', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services', 'app.services.cardswipe'])
 
 .run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {
@@ -14,11 +14,11 @@ angular.module('app', ['ionic', 'ngTouch','app.recommend', 'app.mybeers', 'app.s
   });
   if (!$window.localStorage.getItem('Token')) {
     UserFactory.userIdGrabber().then(function(result) {
-      console.log("Result from post resquest",result);
+      console.log("Result from post resquest", result);
       $window.localStorage.setItem('Token', result.data.cookie);
       // UserFactory.setHeader(result.data.token);
     });
-  }else{
+  } else {
     // if token already exists, we set the autorization header
     // setHeader doesn't persist so we need to set it every time this app gets run
     UserFactory.setHeader($window.localStorage.getItem('Token'));
@@ -35,5 +35,5 @@ angular.module('app', ['ionic', 'ngTouch','app.recommend', 'app.mybeers', 'app.s
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/swipe');
+  $urlRouterProvider.otherwise('/app/recommend');
 });

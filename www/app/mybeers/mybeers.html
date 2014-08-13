@@ -4,12 +4,10 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list ng-controller="MyBeersCtrl">
-      <ion-item ng-repeat="beer in myBeers track by $id($index)">
+      <ion-item ng-repeat="beer in myBeers track by $id($index)" ng-click="passSelectedBeer($index)" ui-sref="app.detail">
+      <h2>{{beer.beer_name}}</h2>
       <img ng-src="{{beer.beer_image_url}}">
-               {{beer.beer_name}}
       </ion-item>
-     </ion-list> 
+     </ion-list>
   </ion-content>
 </ion-view>
-
-
