@@ -4,6 +4,6 @@
   "devDependencies": {
   },
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.10"
+    "ionic": "latest"
   }
 }

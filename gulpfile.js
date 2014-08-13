@@ -43,19 +43,20 @@ gulp.task('lint', function() {
 
 // watch for changes in sass folder
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+  return gulp.watch(paths.sass, ['sass']);
 });
 
 gulp.task('bundle', ['app']);
 
 gulp.task('app', function(done) {
-  gulp.src(paths.scripts)
+  return gulp.src(paths.scripts)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('www/dist/app/js'))
+    .pipe(gulp.dest(paths.dist + '/js'))
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
     }))
+    .pipe(gulp.dest(paths.dist + '/js'))
     .on('end', done);
 });
 
@@ -72,11 +73,11 @@ gulp.task('dependencies', function(done) {
   // .pipe(concat('app.js'))
   // .pipe(gulp.dest('www/dist/js'))
   // .on('end', done);
-})
+});
 
 // and compile into css folder
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  return gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .pipe(rename({
       basename: 'next-beer'
