@@ -63,6 +63,5 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       // to service.js to show details of that beer
       BeerFactory.passSelectedBeer(index);
     };
-
   }
 ]);
