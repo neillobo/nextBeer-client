@@ -48,11 +48,15 @@ gulp.task('watch', function() {
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
+    .pipe(rename({
+      basename: 'next-beer'
+    }))
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({
+      basename: 'next-beer',
       extname: '.min.css'
     }))
     .pipe(gulp.dest('./www/css/'))
