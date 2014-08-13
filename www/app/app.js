@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'ngTouch', 'app.beerdetail', 'app.recommend', 'app.mybeers', 'app.swipe', 'app.services', 'app.services.cardswipe'])
+angular.module('app', ['ionic', 'ngTouch','app.recommend', 'app.mybeers', 'app.swipe', 'app.services', 'app.services.cardswipe'])
 
 .run(function($ionicPlatform, $window, UserFactory) {
   $ionicPlatform.ready(function() {

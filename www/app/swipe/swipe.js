@@ -42,8 +42,8 @@ angular.module('app.swipe', [])
   $scope.cardSwiped = function(index) {
   };
 
-  $scope.showDetails = function(index) {
-    BeerFactory.setSelectedBeer(index);
+  $scope.passSelectedBeer = function(index) {
+    BeerFactory.passSelectedBeer(index);
   };
 
   $scope.cardDestroyed = function(index) {

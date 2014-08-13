@@ -26,8 +26,7 @@ angular.module('app.services', [])
       beer_image_url: "./img/bluemoon.jpg"
     }];
 
-
-    // I guess we don't need this for now
+    // this should be changed to POST
     var sendRating = function(rObj) {
       return $http({
         method: 'GET',
@@ -36,6 +35,7 @@ angular.module('app.services', [])
         console.log("Success", data);
       });
     };
+
     var addToQueue = function(beer) {
       beerRecQueue.push(beer);
     };
@@ -43,12 +43,22 @@ angular.module('app.services', [])
     var addToMyBeers = function(beer) {
       // currently a user's selected items persist in the local storage
       // but it should eventually persist on the db/server
-      var myBeers = $window.localStorage.getItem('myBeers') || [];
+      // we can only store string typed data in localstorage
+      var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || [];
       myBeers.push(beer);
-      $window.localStorage.setItem('myBeers', myBeers);
+      $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
     };
-    var getMyBeers = function(beer){
+
+    var getMyBeers = function(beer) {
       return $window.localStorage.getItem('myBeers');
+    };
+
+    var getSelectedBeer = function() {
+      return selectedBeer;
+    };
+
+    var passSelectedBeer = function(index) {
+      selectedBeer = beerRecQueue[index];
     };
 
     return {
@@ -56,15 +66,11 @@ angular.module('app.services', [])
       addToQueue: addToQueue,
       addToMyBeers: addToMyBeers,
       sendRating: sendRating,
-      showDetails: function(beerIndex) {
-        return beerRecQueue[beerIndex];
-      },
-      getSelectedBeer: function() {
-        return selectedBeer;
-      },
-      setSelectedBeer: function(index) {
-        selectedBeer = beerRecQueue[index];
-      }
+      getSelectedBeer: getSelectedBeer,
+      passSelectedBeer: passSelectedBeer
+      // showDetails: function(beerIndex) {
+      //   return beerRecQueue[beerIndex];
+      // }
     };
   })
 
