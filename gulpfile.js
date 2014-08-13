@@ -50,7 +50,7 @@ gulp.task('bundle', function(done){
     insertGlobals: true,
     debug: true
   }))
-  .pipe(concat('bundle.js'))
+  .pipe(concat('app.js'))
   .pipe(gulp.dest('www/dist/js'))
   .on('end', done);
 });
