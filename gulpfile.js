@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   sass = require('gulp-sass'),
   minifyCss = require('gulp-minify-css'),
+  browserify = require('gulp-browserify'),
   rename = require('gulp-rename'),
   jshint = require('gulp-jshint'),
   shell = require('gulp-shell');
@@ -10,7 +11,7 @@ var paths = {
   sass: ['./scss/**/*.scss'],
   scripts: ['./www/app/**/*.js'],
   html: [],
-  css: []
+  dist: ['./www/dist']
 };
 
 gulp.task('default', ['sass']);
@@ -34,7 +35,7 @@ gulp.task('run', shell.task(['echo build, emulate, run your ios app', 'ionic bui
 gulp.task('lint', function () {
   return gulp.src(paths.scripts)
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 
@@ -43,6 +44,16 @@ gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
 
+gulp.task('bundle', function(done){
+  gulp.src(paths.scripts)
+  .pipe(browserify({
+    insertGlobals: true,
+    debug: true
+  }))
+  .pipe(concat('bundle.js'))
+  .pipe(gulp.dest('www/dist/js'))
+  .on('end', done);
+});
 
 // and compile into css folder
 gulp.task('sass', function(done) {
@@ -51,7 +62,7 @@ gulp.task('sass', function(done) {
     .pipe(rename({
       basename: 'next-beer'
     }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest(paths.dist + '/css'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
@@ -59,6 +70,6 @@ gulp.task('sass', function(done) {
       basename: 'next-beer',
       extname: '.min.css'
     }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest(paths.dist + '/css'))
     .on('end', done);
 });
