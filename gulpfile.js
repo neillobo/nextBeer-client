@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
+    order = require('gulp-order'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifyCss = require('gulp-minify-css'),
@@ -11,14 +12,17 @@ var gulp = require('gulp'),
 var paths = {
     sass: ['./scss/**/*.scss'],
     scripts: ['./www/app/**/*.js'],
-    html: ['./www/lib/ionic/release/js/ionic-angular', './www'],
-    // lib: ['./www/lib/ionic/**/*(ionic-angular.min.js|ionic-angular)', './www/lib/'],
+    html: [],
+    lib: [
+        './www/lib/ionic/**/*ionic.bundle.js'
+        // './www/lib/angular-lodash/**/angular-lodash.js'
+    ],
     dist: ['./www/dist']
 };
 
-var errorHandler = function(err){
-  console.log(err.toString());
-  process.exit(-1);
+var errorHandler = function(err) {
+    console.log(err.toString());
+    process.exit(-1);
 };
 // this code doens't work now so we're not using this for now.
 // ios-sim is ios simulator for testing
@@ -46,26 +50,26 @@ gulp.task('lint', function() {
 
 // watch for changes in sass folder
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['bundle']);
-  gulp.watch(paths.sass, ['sass']);
-  // gulp.watch(paths.test, ['test']);
+    gulp.watch(paths.scripts, ['bundle']);
+    gulp.watch(paths.sass, ['sass']);
+    // gulp.watch(paths.test, ['test']);
 });
 
 gulp.task('bundle', ['bundleApp']);
 
 gulp.task('bundleApp', function(done) {
-  return gulp.src(paths.scripts)
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(paths.dist + '/js'))
-    .pipe(uglify())
-    .pipe(rename({
-      extname: '.min.js'
-    }))
-    .pipe(gulp.dest(paths.dist + '/js'));
+    return gulp.src(paths.scripts)
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(paths.dist + '/js'))
+        .pipe(uglify())
+        .pipe(rename({
+            extname: '.min.js'
+        }))
+        .pipe(gulp.dest(paths.dist + '/js'));
 });
 
 gulp.task('bundleDependencies', function() {
-    return gulp.src(paths.dist + '/js/app.min.js')
+    return gulp.src(paths.lib)
         .pipe(concat('bundle.js'))
         .pipe(uglify())
         .pipe(rename({
@@ -77,7 +81,9 @@ gulp.task('bundleDependencies', function() {
 // and compile into css folder
 gulp.task('sass', function(done) {
     return gulp.src('./scss/ionic.app.scss')
-        .pipe(sass({onError: errorHandler}))
+        .pipe(sass({
+            onError: errorHandler
+        }))
         .pipe(rename({
             basename: 'next-beer'
         }))

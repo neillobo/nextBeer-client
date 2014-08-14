@@ -25,8 +25,9 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     $scope.beers = BeerFactory.beerRecQueue;
     // default rating
     var beerRating = 0;
-    var addCard = function(newBeer) {
-      $scope.beers.push(newBeer);
+    var addCard = function(result) {
+      var recommendedBeer = result.data;
+      $scope.beers.push(recommendedBeer);
     };
 
     $scope.cardSwiped = function(index) {
@@ -47,10 +48,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       };
       // swipe a beer, you will get recommendation of another beer
       BeerFactory.sendRating(beerReview)
-        .then(function(result) {
-          var recommendedBeer = result.data;
-          $scope.addCard(recommendedBeer);
-        })
+        .then(addCard)
         .catch(function(err) {
           console.log(err);
         });
