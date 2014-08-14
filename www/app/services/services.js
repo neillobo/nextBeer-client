@@ -2,7 +2,7 @@
   // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
-    baseUrl : 'http://localhost:5000/api/v2'
+    baseUrl : 'http://next-beer.herokuapp.com/api/v2'
   };
 
   angular.module('app.services', [])
