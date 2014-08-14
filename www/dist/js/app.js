@@ -165,7 +165,13 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   }
 ]);
 
-function() {
+(function(){
+  // iife is here to preserve the following config variables
+  // change this url—whether prod or local
+  var config = {
+    baseUrl : 'http://localhost:5000/api/v2'
+  };
+
   angular.module('app.services', [])
     .factory('BeerFactory', ['$http', '$window',
       function($http, $window) {
@@ -200,7 +206,7 @@ function() {
         var sendRating = function(beerReview) {
           return $http({
             method: 'POST',
-            url: "http://localhost:5000/api/v2/rate",
+            url: config.baseUrl + "/rate",
             data: beerReview
           });
         };
@@ -249,7 +255,7 @@ function() {
       var userIdGrabber = function() {
         return $http({
           method: 'GET',
-          url: 'http://localhost:5000/api/v2/user'
+          url: config.baseUrl + '/user'
         }).catch(function(err) {
           console.log(err);
         });
@@ -263,7 +269,7 @@ function() {
       };
     }
   ]);
-}()
+})();
 
 (function(ionic) {
 
