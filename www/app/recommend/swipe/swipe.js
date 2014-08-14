@@ -58,7 +58,7 @@
 
       // Calculate the top left of a default card, as a translated pos
       var topLeft = window.innerHeight / 2 - this.maxHeight/2;
-      console.log(window.innerHeight, this.maxHeight);
+      // console.log(window.innerHeight, this.maxHeight);
 
       var cardOffset = Math.min(this.cards.length, 3) * 5;
 
@@ -241,11 +241,11 @@
       var width = this.el.offsetWidth;
       var point = window.innerWidth / 2 + this.rotationDirection * (width / 2)
       var distance = Math.abs(point - e.gesture.touches[0].pageY);// - window.innerWidth/2);
-      console.log(distance);
+      // console.log(distance);
 
       this.touchDistance = distance * 10;
 
-      console.log('Touch distance', this.touchDistance);//this.touchDistance, width);
+      // console.log('Touch distance', this.touchDistance);//this.touchDistance, width);
     },
 
     _doDrag: function(e) {
@@ -266,16 +266,16 @@
       }
     },
     _doDragEnd: function(e) {
-      console.log("drag dist", dragThreshold);
+      // console.log("drag dist", dragThreshold);
       if (dragThreshold > 20) {
-        console.log("drag dist", dragThreshold);
+        // console.log("drag dist", dragThreshold);
         this.transitionOut(e);
       }
     }
   });
 
 
-  angular.module('app.services.cardswipe', ['ionic'])
+  angular.module('app.recommend.swipe', ['ionic'])
 
   .directive('swipeCard', ['$timeout', function($timeout) {
     return {

@@ -5,7 +5,7 @@
   <ion-content class="has-header" style="overflow:scroll">
     <header-bar type="bar-transparent" title="'Help out'"></header-bar>
     <swipe-cards>
-      <swipe-card ng-repeat="beer in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+      <swipe-card ng-repeat="beer in beers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
         <div class="image">
           <img ng-src="{{beer.beer_image_url}}" ng-click="passSelectedBeer($index)" ui-sref="app.detail">
         </div>
