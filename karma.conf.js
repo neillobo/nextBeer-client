@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -18,9 +18,14 @@ module.exports = function(config) {
       // angular source
       'www/lib/angular/angular.js',
       'www/lib/angular-touch/angular-touch.js',
+      'www/lib/angular-ui-router/release/angular-ui-router.js',
       'www/lib/ionic/js/ionic.bundle.js',
+      'www/lib/angular-mocks/angular-mocks.js',
+      'node_modules/karma-jasmine/lib/jasmine.js',
 
       // our app code
+      //load app.js before other app files to avoid errors 
+      //because it loads alphabetically
       'www/app/**/*.js',
 
       // test files

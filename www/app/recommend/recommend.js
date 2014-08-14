@@ -19,6 +19,18 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   }
 ])
 
+// are we using this?
+// .directive('noScroll', function($document) {
+//   return {
+//     restrict: 'A',
+//     link: function($scope, $element, $attr) {
+//       $document.on('touchmove', function(e) {
+//         e.preventDefault();
+//       });
+//     }
+//   };
+// })
+
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
   function($window, $scope, BeerFactory) {
 
@@ -63,6 +75,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       // to service.js to show details of that beer
       BeerFactory.passSelectedBeer(index);
     };
-
   }
 ]);
+
