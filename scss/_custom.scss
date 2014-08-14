@@ -1,14 +1,7 @@
-body {
-  cursor: url('http://ionicframework.com/img/finger.png'), auto;
-}
-/* Your app's CSS, go crazy, make it your own */
-
-.ionic-logo {
-  display: block;
-  margin: 15px auto;
-  width: 96px;
-  height: 96px;
-}
+/**
+ * all custom sass elements built on top of existing ionic css are here
+ * later these should be split across multiple appropriate files when it gets too large
+ */
 
 .pane {
   background-color: #333 !important

@@ -4,7 +4,7 @@ angular.module('app.mybeers', [])
 
 })
 
-.config(function($stateProvider) {
+.config(['$stateProvider', function($stateProvider) {
   $stateProvider
     .state('app.mybeers', {
       url: "/mybeers",
@@ -14,11 +14,11 @@ angular.module('app.mybeers', [])
         }
       }
     });
-})
+}])
 
-.controller('MyBeersCtrl', function($scope, BeerFactory) {
+.controller('MyBeersCtrl', ['$scope', 'BeerFactory', function($scope, BeerFactory) {
   $scope.myBeers = BeerFactory.getMyBeers();
   $scope.passSelectedBeer = function(index) {
     BeerFactory.passSelectedBeer(index);
   };
-});
+}]);
