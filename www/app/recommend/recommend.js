@@ -1,4 +1,5 @@
-angular.module('app.recommend', [])
+// app.recommend.swipe is a sub module to app.recommend
+angular.module('app.recommend', ['app.recommend.swipe'])
 
 .run(function() {
 
@@ -21,42 +22,49 @@ angular.module('app.recommend', [])
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
   function($window, $scope, BeerFactory) {
 
-    $scope.cards = BeerFactory.beerRecQueue;
-
-    $scope.addCard = function(newCard) {
-      $scope.cards.push(newCard);
+    $scope.beers = BeerFactory.beerRecQueue;
+    // default rating
+    var beerRating = 0;
+    var addCard = function(newBeer) {
+      $scope.beers.push(newBeer);
     };
 
-    $scope.cardSwiped = function(index) {};
-
-    $scope.passSelectedBeer = function(index) {
-      BeerFactory.passSelectedBeer(index);
-    };
-
-    $scope.cardDestroyed = function(index) {
-      var beerRating;
-      if (this.swipeCard.positive === true) {
-        BeerFactory.addToQueue($scope.cards[index]);
+    $scope.cardSwiped = function(index) {
+      if (this.swipeCard && this.swipeCard.positive) {
+        // why do we send this back to the queue?
+        // BeerFactory.addToQueue($scope.beers[index]);
         beerRating = 1;
-        BeerFactory.addToMyBeers($scope.cards[index]);
+        // explicity preference, therefore put into mybeer
+        BeerFactory.addToMyBeers($scope.beers[index]);
       } else {
         beerRating = -1;
       }
 
-      var swipedBeer = $scope.cards[index];
-      var ratingObject = {
+      var swipedBeer = $scope.beers[index];
+      var beerReview = {
         beer_id: swipedBeer.beer_id,
-        beer_rating: beerRating,
-        user_id: $window.localStorage.getItem('Token')
+        beer_rating: beerRating
       };
-      BeerFactory.sendRating(ratingObject)
+      // swipe a beer, you will get recommendation of another beer
+      BeerFactory.sendRating(beerReview)
         .then(function(result) {
-          $scope.addCard(result.data);
+          var recommendedBeer = result.data;
+          $scope.addCard(recommendedBeer);
         })
         .catch(function(err) {
           console.log(err);
         });
-      $scope.cards.splice(index, 1);
     };
+
+    $scope.cardDestroyed = function(index) {
+      $scope.beers.splice(index, 1);
+    };
+
+    $scope.passSelectedBeer = function(index) {
+      // on click event, we send the selected beer
+      // to service.js to show details of that beer
+      BeerFactory.passSelectedBeer(index);
+    };
+
   }
 ]);

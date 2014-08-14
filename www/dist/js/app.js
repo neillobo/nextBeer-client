@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services', 'app.services.cardswipe'])
+angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services'])
 
 .run(['$ionicPlatform', '$window', 'UserFactory',
   function($ionicPlatform, $window, UserFactory) {
@@ -94,7 +94,8 @@ angular.module('app.mybeers', [])
   };
 }]);
 
-angular.module('app.recommend', [])
+// app.recommend.swipe is a sub module to app.recommend
+angular.module('app.recommend', ['app.recommend.swipe'])
 
 .run(function() {
 
@@ -117,45 +118,152 @@ angular.module('app.recommend', [])
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
   function($window, $scope, BeerFactory) {
 
-    $scope.cards = BeerFactory.beerRecQueue;
-
-    $scope.addCard = function(newCard) {
-      $scope.cards.push(newCard);
+    $scope.beers = BeerFactory.beerRecQueue;
+    // default rating
+    var beerRating = 0;
+    var addCard = function(newBeer) {
+      $scope.beers.push(newBeer);
     };
 
-    $scope.cardSwiped = function(index) {};
-
-    $scope.passSelectedBeer = function(index) {
-      BeerFactory.passSelectedBeer(index);
-    };
-
-    $scope.cardDestroyed = function(index) {
-      var beerRating;
-      if (this.swipeCard.positive === true) {
-        BeerFactory.addToQueue($scope.cards[index]);
+    $scope.cardSwiped = function(index) {
+      if (this.swipeCard && this.swipeCard.positive) {
+        // why do we send this back to the queue?
+        // BeerFactory.addToQueue($scope.beers[index]);
         beerRating = 1;
-        BeerFactory.addToMyBeers($scope.cards[index]);
+        // explicity preference, therefore put into mybeer
+        BeerFactory.addToMyBeers($scope.beers[index]);
       } else {
         beerRating = -1;
       }
 
-      var swipedBeer = $scope.cards[index];
-      var ratingObject = {
+      var swipedBeer = $scope.beers[index];
+      var beerReview = {
         beer_id: swipedBeer.beer_id,
-        beer_rating: beerRating,
-        user_id: $window.localStorage.getItem('Token')
+        beer_rating: beerRating
       };
-      BeerFactory.sendRating(ratingObject)
+      // swipe a beer, you will get recommendation of another beer
+      BeerFactory.sendRating(beerReview)
         .then(function(result) {
-          $scope.addCard(result.data);
+          var recommendedBeer = result.data;
+          $scope.addCard(recommendedBeer);
         })
         .catch(function(err) {
           console.log(err);
         });
-      $scope.cards.splice(index, 1);
     };
+
+    $scope.cardDestroyed = function(index) {
+      $scope.beers.splice(index, 1);
+    };
+
+    $scope.passSelectedBeer = function(index) {
+      // on click event, we send the selected beer
+      // to service.js to show details of that beer
+      BeerFactory.passSelectedBeer(index);
+    };
+
   }
 ]);
+
+function() {
+  angular.module('app.services', [])
+    .factory('BeerFactory', ['$http', '$window',
+      function($http, $window) {
+        // dummy data === initial training set
+        var beerRecQueue = [{
+          beer_id: 104,
+          beer_name: "Samuel Adams Boston Lager",
+          beer_image_url: "./dist/img/samadams.jpg"
+        }, {
+          beer_id: 754,
+          beer_name: "Guinness Draught",
+          beer_image_url: "./dist/img/guinness.jpg"
+        }, {
+          beer_id: 355,
+          beer_name: "Dead Guy Ale",
+          beer_image_url: "./dist/img/deadguy.jpg"
+        }, {
+          beer_id: 1904,
+          beer_name: "Sierra Nevada Celebration Ale",
+          beer_image_url: "./dist/img/sierranevada.jpg"
+        }, {
+          beer_id: 680,
+          beer_name: "Brooklyn Black Chocolate Stout",
+          beer_image_url: "./dist/img/blackchocolate.jpg"
+        }, {
+          beer_id: 1212,
+          beer_name: "Blue Moon Belgian White",
+          beer_image_url: "./dist/img/bluemoon.jpg"
+        }];
+
+        // this should be changed to POST
+        var sendRating = function(beerReview) {
+          return $http({
+            method: 'POST',
+            url: "http://localhost:5000/api/v2/rate",
+            data: beerReview
+          });
+        };
+
+        var addToQueue = function(beer) {
+          beerRecQueue.push(beer);
+        };
+
+        var addToMyBeers = function(beer) {
+          // currently a user's selected items persist in the local storage
+          // but it should eventually persist on the db/server
+          // we can only store string typed data in localstorage
+          var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || {};
+          // we use an object to deduplicate the list
+          myBeers[beer.beer_name] = beer;
+          $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
+        };
+
+        var getMyBeers = function(beer) {
+          return JSON.parse($window.localStorage.getItem('myBeers'));
+        };
+
+        // used in detail.js
+        var getSelectedBeer = function() {
+          return selectedBeer;
+        };
+        // used in recommend.js
+        var passSelectedBeer = function(index) {
+          selectedBeer = beerRecQueue[index];
+        };
+
+        return {
+          beerRecQueue: beerRecQueue,
+          addToQueue: addToQueue,
+          addToMyBeers: addToMyBeers,
+          getMyBeers: getMyBeers,
+          sendRating: sendRating,
+          getSelectedBeer: getSelectedBeer,
+          passSelectedBeer: passSelectedBeer
+        };
+      }
+    ])
+
+  .factory('UserFactory', ['$http', '$window',
+    function($http, $window) {
+      var userIdGrabber = function() {
+        return $http({
+          method: 'GET',
+          url: 'http://localhost:5000/api/v2/user'
+        }).catch(function(err) {
+          console.log(err);
+        });
+      };
+      var setHeader = function(token) {
+        $http.defaults.headers.common.Authorization = token;
+      };
+      return {
+        userIdGrabber: userIdGrabber,
+        setHeader: setHeader
+      };
+    }
+  ]);
+}()
 
 (function(ionic) {
 
@@ -217,7 +325,7 @@ angular.module('app.recommend', [])
 
       // Calculate the top left of a default card, as a translated pos
       var topLeft = window.innerHeight / 2 - this.maxHeight/2;
-      console.log(window.innerHeight, this.maxHeight);
+      // console.log(window.innerHeight, this.maxHeight);
 
       var cardOffset = Math.min(this.cards.length, 3) * 5;
 
@@ -400,11 +508,11 @@ angular.module('app.recommend', [])
       var width = this.el.offsetWidth;
       var point = window.innerWidth / 2 + this.rotationDirection * (width / 2)
       var distance = Math.abs(point - e.gesture.touches[0].pageY);// - window.innerWidth/2);
-      console.log(distance);
+      // console.log(distance);
 
       this.touchDistance = distance * 10;
 
-      console.log('Touch distance', this.touchDistance);//this.touchDistance, width);
+      // console.log('Touch distance', this.touchDistance);//this.touchDistance, width);
     },
 
     _doDrag: function(e) {
@@ -425,16 +533,16 @@ angular.module('app.recommend', [])
       }
     },
     _doDragEnd: function(e) {
-      console.log("drag dist", dragThreshold);
+      // console.log("drag dist", dragThreshold);
       if (dragThreshold > 20) {
-        console.log("drag dist", dragThreshold);
+        // console.log("drag dist", dragThreshold);
         this.transitionOut(e);
       }
     }
   });
 
 
-  angular.module('app.services.cardswipe', ['ionic'])
+  angular.module('app.recommend.swipe', ['ionic'])
 
   .directive('swipeCard', ['$timeout', function($timeout) {
     return {
@@ -506,102 +614,3 @@ angular.module('app.recommend', [])
   }]);
 
 })(window.ionic);
-angular.module('app.services', [])
-  .factory('BeerFactory', ['$http', '$window',
-    function($http, $window) {
-      var beerRecQueue = [{
-        beer_id: 104,
-        beer_name: "Samuel Adams Boston Lager",
-        beer_image_url: "./dist/img/samadams.jpg"
-      }, {
-        beer_id: 754,
-        beer_name: "Guinness Draught",
-        beer_image_url: "./dist/img/guinness.jpg"
-      }, {
-        beer_id: 355,
-        beer_name: "Dead Guy Ale",
-        beer_image_url: "./dist/img/deadguy.jpg"
-      }, {
-        beer_id: 1904,
-        beer_name: "Sierra Nevada Celebration Ale",
-        beer_image_url: "./dist/img/sierranevada.jpg"
-      }, {
-        beer_id: 680,
-        beer_name: "Brooklyn Black Chocolate Stout",
-        beer_image_url: "./dist/img/blackchocolate.jpg"
-      }, {
-        beer_id: 1212,
-        beer_name: "Blue Moon Belgian White",
-        beer_image_url: "./dist/img/bluemoon.jpg"
-      }];
-
-      // this should be changed to POST
-      var sendRating = function(obj) {
-        return $http({
-          method: 'POST',
-          url: "http://localhost:5000/api/v2/rate",
-          data: obj
-        });
-      };
-
-      var addToQueue = function(beer) {
-        beerRecQueue.push(beer);
-      };
-
-      var addToMyBeers = function(beer) {
-        // currently a user's selected items persist in the local storage
-        // but it should eventually persist on the db/server
-        // we can only store string typed data in localstorage
-        var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || {};
-        // we use an object to deduplicate the list
-        myBeers[beer.beer_name] = beer;
-        $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
-      };
-
-      var getMyBeers = function(beer) {
-        return JSON.parse($window.localStorage.getItem('myBeers'));
-      };
-
-      var getSelectedBeer = function() {
-        return selectedBeer;
-      };
-
-      var passSelectedBeer = function(index) {
-        selectedBeer = beerRecQueue[index];
-      };
-
-      return {
-        beerRecQueue: beerRecQueue,
-        addToQueue: addToQueue,
-        addToMyBeers: addToMyBeers,
-        getMyBeers: getMyBeers,
-        sendRating: sendRating,
-        getSelectedBeer: getSelectedBeer,
-        passSelectedBeer: passSelectedBeer
-      };
-    }
-  ])
-
-.factory('UserFactory', ['$http', '$window',
-  function($http, $window) {
-    var userIdGrabber = function() {
-      return $http({
-        method: 'GET',
-        url: 'http://localhost:5000/api/v2/user',
-        sucess: function(data) {
-          console.log("Success!", data);
-        },
-        error: function(data) {
-          console.log("Error!", data);
-        },
-      });
-    };
-    var setHeader = function(token) {
-      $http.defaults.headers.common.Authorization = token;
-    };
-    return {
-      userIdGrabber: userIdGrabber,
-      setHeader: setHeader
-    };
-  }
-]);
