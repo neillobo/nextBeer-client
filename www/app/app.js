@@ -27,9 +27,8 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
   }
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-  function($stateProvider, $urlRouterProvider, $httpProvider) {
-    // $httpProvider.defaults.withCredentials = true;
+.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('app', {
         url: "/app",
