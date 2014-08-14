@@ -24,6 +24,8 @@ module.exports = function(config) {
       'node_modules/karma-jasmine/lib/jasmine.js',
 
       // our app code
+      //load app.js before other app files to avoid errors 
+      //because it loads alphabetically
       'www/app/**/*.js',
 
       // test files
