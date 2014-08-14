@@ -115,6 +115,18 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   }
 ])
 
+// are we using this?
+// .directive('noScroll', function($document) {
+//   return {
+//     restrict: 'A',
+//     link: function($scope, $element, $attr) {
+//       $document.on('touchmove', function(e) {
+//         e.preventDefault();
+//       });
+//     }
+//   };
+// })
+
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
   function($window, $scope, BeerFactory) {
 
@@ -159,9 +171,9 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       // to service.js to show details of that beer
       BeerFactory.passSelectedBeer(index);
     };
-
   }
 ]);
+
 
 (function(){
   // iife is here to preserve the following config variables
@@ -523,8 +535,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       var o = e.gesture.deltaX / 3;
       dragThreshold = Math.abs(o);
 
-      if (dragThreshold > 20) {
-
         this.rotationAngle = Math.atan(o/this.touchDistance) * this.rotationDirection;
 
         if(e.gesture.deltaX < 0) {
@@ -534,13 +544,15 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         this.x = this.startX + (e.gesture.deltaX * 0.4);
 
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, ' + this.y  + 'px, 0) rotate(' + (this.rotationAngle || 0) + 'rad)';
-      }
     },
+    
     _doDragEnd: function(e) {
-      // console.log("drag dist", dragThreshold);
-      if (dragThreshold > 20) {
-        // console.log("drag dist", dragThreshold);
+      console.log("drag dist", dragThreshold);
+      if (dragThreshold > 60) {
         this.transitionOut(e);
+        //snap back if not dragged far enough
+      } else { 
+        this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.startX + 'px, ' + this.startY  + 'px, 0) rotate(' + (0) + 'rad)';
       }
     }
   });
