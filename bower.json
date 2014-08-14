@@ -1,9 +1,9 @@
 {
   "name": "nextbeer",
   "private": "true",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
-    "ionic": "latest"
+    "ionic": "latest",
+    "angular-lodash": "~0.1.0"
   }
 }
