@@ -15,9 +15,8 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
     });
     if (!$window.localStorage.getItem('Token')) {
       UserFactory.userIdGrabber().then(function(result) {
-        console.log("Result from post resquest", result);
-        $window.localStorage.setItem('Token', result.data.cookie);
-        // UserFactory.setHeader(result.data.token);
+        $window.localStorage.setItem('Token', result.data.token);
+        UserFactory.setHeader(result.data.token);
       });
     } else {
       // if token already exists, we set the autorization header

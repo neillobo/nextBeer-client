@@ -15,9 +15,8 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
     });
     if (!$window.localStorage.getItem('Token')) {
       UserFactory.userIdGrabber().then(function(result) {
-        console.log("Result from post resquest", result);
-        $window.localStorage.setItem('Token', result.data.cookie);
-        // UserFactory.setHeader(result.data.token);
+        $window.localStorage.setItem('Token', result.data.token);
+        UserFactory.setHeader(result.data.token);
       });
     } else {
       // if token already exists, we set the autorization header
@@ -545,13 +544,13 @@ angular.module('app.recommend', ['app.recommend.swipe'])
 
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, ' + this.y  + 'px, 0) rotate(' + (this.rotationAngle || 0) + 'rad)';
     },
-    
+
     _doDragEnd: function(e) {
-      console.log("drag dist", dragThreshold);
+      // console.log("drag dist", dragThreshold);
       if (dragThreshold > 60) {
         this.transitionOut(e);
         //snap back if not dragged far enough
-      } else { 
+      } else {
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.startX + 'px, ' + this.startY  + 'px, 0) rotate(' + (0) + 'rad)';
       }
     }
