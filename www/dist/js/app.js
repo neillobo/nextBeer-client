@@ -40,31 +40,6 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
   }
 ]);
 
-angular.module('app.mybeers', [])
-
-.run(function() {
-
-})
-
-.config(['$stateProvider', function($stateProvider) {
-  $stateProvider
-    .state('app.mybeers', {
-      url: "/mybeers",
-      views: {
-        'menuContent': {
-          templateUrl: "app/mybeers/mybeers.html"
-        }
-      }
-    });
-}])
-
-.controller('MyBeersCtrl', ['$scope', 'BeerFactory', function($scope, BeerFactory) {
-  $scope.myBeers = BeerFactory.getMyBeers();
-  $scope.passSelectedBeer = function(index) {
-    BeerFactory.passSelectedBeer(index);
-  };
-}]);
-
 angular.module('app.detail', [])
 .run(function() {
 
@@ -93,6 +68,112 @@ angular.module('app.detail', [])
     };
   }
 ]);
+
+angular.module('app.mybeers', [])
+
+.run(function() {
+
+})
+
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider
+    .state('app.mybeers', {
+      url: "/mybeers",
+      views: {
+        'menuContent': {
+          templateUrl: "app/mybeers/mybeers.html"
+        }
+      }
+    });
+}])
+
+.controller('MyBeersCtrl', ['$scope', 'BeerFactory', function($scope, BeerFactory) {
+  $scope.myBeers = BeerFactory.getMyBeers();
+  $scope.passSelectedBeer = function(index) {
+    BeerFactory.passSelectedBeer(index);
+  };
+}]);
+
+// app.recommend.swipe is a sub module to app.recommend
+angular.module('app.recommend', ['app.recommend.swipe'])
+
+.run(function() {
+
+})
+
+.config(['$stateProvider',
+  function($stateProvider) {
+    $stateProvider
+      .state('app.recommend', {
+        url: "/recommend",
+        views: {
+          'menuContent': {
+            templateUrl: "app/recommend/recommend.html"
+          }
+        }
+      });
+  }
+])
+
+// are we using this?
+// .directive('noScroll', function($document) {
+//   return {
+//     restrict: 'A',
+//     link: function($scope, $element, $attr) {
+//       $document.on('touchmove', function(e) {
+//         e.preventDefault();
+//       });
+//     }
+//   };
+// })
+
+.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
+  function($window, $scope, BeerFactory) {
+
+    $scope.beers = BeerFactory.beerRecQueue;
+    // default rating
+    var beerRating = 0;
+    var addCard = function(result) {
+      var recommendedBeer = result.data;
+      $scope.beers.push(recommendedBeer);
+    };
+
+    $scope.cardSwiped = function(index) {
+      if (this.swipeCard && this.swipeCard.positive) {
+        // why do we send this back to the queue?
+        // BeerFactory.addToQueue($scope.beers[index]);
+        beerRating = 1;
+        // explicity preference, therefore put into mybeer
+        BeerFactory.addToMyBeers($scope.beers[index]);
+      } else {
+        beerRating = -1;
+      }
+
+      var swipedBeer = $scope.beers[index];
+      var beerReview = {
+        beer_id: swipedBeer.beer_id,
+        beer_rating: beerRating
+      };
+      // swipe a beer, you will get recommendation of another beer
+      BeerFactory.sendRating(beerReview)
+        .then(addCard)
+        .catch(function(err) {
+          console.log(err);
+        });
+    };
+
+    $scope.cardDestroyed = function(index) {
+      $scope.beers.splice(index, 1);
+    };
+
+    $scope.passSelectedBeer = function(index) {
+      // on click event, we send the selected beer
+      // to service.js to show details of that beer
+      BeerFactory.passSelectedBeer(index);
+    };
+  }
+]);
+
 
 (function(){
   // iife is here to preserve the following config variables
@@ -183,7 +264,7 @@ angular.module('app.detail', [])
     function($http, $window) {
       var userIdGrabber = function() {
         return $http({
-          method: 'GET',
+          method: 'POST',
           url: config.baseUrl + '/user'
         }).catch(function(err) {
           console.log(err);
@@ -199,87 +280,6 @@ angular.module('app.detail', [])
     }
   ]);
 })();
-
-// app.recommend.swipe is a sub module to app.recommend
-angular.module('app.recommend', ['app.recommend.swipe'])
-
-.run(function() {
-
-})
-
-.config(['$stateProvider',
-  function($stateProvider) {
-    $stateProvider
-      .state('app.recommend', {
-        url: "/recommend",
-        views: {
-          'menuContent': {
-            templateUrl: "app/recommend/recommend.html"
-          }
-        }
-      });
-  }
-])
-
-// are we using this?
-// .directive('noScroll', function($document) {
-//   return {
-//     restrict: 'A',
-//     link: function($scope, $element, $attr) {
-//       $document.on('touchmove', function(e) {
-//         e.preventDefault();
-//       });
-//     }
-//   };
-// })
-
-.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
-  function($window, $scope, BeerFactory) {
-
-    $scope.beers = BeerFactory.beerRecQueue;
-    // default rating
-    var beerRating = 0;
-    var addCard = function(result) {
-      var recommendedBeer = result.data;
-      $scope.beers.push(recommendedBeer);
-    };
-
-    $scope.cardSwiped = function(index) {
-      if (this.swipeCard && this.swipeCard.positive) {
-        // why do we send this back to the queue?
-        // BeerFactory.addToQueue($scope.beers[index]);
-        beerRating = 1;
-        // explicity preference, therefore put into mybeer
-        BeerFactory.addToMyBeers($scope.beers[index]);
-      } else {
-        beerRating = -1;
-      }
-
-      var swipedBeer = $scope.beers[index];
-      var beerReview = {
-        beer_id: swipedBeer.beer_id,
-        beer_rating: beerRating
-      };
-      // swipe a beer, you will get recommendation of another beer
-      BeerFactory.sendRating(beerReview)
-        .then(addCard)
-        .catch(function(err) {
-          console.log(err);
-        });
-    };
-
-    $scope.cardDestroyed = function(index) {
-      $scope.beers.splice(index, 1);
-    };
-
-    $scope.passSelectedBeer = function(index) {
-      // on click event, we send the selected beer
-      // to service.js to show details of that beer
-      BeerFactory.passSelectedBeer(index);
-    };
-  }
-]);
-
 
 (function(ionic) {
 

@@ -87,7 +87,7 @@
     function($http, $window) {
       var userIdGrabber = function() {
         return $http({
-          method: 'GET',
+          method: 'POST',
           url: config.baseUrl + '/user'
         }).catch(function(err) {
           console.log(err);
