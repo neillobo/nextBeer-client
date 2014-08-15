@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    order = require('gulp-order'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifyCss = require('gulp-minify-css'),
@@ -44,7 +43,7 @@ gulp.task('lint', function() {
     return gulp.src(paths.scripts)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
-        .on('error', errorHandler);
+        .pipe(jshint.reporter("fail"));
 });
 
 
