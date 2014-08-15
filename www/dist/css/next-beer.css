@@ -7067,3 +7067,19 @@ a.button {
 
 .swipe-card.pop-in {
   -webkit-animation: bounceIn 0.3s ease-out; }
+
+.center {
+  text-align: center; }
+
+.right-border {
+  border-right: 2px solid whitesmoke; }
+
+.card .button-block {
+  margin-bottom: 0px;
+  border-radius: 0px; }
+
+.list.card {
+  padding-bottom: 0px; }
+
+.list .item {
+  border-width: 0px; }
