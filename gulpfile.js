@@ -26,7 +26,7 @@ var errorHandler = function(err) {
 };
 // this code doens't work now so we're not using this for now.
 // ios-sim is ios simulator for testing
-// gulp.task('install', shell.task(['npm install', 'bower install', 'npm install -g ionic cordova ios-sim']));
+gulp.task('install', shell.task(['npm install -g ionic cordova ios-sim']));
 
 gulp.task('default', ['watch']);
 

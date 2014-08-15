@@ -262,13 +262,13 @@
 
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, ' + this.y  + 'px, 0) rotate(' + (this.rotationAngle || 0) + 'rad)';
     },
-    
+
     _doDragEnd: function(e) {
-      console.log("drag dist", dragThreshold);
+      // console.log("drag dist", dragThreshold);
       if (dragThreshold > 60) {
         this.transitionOut(e);
         //snap back if not dragged far enough
-      } else { 
+      } else {
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.startX + 'px, ' + this.startY  + 'px, 0) rotate(' + (0) + 'rad)';
       }
     }
