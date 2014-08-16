@@ -5,9 +5,6 @@
   "dependencies": {
     "ionic": ">1.0.0-beta",
     "angular-lodash": "~0.1.0",
-    "ionicons": "~1.5.2"
-  },
-  "resolutions": {
-    "angular-ui-router": "0.2.10"
+    "lodash": "~2.4.1"
   }
 }

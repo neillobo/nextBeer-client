@@ -6,15 +6,18 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
+    karma = require('gulp-karma'),
     shell = require('gulp-shell');
 
 var paths = {
     sass: ['./scss/**/*.scss'],
     scripts: ['./www/app/**/*.js'],
+    specs: ['specs/**/*.js'],
     html: [],
     lib: [
-        './www/lib/ionic/**/*ionic.bundle.js'
-        // './www/lib/angular-lodash/**/angular-lodash.js'
+        './www/lib/ionic/**/ionic.bundle.js',
+        './www/lib/lodash/**/lodash.js',
+        './www/lib/angular-lodash/**/angular-lodash.js'
     ],
     dist: ['./www/dist']
 };
@@ -32,11 +35,19 @@ gulp.task('default', ['watch']);
 // for live reload and preview
 gulp.task('preview', ['lint', 'bundle'], shell.task(['ionic serve']));
 
-// for testing
-gulp.task('test', shell.task(['karma start']));
-
 // run the app before ...
 gulp.task('run', ['lint', 'test'], shell.task(['ionic build ios && ionic emulate ios && ionic run ios']));
+
+// for testing
+gulp.task('test', function(){
+    return gulp.src(paths.specs)
+    .pipe(karma({
+        configFile: 'karma.conf.js',
+        action: 'run'
+    }))
+    .on('error', errorHandler);
+});
+
 
 // linting
 gulp.task('lint', function() {
@@ -54,7 +65,7 @@ gulp.task('watch', function() {
     // gulp.watch(paths.test, ['test']);
 });
 
-gulp.task('bundle', ['bundleApp']);
+gulp.task('bundle', ['bundleApp', 'bundleDependencies']);
 
 gulp.task('bundleApp', function(done) {
     return gulp.src(paths.scripts)
