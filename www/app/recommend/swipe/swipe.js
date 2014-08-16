@@ -1,5 +1,5 @@
+/* jshint -W004 */
 (function(ionic) {
-
   // Get transform origin poly
   var d = document.createElement('div');
   var transformKeys = ['webkitTransformOrigin', 'transform-origin', '-webkit-transform-origin', 'webkit-transform-origin',

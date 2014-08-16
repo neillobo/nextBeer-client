@@ -114,18 +114,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   }
 ])
 
-// are we using this?
-// .directive('noScroll', function($document) {
-//   return {
-//     restrict: 'A',
-//     link: function($scope, $element, $attr) {
-//       $document.on('touchmove', function(e) {
-//         e.preventDefault();
-//       });
-//     }
-//   };
-// })
-
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
   function($window, $scope, BeerFactory) {
 
@@ -138,6 +126,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     };
 
     $scope.cardSwiped = function(index) {
+      console.log('card swiped');
       if (this.swipeCard && this.swipeCard.positive) {
         // why do we send this back to the queue?
         // BeerFactory.addToQueue($scope.beers[index]);
@@ -147,7 +136,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       } else {
         beerRating = -1;
       }
-
       var swipedBeer = $scope.beers[index];
       var beerReview = {
         beer_id: swipedBeer.beer_id,
@@ -280,8 +268,8 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   ]);
 })();
 
+/* jshint -W004 */
 (function(ionic) {
-
   // Get transform origin poly
   var d = document.createElement('div');
   var transformKeys = ['webkitTransformOrigin', 'transform-origin', '-webkit-transform-origin', 'webkit-transform-origin',
