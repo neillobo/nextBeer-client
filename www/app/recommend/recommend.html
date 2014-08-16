@@ -9,6 +9,7 @@
         <div class="image">
           <img ng-src="{{beer.beer_image_url}}" ng-click="passSelectedBeer($index)" ui-sref="app.detail">
         </div>
+        <p class="card-name"> {{beer.beer_name}}</p>
       </swipe-card>
     </swipe-cards>
   </ion-content>
