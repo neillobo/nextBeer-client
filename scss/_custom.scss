@@ -133,7 +133,7 @@
   margin-bottom: 0px;
   border-radius: 0px;
 }
-.list.card { 
+.list.card {
   padding-bottom: 0px;
 }
 .list .item {
@@ -145,4 +145,19 @@
 .arrows {
   display: inline-block;
   max-width: 30%;
+}
+
+
+/* My Beers view */
+.item-thumbnail-left > img:first-child {
+  left: $item-thumbnail-margin+15; // easy centering
+  max-width: $item-thumbnail-width/2;
+}
+
+.item-complex .item-content {
+  padding: $item-padding (ceil( ($item-padding * 3) + ($item-padding / 3) ) - 5) 0 $item-padding;
+}
+
+a.item-content:after {
+  content: url("../../dist/img/border_gradient.png");
 }
