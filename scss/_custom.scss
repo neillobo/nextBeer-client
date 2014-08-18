@@ -3,11 +3,8 @@
  * later these should be split across multiple appropriate files when it gets too large
  */
 
-
 // Variables
 // -------------------------------
-
-
 // Cards
 // -------------------------------
 
@@ -15,118 +12,60 @@
   background-color: $item-divider-bg;
 }
 
-
+/* Recommend view */
 
 .swipe-cards {
-  text-align:center;
+  text-align: center;
 }
-
 .swipe-card {
   @extend .card;
   border-radius: 5px;
-  // -webkit-perspective: 1000;
-  // -webkit-backface-visibility: hidden;
-  // -webkit-animation-fill-mode: forwards;
-  // -webkit-transform: scale(1,1);
-  // background: #fafafb;
-  // border: 1px #d3d7dd solid;
+
+  .title {
+    @extend .item;
+    background-color: $energized;
+    color: $button-energized-text;
+    padding: 7px 0px 0px;
+  }
+
+  img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+  }
 }
 
-.swipe-card .title {
-  @extend .item;
-  background-color: $energized;
-  color: $button-energized-text;
-  padding: 7px 0px 0px;
-}
-
-.swipe-card img {
-  margin: 0 auto;
-  display: block;
-  max-width: 100%;
-
-}
+/* Card detail view */
 
 .card-detail {
   @extend .list;
   @extend .card;
-  text-align:center;
+  text-align: center;
   border-radius: 5px;
-}
-
-.card-detail .button-block {
-  margin-bottom: 0px;
-}
-
-
-@-webkit-keyframes bounceIn {
-  0% {
-    -webkit-transform: scale(0,0);
-  }
-  70% {
-    -webkit-transform: scale(1.2,1.2);
-  }
-  100% {
-    -webkit-transform: scale(1,1);
+  .button-block {
+    margin-bottom: 0px;
   }
 }
-
-.swipe-card.pop-in-start {
-  -webkit-transform: scale(0,0);
-}
-.swipe-card.pop-in {
-  -webkit-animation: bounceIn 0.3s ease-out;
-}
-
-// .bar.bar-transparent {
-//   background-color: transparent;
-//   background-image: none;
-//   border: none;
-// }
 
 /* My Beers view */
-.item-thumbnail-left > img:first-child {
-  left: $item-thumbnail-margin+15; // easy centering
-  max-width: $item-thumbnail-width/2;
+
+.mybeer {
+  .item-content > img:first-child {
+    left: $item-thumbnail-margin + 15;
+    max-width: $item-thumbnail-width / 2;
+  }
+
+  .item-content {
+    padding-top: $item-thumbnail-width/3;
+  }
+
+  .item-thumbnail-left:after {
+    content: url("../../dist/img/border_gradient.png");
+    margin-left: $item-thumbnail-width/2;
+  }
+
+  .item {
+    border:none;
+  }
 }
 
-.item-complex .item-content {
-  padding: $item-padding (ceil( ($item-padding * 3) + ($item-padding / 3) ) - 5) 0 $item-padding;
-}
-
-a.item-content:after {
-  content: url("../../dist/img/border_gradient.png");
-}
-// @-webkit-keyframes bounceIn {
-//   0% {
-//     -webkit-transform: scale(0,0);
-//   }
-//   70% {
-//     -webkit-transform: scale(1.2,1.2);
-//   }
-//   100% {
-//     -webkit-transform: scale(1,1);
-//   }
-// }
-
-// .swipe-card.pop-in-start {
-//   -webkit-transform: scale(0,0);
-// }
-// .swipe-card.pop-in {
-//   -webkit-animation: bounceIn 0.3s ease-out;
-// }
-// .center {
-//   text-align: center;
-// }
-// .right-border {
-//   border-right: 2px solid whitesmoke;
-// }
-// .card .button-block {
-//   margin-bottom: 0px;
-//   border-radius: 0px;
-// }
-// .list.card {
-//   padding-bottom: 0px;
-// }
-// .list .item {
-//   border-width: 0px;
-// }

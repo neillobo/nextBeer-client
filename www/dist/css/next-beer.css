@@ -2187,10 +2187,10 @@ body, .ionic-body {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  color: #000;
+  color: #4d4d4d;
   word-wrap: break-word;
   font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -2475,9 +2475,9 @@ cite {
   text-align: center; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: #000;
+  color: #4d4d4d;
   font-weight: 500;
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
     font-weight: normal;
@@ -2614,7 +2614,7 @@ a.subdued {
 
 .action-sheet-title {
   padding: 10px;
-  color: #666666;
+  color: #b3b3b3;
   text-align: center;
   font-size: 12px; }
 
@@ -3407,14 +3407,14 @@ a.subdued {
   .tab-item.tab-item-active.tab-item-dark, .tab-item.active.tab-item-dark, .tab-item.activated.tab-item-dark {
     color: #444; }
 
-.item.tabs {
+.item.tabs, .swipe-card .tabs.title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
   padding: 0; }
-  .item.tabs .icon:before {
+  .item.tabs .icon:before, .item.tabs .swipe-card .tabs.title, .swipe-card .item.tabs .tabs.title {
     position: relative; }
 
 .tab-item.disabled, .tab-item[disabled] {
@@ -3660,7 +3660,7 @@ a.subdued {
  * Items
  * --------------------------------------------------
  */
-.item {
+.item, .swipe-card .title {
   border-color: #ddd;
   background-color: #fff;
   color: #444;
@@ -3672,24 +3672,24 @@ a.subdued {
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
-  .item h2 {
+  .item h2, .item .swipe-card .title, .swipe-card .item .title {
     margin: 0 0 4px 0;
     font-size: 16px; }
-  .item h3 {
+  .item h3, .item .swipe-card .title, .swipe-card .item .title {
     margin: 0 0 4px 0;
     font-size: 14px; }
-  .item h4 {
+  .item h4, .item .swipe-card .title, .swipe-card .item .title {
     margin: 0 0 4px 0;
     font-size: 12px; }
-  .item h5, .item h6 {
+  .item h5, .item .swipe-card .title, .swipe-card .item .title, .item h6, .item .swipe-card .title, .swipe-card .item .title {
     margin: 0 0 3px 0;
     font-size: 10px; }
-  .item p {
+  .item p, .item .swipe-card .title, .swipe-card .item .title {
     color: #666;
     font-size: 14px; }
-  .item h1:last-child, .item h2:last-child, .item h3:last-child, .item h4:last-child, .item h5:last-child, .item h6:last-child, .item p:last-child {
+  .item h1:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h2:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h3:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h4:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h5:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h6:last-child, .item .swipe-card .title, .swipe-card .item .title, .item p:last-child, .item .swipe-card .title, .swipe-card .item .title {
     margin-bottom: 0; }
-  .item .badge {
+  .item .badge, .item .swipe-card .title, .swipe-card .item .title {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-flex;
@@ -3698,91 +3698,91 @@ a.subdued {
     position: absolute;
     top: 15px;
     right: 30px; }
-  .item.item-button-right .badge {
+  .item.item-button-right .badge, .item.item-button-right .swipe-card .item-button-right.title, .swipe-card .item.item-button-right .item-button-right.title {
     right: 65px; }
-  .item.item-divider .badge {
+  .item.item-divider .badge, .item.item-divider .swipe-card .item-divider.title, .swipe-card .item.item-divider .item-divider.title {
     top: 8px; }
-  .item .badge + .badge {
+  .item .badge + .badge, .item .badge + .swipe-card .title, .swipe-card .item .badge + .title {
     margin-right: 5px; }
-  .item.item-light {
+  .item.item-light, .swipe-card .item-light.title {
     border-color: #ddd;
     background-color: #fff;
     color: #444; }
-  .item.item-stable {
+  .item.item-stable, .swipe-card .item-stable.title {
     border-color: #b2b2b2;
     background-color: #f8f8f8;
     color: #444; }
-  .item.item-positive {
+  .item.item-positive, .swipe-card .item-positive.title {
     border-color: #145fd7;
     background-color: #4a87ee;
     color: #fff; }
-  .item.item-calm {
+  .item.item-calm, .swipe-card .item-calm.title {
     border-color: #1aacc3;
     background-color: #43cee6;
     color: #fff; }
-  .item.item-assertive {
+  .item.item-assertive, .swipe-card .item-assertive.title {
     border-color: #cc2311;
     background-color: #ef4e3a;
     color: #fff; }
-  .item.item-balanced {
+  .item.item-balanced, .swipe-card .item-balanced.title {
     border-color: #498f24;
     background-color: #66cc33;
     color: #fff; }
-  .item.item-energized {
+  .item.item-energized, .swipe-card .item-energized.title {
     border-color: #d39211;
     background-color: #f0b840;
     color: #fff; }
-  .item.item-royal {
+  .item.item-royal, .swipe-card .item-royal.title {
     border-color: #552bdf;
     background-color: #8a6de9;
     color: #fff; }
-  .item.item-dark {
+  .item.item-dark, .swipe-card .item-dark.title {
     border-color: #111;
     background-color: #444;
     color: #fff; }
-  .item[ng-click]:hover {
+  .item[ng-click]:hover, .swipe-card [ng-click].title:hover {
     cursor: pointer; }
 
-.item.active, .item.activated, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .item-content.activated {
+.item.active, .swipe-card .active.title, .item.activated, .swipe-card .activated.title, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated, .item .swipe-card .title, .swipe-card .item .title {
   border-color: #ccc;
   background-color: #D9D9D9; }
-  .item.active.item-light, .item.activated.item-light, .item-complex.active .item-content.item-light, .item-complex.activated .item-content.item-light, .item .item-content.active.item-light, .item .item-content.activated.item-light {
+  .item.active.item-light, .swipe-card .active.item-light.title, .item.activated.item-light, .swipe-card .activated.item-light.title, .item-complex.active .item-content.item-light, .item-complex.activated .item-content.item-light, .item .item-content.active.item-light, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-light, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #ccc;
     background-color: #fafafa; }
-  .item.active.item-stable, .item.activated.item-stable, .item-complex.active .item-content.item-stable, .item-complex.activated .item-content.item-stable, .item .item-content.active.item-stable, .item .item-content.activated.item-stable {
+  .item.active.item-stable, .swipe-card .active.item-stable.title, .item.activated.item-stable, .swipe-card .activated.item-stable.title, .item-complex.active .item-content.item-stable, .item-complex.activated .item-content.item-stable, .item .item-content.active.item-stable, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-stable, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #a2a2a2;
     background-color: #e5e5e5; }
-  .item.active.item-positive, .item.activated.item-positive, .item-complex.active .item-content.item-positive, .item-complex.activated .item-content.item-positive, .item .item-content.active.item-positive, .item .item-content.activated.item-positive {
+  .item.active.item-positive, .swipe-card .active.item-positive.title, .item.activated.item-positive, .swipe-card .activated.item-positive.title, .item-complex.active .item-content.item-positive, .item-complex.activated .item-content.item-positive, .item .item-content.active.item-positive, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-positive, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #145fd7;
     background-color: #145fd7; }
-  .item.active.item-calm, .item.activated.item-calm, .item-complex.active .item-content.item-calm, .item-complex.activated .item-content.item-calm, .item .item-content.active.item-calm, .item .item-content.activated.item-calm {
+  .item.active.item-calm, .swipe-card .active.item-calm.title, .item.activated.item-calm, .swipe-card .activated.item-calm.title, .item-complex.active .item-content.item-calm, .item-complex.activated .item-content.item-calm, .item .item-content.active.item-calm, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-calm, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #1aacc3;
     background-color: #1aacc3; }
-  .item.active.item-assertive, .item.activated.item-assertive, .item-complex.active .item-content.item-assertive, .item-complex.activated .item-content.item-assertive, .item .item-content.active.item-assertive, .item .item-content.activated.item-assertive {
+  .item.active.item-assertive, .swipe-card .active.item-assertive.title, .item.activated.item-assertive, .swipe-card .activated.item-assertive.title, .item-complex.active .item-content.item-assertive, .item-complex.activated .item-content.item-assertive, .item .item-content.active.item-assertive, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-assertive, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #cc2311;
     background-color: #cc2311; }
-  .item.active.item-balanced, .item.activated.item-balanced, .item-complex.active .item-content.item-balanced, .item-complex.activated .item-content.item-balanced, .item .item-content.active.item-balanced, .item .item-content.activated.item-balanced {
+  .item.active.item-balanced, .swipe-card .active.item-balanced.title, .item.activated.item-balanced, .swipe-card .activated.item-balanced.title, .item-complex.active .item-content.item-balanced, .item-complex.activated .item-content.item-balanced, .item .item-content.active.item-balanced, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-balanced, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #498f24;
     background-color: #498f24; }
-  .item.active.item-energized, .item.activated.item-energized, .item-complex.active .item-content.item-energized, .item-complex.activated .item-content.item-energized, .item .item-content.active.item-energized, .item .item-content.activated.item-energized {
+  .item.active.item-energized, .swipe-card .active.item-energized.title, .item.activated.item-energized, .swipe-card .activated.item-energized.title, .item-complex.active .item-content.item-energized, .item-complex.activated .item-content.item-energized, .item .item-content.active.item-energized, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-energized, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #d39211;
     background-color: #d39211; }
-  .item.active.item-royal, .item.activated.item-royal, .item-complex.active .item-content.item-royal, .item-complex.activated .item-content.item-royal, .item .item-content.active.item-royal, .item .item-content.activated.item-royal {
+  .item.active.item-royal, .swipe-card .active.item-royal.title, .item.activated.item-royal, .swipe-card .activated.item-royal.title, .item-complex.active .item-content.item-royal, .item-complex.activated .item-content.item-royal, .item .item-content.active.item-royal, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-royal, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #552bdf;
     background-color: #552bdf; }
-  .item.active.item-dark, .item.activated.item-dark, .item-complex.active .item-content.item-dark, .item-complex.activated .item-content.item-dark, .item .item-content.active.item-dark, .item .item-content.activated.item-dark {
+  .item.active.item-dark, .swipe-card .active.item-dark.title, .item.activated.item-dark, .swipe-card .activated.item-dark.title, .item-complex.active .item-content.item-dark, .item-complex.activated .item-content.item-dark, .item .item-content.active.item-dark, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-dark, .item .swipe-card .title, .swipe-card .item .title {
     border-color: #000;
     background-color: #262626; }
 
-.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+.item, .swipe-card .title, .item h1, .item .swipe-card .title, .swipe-card .item .title, .item h2, .item .swipe-card .title, .swipe-card .item .title, .item h3, .item .swipe-card .title, .swipe-card .item .title, .item h4, .item .swipe-card .title, .swipe-card .item .title, .item h5, .item .swipe-card .title, .swipe-card .item .title, .item h6, .item .swipe-card .title, .swipe-card .item .title, .item p, .item .swipe-card .title, .swipe-card .item .title, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
 
-a.item {
+a.item, .swipe-card a.title {
   color: inherit;
   text-decoration: none; }
-  a.item:hover, a.item:focus {
+  a.item:hover, .swipe-card a.title:hover, a.item:focus, .swipe-card a.title:focus {
     text-decoration: none; }
 
 /**
@@ -3794,7 +3794,7 @@ a.item {
  * Basically .item-complex removes any default settings which
  * .item added, so that .item-content looks them as just .item.
  */
-.item-complex, a.item.item-complex, button.item.item-complex {
+.item-complex, a.item.item-complex, .swipe-card a.item-complex.title, button.item.item-complex, .swipe-card button.item-complex.title {
   padding: 0; }
 
 .item-complex .item-content, .item-radio .item-content {
@@ -3809,7 +3809,7 @@ a.item-content {
   color: inherit;
   text-decoration: none; }
 
-.item-text-wrap .item, .item-text-wrap .item-content, .item-text-wrap, .item-text-wrap h1, .item-text-wrap h2, .item-text-wrap h3, .item-text-wrap h4, .item-text-wrap h5, .item-text-wrap h6, .item-text-wrap p, .item-complex.item-text-wrap .item-content, .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
+.item-text-wrap .item, .item-text-wrap .swipe-card .title, .swipe-card .item-text-wrap .title, .item-text-wrap .item-content, .item-text-wrap, .item-text-wrap h1, .item-text-wrap h2, .item-text-wrap h3, .item-text-wrap h4, .item-text-wrap h5, .item-text-wrap h6, .item-text-wrap p, .item-complex.item-text-wrap .item-content, .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
   overflow: visible;
   white-space: normal; }
 
@@ -3905,7 +3905,7 @@ a.item-content {
     width: 32px;
     text-align: center; }
 
-.item .fill-icon {
+.item .fill-icon, .item .swipe-card .title, .swipe-card .item .title {
   min-width: 30px;
   min-height: 30px;
   font-size: 28px; }
@@ -3983,7 +3983,7 @@ a.item-content {
     font-size: 18px;
     line-height: 32px; }
 
-.item-button-right, a.item.item-button-right, button.item.item-button-right {
+.item-button-right, a.item.item-button-right, .swipe-card a.item-button-right.title, button.item.item-button-right, .swipe-card button.item-button-right.title {
   padding-right: 75px; }
 
 .item-button-right > .button, .item-button-right .item-content > .button, .item-button-right > .buttons, .item-button-right .item-content > .buttons {
@@ -4250,11 +4250,7 @@ a.item-content {
 
 .list:last-child, .card-detail:last-child {
   margin-bottom: 0px; }
-<<<<<<< HEAD
-  .list:last-child.card {
-=======
   .list:last-child.card, .list.swipe-card:last-child, .swipe-card.card-detail:last-child, .card-detail:last-child.card, .card-detail.swipe-card:last-child, .card-detail:last-child, .list.card-detail:last-child, .card-detail:last-child {
->>>>>>> ui change
     margin-bottom: 40px; }
 
 /**
@@ -4268,11 +4264,7 @@ a.item-content {
   color: #222;
   font-weight: bold; }
 
-<<<<<<< HEAD
-.card.list .list-item {
-=======
 .card.list .list-item, .card.list .list.swipe-card, .card.list .swipe-card.card-detail, .card.list .card.card-detail, .card.list .card-detail.swipe-card, .card.list .card-detail, .card.list .list.card-detail, .card.list .card-detail {
->>>>>>> ui change
   padding-right: 1px;
   padding-left: 1px; }
 
@@ -4281,53 +4273,17 @@ a.item-content {
  * --------------------------------------------------
  * A card and list-inset are close to the same thing, except a card as a box shadow.
  */
-<<<<<<< HEAD
-.card, .list-inset {
-=======
 .card, .swipe-card, .card-detail, .list-inset {
->>>>>>> ui change
   overflow: hidden;
   margin: 20px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
-<<<<<<< HEAD
-.card {
-=======
 .card, .swipe-card, .card-detail {
->>>>>>> ui change
   padding-top: 1px;
   padding-bottom: 1px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
 
-<<<<<<< HEAD
-.card .item:first-child, .list-inset .item:first-child, .padding > .list .item:first-child {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px; }
-  .card .item:first-child .item-content, .list-inset .item:first-child .item-content, .padding > .list .item:first-child .item-content {
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px; }
-.card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px; }
-  .card .item:last-child .item-content, .list-inset .item:last-child .item-content, .padding > .list .item:last-child .item-content {
-    border-bottom-right-radius: 2px;
-    border-bottom-left-radius: 2px; }
-
-.card .item:last-child, .list-inset .item:last-child {
-  margin-bottom: -1px; }
-
-.card .item, .list-inset .item, .padding > .list .item, .padding-horizontal > .list .item {
-  margin-right: 0;
-  margin-left: 0; }
-  .card .item.item-input input, .list-inset .item.item-input input, .padding > .list .item.item-input input, .padding-horizontal > .list .item.item-input input {
-    padding-right: 44px; }
-
-.padding-left > .list .item {
-  margin-left: 0; }
-
-.padding-right > .list .item {
-=======
 .card .item:first-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:first-child, .swipe-card .card .title:first-child, .list-inset .item:first-child, .list-inset .swipe-card .title:first-child, .swipe-card .list-inset .title:first-child, .padding > .list .item:first-child, .padding > .list .card-detail, .padding > .list .swipe-card .title:first-child, .swipe-card .padding > .list .title:first-child {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px; }
@@ -4354,7 +4310,6 @@ a.item-content {
   margin-left: 0; }
 
 .padding-right > .list .item, .padding-right > .list .card-detail, .padding-right > .list .swipe-card .title, .swipe-card .padding-right > .list .title {
->>>>>>> ui change
   margin-right: 0; }
 
 /**
@@ -4518,7 +4473,7 @@ label, input, button, select, textarea {
   line-height: 1.42857; }
 
 input, button, select, textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+  font-family: "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 
 .item-input {
   display: -webkit-box;
@@ -6921,9 +6876,9 @@ a.button {
  * Apply roboto font
  */
 .roboto {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+  font-family: "Roboto", "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
   .roboto input {
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+    font-family: "Roboto", "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 
 /*
 .platform-android {
@@ -7033,153 +6988,38 @@ a.button {
  * later these should be split across multiple appropriate files when it gets too large
  */
 .pane {
-  background-color: #333 !important; }
+  background-color: #f5f5f5; }
 
-.bar.bar-transparent {
-  background-color: transparent;
-  background-image: none;
-  border: none; }
-
-.bar .title {
-  color: #eee; }
+/* Recommend view */
+.swipe-cards {
+  text-align: center; }
 
 .swipe-card {
-  -webkit-perspective: 1000;
-  -webkit-backface-visibility: hidden;
-  display: none;
-  position: relative;
-  -webkit-transform: scale(1, 1);
-  /*  left: 15%;*/
-  /*top: 50%;*/
-  width: 90%;
-  height: 300px;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  background-color: white;
-  border-radius: 5px;
-  overflow: hidden;
-  text-align: center;
-  -webkit-animation-fill-mode: forwards; }
+  border-radius: 5px; }
+  .swipe-card .title {
+    background-color: #f0b840;
+    color: #fff;
+    padding: 7px 0px 0px; }
+  .swipe-card img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%; }
 
-.swipe-card .title {
-  height: 40px;
-  padding: 5px;
-  line-height: 30px;
-  color: #444; }
-
-.swipe-card .image {
-  overflow: hidden;
-  max-height: 210px;
-  border-radius: 2px; }
-
-<<<<<<< HEAD
-.swipe-card .button {
-  border: none; }
-
-.swipe-card .image img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 4px;
-  border-color: #354647 solid; }
-
-.card-name {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 20px;
-  font-family: Garamond;
-  font-style: bold;
-  color: #781E00; }
-
-.start-card {
-  color: #fff;
-  background-color: #FF542E;
-  line-height: 100px;
-  border: 7px solid #ADC1D6;
-  text-align: center; }
-
-.start-card span {
-  display: inline-block;
-  line-height: 30px;
-  width: 250px;
-  font-size: 22px;
-  vertical-align: middle; }
-
-.start-card2 {
-  color: #fff;
-  background-color: #ED8A3F;
-  line-height: 100px;
-  border: 7px solid #D4E8C1;
-  text-align: center; }
-
-.start-card2 span {
-  display: inline-block;
-  line-height: 20px;
-  width: 250px;
-  font-size: 18px;
-  vertical-align: middle; }
-
-#footer .button {
-  color: #fff; }
-=======
+/* Card detail view */
 .card-detail {
   text-align: center;
   border-radius: 5px; }
-
-.card-detail .button-block {
-  margin-bottom: 0px; }
->>>>>>> ui change
-
-@-webkit-keyframes bounceIn {
-  0% {
-    -webkit-transform: scale(0, 0); }
-
-  70% {
-    -webkit-transform: scale(1.2, 1.2); }
-
-  100% {
-    -webkit-transform: scale(1, 1); } }
-
-.swipe-card.pop-in-start {
-  -webkit-transform: scale(0, 0); }
-
-.swipe-card.pop-in {
-  -webkit-animation: bounceIn 0.3s ease-out; }
-<<<<<<< HEAD
-
-.center {
-  text-align: center; }
-
-.right-border {
-  border-right: 2px solid whitesmoke; }
-
-.card .button-block {
-  margin-bottom: 0px;
-  border-radius: 0px; }
-
-.list.card {
-  padding-bottom: 0px; }
-
-.list .item {
-  border-width: 0px; }
-
-.neilsIcon {
-  max-width: 150px; }
-
-.arrows {
-  display: inline-block;
-  max-width: 30%; }
+  .card-detail .button-block {
+    margin-bottom: 0px; }
 
 /* My Beers view */
-.item-thumbnail-left > img:first-child {
+.mybeer .item-content > img:first-child {
   left: 25px;
   max-width: 40px; }
-
-.item-complex .item-content {
-  padding: 15px 45px 0 15px; }
-
-a.item-content:after {
-  content: url("../../dist/img/border_gradient.png"); }
-=======
->>>>>>> ui change
+.mybeer .item-content {
+  padding-top: 26.66667px; }
+.mybeer .item-thumbnail-left:after {
+  content: url("../../dist/img/border_gradient.png");
+  margin-left: 40px; }
+.mybeer .item, .mybeer .swipe-card .title, .swipe-card .mybeer .title {
+  border: none; }
