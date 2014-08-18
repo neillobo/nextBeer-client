@@ -16,11 +16,6 @@
 .bar .title {
   color: #eee;
 }
-
-.swipe-cards {
-  /*position: relative ;*/
-}
-
 .swipe-card {
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
@@ -29,13 +24,15 @@
   -webkit-transform: scale(1,1);
 /*  left: 15%;*/
   /*top: 50%;*/
-  width: 100%;
+  width: 90%;
   height: 300px;
-  /*margin-left: -150px;*/
-  /*margin-top: -150px;*/
+  margin-left: 10px;
+  // margin-right: -40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   background-color: rgb(255,255,255);
-  border-radius: 4px;
+  border-radius: 5px;
   overflow: hidden;
   text-align: center;
   -webkit-animation-fill-mode: forwards;
@@ -70,21 +67,39 @@
   font-style: bold;
   color: #781E00;
 }
-#start-card {
+.start-card {
   color: #fff;
-  background-color: #30BD8A;
-  line-height: 300px;
-  word-wrap: break-word;
-  border: 6px solid #4CD68E;
+  background-color: #FF542E;
+  line-height: 100px;
+  // word-wrap: break-word;
+  border: 7px solid #ADC1D6;
   text-align: center;
 }
-#start-card span {
+
+.start-card span {
   display: inline-block;
-  line-height: 40px;
-  width: 200px;
-  font-size: 30px;
+  line-height: 30px;
+  width: 250px;
+  font-size: 22px;
   vertical-align: middle;
 }
+
+.start-card2 {
+  color: #fff;
+  background-color: #ED8A3F;
+  line-height: 100px;
+  // word-wrap: break-word;
+  border: 7px solid #D4E8C1;
+  text-align: center;
+}
+.start-card2 span {
+  display: inline-block;
+  line-height: 20px;
+  width: 250px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
 
 #footer .button {
   color: #fff;
@@ -123,4 +138,11 @@
 }
 .list .item {
   border-width: 0px;
+}
+.neilsIcon {
+  max-width: 150px;
+}
+.arrows {
+  display: inline-block;
+  max-width: 30%;
 }
