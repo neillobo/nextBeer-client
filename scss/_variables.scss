@@ -21,7 +21,7 @@ $font-family-light-sans-serif:    "Helvetica Neue-Light", "Helvetica Neue Light"
 $font-family-serif:               Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:           Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
-$font-family-base:                $font-family-sans-serif !default;
+$font-family-base:                $font-family-light-sans-serif !default;
 $font-size-base:                  14px !default;
 $font-size-large:                 18px !default;
 $font-size-small:                 11px !default;
@@ -36,7 +36,7 @@ $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
 $base-background-color:           #fff !default;
-$base-color:                      #000 !default;
+$base-color:                      #4d4d4d !default;
 
 $link-color:                      $positive !default;
 $link-hover-color:                darken($link-color, 15%) !default;

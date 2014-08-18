@@ -1,12 +1,12 @@
-<ion-view title="Your Favorite beers">
+<ion-view title="Fav" class="pane">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header">
+  <ion-content>
     <ion-list ng-controller="MyBeersCtrl">
       <ion-item ng-repeat="beer in myBeers track by $id($index)" ng-click="passSelectedBeer($index)" ui-sref="app.detail">
       <a class="item item-thumbnail-left">
-        <img ng-src="{{beer.beer_image_url}}">
+      <img ng-src="{{beer.beer_image_url}}">
         <h2>{{beer.beer_name}}</h2>
         <p>{{beer.beer_abv}}%</p>
       </a>

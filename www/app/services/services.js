@@ -4,6 +4,8 @@
   var config = {
     baseUrl : 'http://next-beer.herokuapp.com/api/v2'
   };
+  // cache the selectedBeer for previous page nav
+  var selectedBeer;
 
   angular.module('app.services', [])
     .factory('BeerFactory', ['$http', '$window',
@@ -64,10 +66,13 @@
 
         // used in detail.js
         var getSelectedBeer = function() {
+          console.log('selectedBeer',selectedBeer);
           return selectedBeer;
         };
         // used in recommend.js
         var passSelectedBeer = function(index) {
+          // caching this in the closure scope
+          console.log(beerRecQueue[index]);
           selectedBeer = beerRecQueue[index];
         };
 
