@@ -66,7 +66,6 @@
 
         // used in detail.js
         var getSelectedBeer = function() {
-          console.log('selectedBeer',selectedBeer);
           return selectedBeer;
         };
         // used in recommend.js

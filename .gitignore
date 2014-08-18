@@ -2,7 +2,7 @@
 node_modules/
 www/bower_components
 www/lib
-
+www/dist
 # build
 platforms/
 

@@ -4241,16 +4241,20 @@ a.item-content {
  * Lists
  * --------------------------------------------------
  */
-.list {
+.list, .card-detail {
   position: relative;
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 0;
   margin-bottom: 20px; }
 
-.list:last-child {
+.list:last-child, .card-detail:last-child {
   margin-bottom: 0px; }
+<<<<<<< HEAD
   .list:last-child.card {
+=======
+  .list:last-child.card, .list.swipe-card:last-child, .swipe-card.card-detail:last-child, .card-detail:last-child.card, .card-detail.swipe-card:last-child, .card-detail:last-child, .list.card-detail:last-child, .card-detail:last-child {
+>>>>>>> ui change
     margin-bottom: 40px; }
 
 /**
@@ -4264,7 +4268,11 @@ a.item-content {
   color: #222;
   font-weight: bold; }
 
+<<<<<<< HEAD
 .card.list .list-item {
+=======
+.card.list .list-item, .card.list .list.swipe-card, .card.list .swipe-card.card-detail, .card.list .card.card-detail, .card.list .card-detail.swipe-card, .card.list .card-detail, .card.list .list.card-detail, .card.list .card-detail {
+>>>>>>> ui change
   padding-right: 1px;
   padding-left: 1px; }
 
@@ -4273,17 +4281,26 @@ a.item-content {
  * --------------------------------------------------
  * A card and list-inset are close to the same thing, except a card as a box shadow.
  */
+<<<<<<< HEAD
 .card, .list-inset {
+=======
+.card, .swipe-card, .card-detail, .list-inset {
+>>>>>>> ui change
   overflow: hidden;
   margin: 20px 10px;
   border-radius: 2px;
   background-color: #fff; }
 
+<<<<<<< HEAD
 .card {
+=======
+.card, .swipe-card, .card-detail {
+>>>>>>> ui change
   padding-top: 1px;
   padding-bottom: 1px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
 
+<<<<<<< HEAD
 .card .item:first-child, .list-inset .item:first-child, .padding > .list .item:first-child {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px; }
@@ -4310,6 +4327,34 @@ a.item-content {
   margin-left: 0; }
 
 .padding-right > .list .item {
+=======
+.card .item:first-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:first-child, .swipe-card .card .title:first-child, .list-inset .item:first-child, .list-inset .swipe-card .title:first-child, .swipe-card .list-inset .title:first-child, .padding > .list .item:first-child, .padding > .list .card-detail, .padding > .list .swipe-card .title:first-child, .swipe-card .padding > .list .title:first-child {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px; }
+  .card .item:first-child .item-content, .card .item:first-child .swipe-card, .card .item:first-child .card-detail, .card .item:first-child .swipe-card .title:first-child, .swipe-card .card .item:first-child .title:first-child, .list-inset .item:first-child .item-content, .list-inset .item:first-child .swipe-card .title:first-child, .swipe-card .list-inset .item:first-child .title:first-child, .padding > .list .item:first-child .item-content, .padding > .list .item:first-child .card-detail, .padding > .list .item:first-child .swipe-card .title:first-child, .swipe-card .padding > .list .item:first-child .title:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px; }
+.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:last-child, .swipe-card .card .title:last-child, .list-inset .item:last-child, .list-inset .swipe-card .title:last-child, .swipe-card .list-inset .title:last-child, .padding > .list .item:last-child, .padding > .list .card-detail, .padding > .list .swipe-card .title:last-child, .swipe-card .padding > .list .title:last-child {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px; }
+  .card .item:last-child .item-content, .card .item:last-child .swipe-card, .card .item:last-child .card-detail, .card .item:last-child .swipe-card .title:last-child, .swipe-card .card .item:last-child .title:last-child, .list-inset .item:last-child .item-content, .list-inset .item:last-child .swipe-card .title:last-child, .swipe-card .list-inset .item:last-child .title:last-child, .padding > .list .item:last-child .item-content, .padding > .list .item:last-child .card-detail, .padding > .list .item:last-child .swipe-card .title:last-child, .swipe-card .padding > .list .item:last-child .title:last-child {
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px; }
+
+.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:last-child, .swipe-card .card .title:last-child, .list-inset .item:last-child, .list-inset .swipe-card .title:last-child, .swipe-card .list-inset .title:last-child {
+  margin-bottom: -1px; }
+
+.card .item, .card .swipe-card, .card .card-detail, .card .swipe-card .title, .swipe-card .card .title, .list-inset .item, .list-inset .swipe-card .title, .swipe-card .list-inset .title, .padding > .list .item, .padding > .list .card-detail, .padding > .list .swipe-card .title, .swipe-card .padding > .list .title, .padding-horizontal > .list .item, .padding-horizontal > .list .card-detail, .padding-horizontal > .list .swipe-card .title, .swipe-card .padding-horizontal > .list .title {
+  margin-right: 0;
+  margin-left: 0; }
+  .card .item.item-input input, .card .item.item-input .swipe-card, .card .item.item-input .card-detail, .card .item.item-input .swipe-card .item-input.title, .swipe-card .card .item.item-input .item-input.title, .list-inset .item.item-input input, .list-inset .item.item-input .swipe-card .item-input.title, .swipe-card .list-inset .item.item-input .item-input.title, .padding > .list .item.item-input input, .padding > .list .item.item-input .card-detail, .padding > .list .item.item-input .swipe-card .item-input.title, .swipe-card .padding > .list .item.item-input .item-input.title, .padding-horizontal > .list .item.item-input input, .padding-horizontal > .list .item.item-input .card-detail, .padding-horizontal > .list .item.item-input .swipe-card .item-input.title, .swipe-card .padding-horizontal > .list .item.item-input .item-input.title {
+    padding-right: 44px; }
+
+.padding-left > .list .item, .padding-left > .list .card-detail, .padding-left > .list .swipe-card .title, .swipe-card .padding-left > .list .title {
+  margin-left: 0; }
+
+.padding-right > .list .item, .padding-right > .list .card-detail, .padding-right > .list .swipe-card .title, .swipe-card .padding-right > .list .title {
+>>>>>>> ui change
   margin-right: 0; }
 
 /**
@@ -7029,6 +7074,7 @@ a.button {
   max-height: 210px;
   border-radius: 2px; }
 
+<<<<<<< HEAD
 .swipe-card .button {
   border: none; }
 
@@ -7076,6 +7122,14 @@ a.button {
 
 #footer .button {
   color: #fff; }
+=======
+.card-detail {
+  text-align: center;
+  border-radius: 5px; }
+
+.card-detail .button-block {
+  margin-bottom: 0px; }
+>>>>>>> ui change
 
 @-webkit-keyframes bounceIn {
   0% {
@@ -7092,6 +7146,7 @@ a.button {
 
 .swipe-card.pop-in {
   -webkit-animation: bounceIn 0.3s ease-out; }
+<<<<<<< HEAD
 
 .center {
   text-align: center; }
@@ -7126,3 +7181,5 @@ a.button {
 
 a.item-content:after {
   content: url("../../dist/img/border_gradient.png"); }
+=======
+>>>>>>> ui change

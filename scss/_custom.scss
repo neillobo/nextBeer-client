@@ -19,9 +19,7 @@
 
 .swipe-cards {
   text-align:center;
-
 }
-
 
 .swipe-card {
   @extend .card;
@@ -48,50 +46,41 @@
 
 }
 
-.bar.bar-transparent {
-  background-color: transparent;
-  background-image: none;
-  border: none;
+.card-detail {
+  @extend .list;
+  @extend .card;
+  text-align:center;
+  border-radius: 5px;
 }
 
-// .bar .title {
-//   color: #eee;
-// }
-// .swipe-card .button {
+.card-detail .button-block {
+  margin-bottom: 0px;
+}
+
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+  }
+}
+
+.swipe-card.pop-in-start {
+  -webkit-transform: scale(0,0);
+}
+.swipe-card.pop-in {
+  -webkit-animation: bounceIn 0.3s ease-out;
+}
+
+// .bar.bar-transparent {
+//   background-color: transparent;
+//   background-image: none;
 //   border: none;
-// }
-// .swipe-card .image img {
-//   // max-width: 100%;
-//   // max-height: 100%;
-//   // border-radius: 4px;
-// }
-
-// .card-name {
-//   // margin-top: 30px;
-//   // text-align: center;
-//   // font-size: 20px;
-//   // font-style: bold;
-//   // color: #781E00;
-// }
-// #start-card {
-//   color: #fff;
-//   background-color: #30BD8A;
-//   line-height: 300px;
-//   word-wrap: break-word;
-//   border: 6px solid #4CD68E;
-//   text-align: center;
-// }
-// #start-card span {
-//   display: inline-block;
-//   line-height: 40px;
-//   width: 200px;
-//   font-size: 30px;
-//   vertical-align: middle;
-// }
-
-
-// #footer .button {
-//   color: #fff;
 // }
 
 /* My Beers view */
@@ -141,4 +130,3 @@ a.item-content:after {
 // .list .item {
 //   border-width: 0px;
 // }
->>>>>>> ui change

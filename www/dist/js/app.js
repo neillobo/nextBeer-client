@@ -60,14 +60,24 @@ angular.module('app.detail', [])
 
 .controller('detailCtrl', ['$scope', 'BeerFactory',
   function($scope, BeerFactory) {
-    $scope.beerDetails = BeerFactory.getSelectedBeer();
+    $scope.beerDetails = BeerFactory.getSelectedBeer() || {
+          beer_id: 104,
+          beer_name: "Samuel Adams Boston Lager",
+          // beer_image_url: "./dist/img/samadams.jpg",
+          beer_image_url: "http://cdn.beeradvocate.com/im/beers/11757.jpg",
+          beer_abv: 3,
+          beer_style: 'IPA'
+        };
     $scope.addToMyBeers = function() {
       console.log('saving this to my beer', $scope.beerDetails);
       BeerFactory.addToMyBeers($scope.beerDetails);
     };
   }
 ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> ui change
 angular.module('app.mybeers', [])
 
 .run(function() {
@@ -456,7 +466,10 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         }, duration * 1000);
       } else {
         // Fly left
-        var rotateTo = (this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * 0.4);
+        console.log(this.rotationAngle, 'angle');
+        console.log(this.rotationDirection, 'direction');
+        console.log(this.rotationAngle + (this.rotationDirection * 0.6), 'result');
+        var rotateTo = -(this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * 0.4);
         var duration = this.rotationAngle ? 0.2 : 0.5;
         this.el.style[TRANSITION] = '-webkit-transform ' + duration + 's ease-in-out';
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + (window.innerWidth * -1.5) + 'px,' + this.y + 'px, 0) rotate(' + rotateTo + 'rad)';
