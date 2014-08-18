@@ -7115,3 +7115,14 @@ a.button {
 .arrows {
   display: inline-block;
   max-width: 30%; }
+
+/* My Beers view */
+.item-thumbnail-left > img:first-child {
+  left: 25px;
+  max-width: 40px; }
+
+.item-complex .item-content {
+  padding: 15px 45px 0 15px; }
+
+a.item-content:after {
+  content: url("../../dist/img/border_gradient.png"); }
