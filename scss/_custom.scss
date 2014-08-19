@@ -51,9 +51,9 @@
 /* My Beers view */
 
 .mybeer {
-  .item-content > img:first-child {
+  .item-thumbnail-left > img:first-child {
     left: $item-thumbnail-margin + 15;
-    max-width: $item-thumbnail-width / 2;
+    max-width: $item-thumbnail-width * 0.7;
   }
 
   .item-content {

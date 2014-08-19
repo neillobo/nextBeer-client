@@ -8,14 +8,17 @@
   var selectedBeer;
 
   var tutorialCards = [{
-    beer_name: "Welcome to NextBeer, the intelligent beer discovery app!",
-    beer_image_url: "./dist/img/beer.png"
+    tutorialId: 1,
+    tutorialName: "Welcome to NextBeer, the intelligent beer discovery app!",
+    tutorialImgUrl: "./dist/img/beer.png"
   }, {
-    beer_name: "Swipe right on beers you like or want to try. Swipe left on the rest!",
-    beer_image_url: "./dist/img/swipe-right.png"
+    tutorialId: 2,
+    tutorialName: "Swipe right on beers you like or want to try. Swipe left on the rest!",
+    tutorialImgUrl: "./dist/img/swipe-right.png"
   }, {
-    beer_name: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
-    beer_image_url: "./dist/img/tab.png"
+    tutorialId: 3,
+    tutorialName: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
+    tutorialImgUrl: "./dist/img/tab.png"
   }];
 
   var initTrainingSet = [{
@@ -58,11 +61,17 @@
   }];
 
   angular.module('app.services', [])
-    .factory('BeerFactory', ['$http', '$window', '$q', '$state', 'UtilFactory',
-      function($http, $window, $q, $state, UtilFactory) {
+    .factory('BeerFactory', ['$http', '$window', '$q', '$state', 'UtilFactory', 'UserFactory',
+      function($http, $window, $q, $state, UtilFactory, UserFactory) {
         // dummy data === initial training set
+        var tutorials = UserFactory.getTutorials();
+        var beerRecQueue;
+        if (tutorials.length > 0) {
+          beerRecQueue = _.union(tutorialCards, initTrainingSet);
+        } else {
+          beerRecQueue = initTrainingSet;
+        }
 
-        var beerRecQueue = _.union(tutorialCards, initTrainingSet);
         // this should be changed to POST
         var sendRating = function(beerReview) {
           return $http({
@@ -144,13 +153,35 @@
         }
       };
 
+      var getTutorials = function() {
+        return JSON.parse($window.localStorage.getItem('Tutorial'));
+      };
+
+      var initializeTutorials = function() {
+        !!getTutorials() || $window.localStorage.setItem('Tutorial', JSON.stringify(tutorialCards));
+      };
+
+      var updateTutorialProgress = function(completedTutorial) {
+        console.log(completedTutorial,'completedTutorial');
+        var tutorials = getTutorials();
+        var remainingTutorials = _.filter(tutorials, function(tutorial) {
+          return tutorial.tutorialId !== completedTutorial.tutorialId;
+        });
+        $window.localStorage.setItem('Tutorial', JSON.stringify(remainingTutorials));
+      };
+
+      // if there's no existing tutorial in localstorage, we initialize with the complete tutorial cards
+      // this will be run when this factory gets instantiated
+      initializeTutorials();
+
       return {
-        enableToken: enableToken
+        enableToken: enableToken,
+        getTutorials: getTutorials,
+        updateTutorialProgress: updateTutorialProgress
       };
     }
   ])
     .factory('UtilFactory', [
-
       function() {
         var errorHandler = function(err) {
           console.log("following error happened");

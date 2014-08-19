@@ -19,49 +19,55 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   }
 ])
 
-.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
-  function($window, $scope, BeerFactory) {
-
-    $scope.beers = BeerFactory.beerRecQueue;
-    // default rating
-    var beerRating = 0;
+.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
+  function($window, $scope, BeerFactory, UserFactory, UtilFactory) {
     var addCard = function(result) {
       var recommendedBeer = result.data;
       $scope.beers.push(recommendedBeer);
     };
 
-    $scope.cardSwiped = function(index) {
-      if (this.swipeCard && this.swipeCard.positive) {
-        // why do we send this back to the queue?
-        // BeerFactory.addToQueue($scope.beers[index]);
-        beerRating = 1;
-        // explicity preference, therefore put into mybeer
-        BeerFactory.addToMyBeers($scope.beers[index]);
-      } else {
-        beerRating = -1;
-      }
+    var makeBeerReview = function(index) {
+      var rating;
       var swipedBeer = $scope.beers[index];
-      var beerReview = {
-        beer_id: swipedBeer.beer_id,
-        beer_rating: beerRating
+      // handle the case where swipedBeer === tutorial
+      if (swipedBeer.tutorialId){
+        var swipedTutorial = swipedBeer;
+        UserFactory.updateTutorialProgress(swipedTutorial);
+        return null;
+      }
+      if (this.swipeCard && this.swipeCard.positive) {
+        rating = 1;
+        // take right-swiping as an implicit request
+        BeerFactory.addToMyBeers(swipedBeer);
+      } else {
+        rating = -1;
+      }
+      return {
+        beer_id: beer.beer_id,
+        beer_rating: rating
       };
-      // swipe a beer, you will get recommendation of another beer
-      BeerFactory.sendRating(beerReview)
-        .then(addCard)
-        .catch(function(err) {
-          console.log(err);
-        });
+    };
+
+    $scope.beers = BeerFactory.beerRecQueue;
+
+    $scope.cardSwiped = function(index) {
+      var review = makeBeerReview.call(this, index);
+      if (review) {
+        // only make a request if it's not a tutorial
+        // swipe a beer, you will get recommendation of another beer
+        BeerFactory.sendRating(review)
+          .then(addCard)
+          .catch(UtilFactory.errorHandler);
+      }
     };
 
     $scope.cardDestroyed = function(index) {
       $scope.beers.splice(index, 1);
     };
 
-    $scope.passSelectedBeer = function(index) {
-      // on click event, we send the selected beer
-      // to service.js to show details of that beer
-      BeerFactory.passSelectedBeer(index);
+    $scope.passSelectedBeer = function(beerName) {
+      /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
+      BeerFactory.passSelectedBeer(beerName);
     };
   }
 ]);
-
