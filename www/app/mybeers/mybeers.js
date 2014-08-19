@@ -4,21 +4,26 @@ angular.module('app.mybeers', [])
 
 })
 
-.config(['$stateProvider', function($stateProvider) {
-  $stateProvider
-    .state('app.mybeers', {
-      url: "/mybeers",
-      views: {
-        'menuContent': {
-          templateUrl: "app/mybeers/mybeers.html"
+.config(['$stateProvider',
+  function($stateProvider) {
+    $stateProvider
+      .state('app.mybeers', {
+        url: "/mybeers",
+        views: {
+          'menuContent': {
+            templateUrl: "app/mybeers/mybeers.html"
+          }
         }
-      }
-    });
-}])
+      });
+  }
+])
 
-.controller('MyBeersCtrl', ['$scope', 'BeerFactory', function($scope, BeerFactory) {
-  $scope.myBeers = BeerFactory.getMyBeers();
-  $scope.passSelectedBeer = function(index) {
-    BeerFactory.passSelectedBeer(index);
-  };
-}]);
+.controller('MyBeersCtrl', ['$scope', 'BeerFactory',
+  function($scope, BeerFactory) {
+    $scope.myBeers = BeerFactory.getMyBeers();
+    $scope.passSelectedBeer = function(beerName) {
+      /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
+      BeerFactory.passSelectedBeer(beerName);
+    };
+  }
+]);

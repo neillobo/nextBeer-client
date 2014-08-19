@@ -1,9 +1,10 @@
 # dependencies
 node_modules/
-www/bower_components
-www/lib
+www/bower_components/
+www/lib/
 
 # build
+www/dist/
 platforms/
 
 # common files

@@ -1,6 +1,5 @@
 angular.module('app.detail', [])
 .run(function() {
-
 })
 
 .config(['$stateProvider',
@@ -21,7 +20,6 @@ angular.module('app.detail', [])
   function($scope, BeerFactory) {
     $scope.beerDetails = BeerFactory.getSelectedBeer();
     $scope.addToMyBeers = function() {
-      console.log('saving this to my beer', $scope.beerDetails);
       BeerFactory.addToMyBeers($scope.beerDetails);
     };
   }
