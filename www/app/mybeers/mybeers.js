@@ -19,6 +19,7 @@ angular.module('app.mybeers', [])
 .controller('MyBeersCtrl', ['$scope', 'BeerFactory', function($scope, BeerFactory) {
   $scope.myBeers = BeerFactory.getMyBeers();
   $scope.passSelectedBeer = function(index) {
+    console.log(index);
     BeerFactory.passSelectedBeer(index);
   };
 }]);

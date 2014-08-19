@@ -7,45 +7,47 @@
   // cache the selectedBeer for previous page nav
   var selectedBeer;
 
+  var tutorialCards = [{
+    beer_name: "Welcome to NextBeer, the intelligent beer discovery app!",
+    beer_image_url: "./dist/img/beer.png"
+  }, {
+    beer_name: "Swipe right on beers you like or want to try. Swipe left on the rest!",
+    beer_image_url: "./dist/img/swipe-right.png"
+  }, {
+    beer_name: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
+    beer_image_url: "./dist/img/tab.png"
+  }];
+
+  var initTrainingSet = [{
+    beer_id: 104,
+    beer_name: "Samuel Adams Boston Lager",
+    beer_image_url: "./dist/img/samadams.jpg"
+  }, {
+    beer_id: 754,
+    beer_name: "Guinness Draught",
+    beer_image_url: "./dist/img/guinness.jpg"
+  }, {
+    beer_id: 355,
+    beer_name: "Dead Guy Ale",
+    beer_image_url: "./dist/img/deadguy.jpg"
+  }, {
+    beer_id: 1904,
+    beer_name: "Sierra Nevada Celebration Ale",
+    beer_image_url: "./dist/img/sierranevada.jpg"
+  }, {
+    beer_id: 680,
+    beer_name: "Brooklyn Black Chocolate Stout",
+    beer_image_url: "./dist/img/blackchocolate.jpg"
+  }, {
+    beer_id: 1212,
+    beer_name: "Blue Moon Belgian White",
+    beer_image_url: "./dist/img/bluemoon.jpg"
+  }];
+
   angular.module('app.services', [])
-    .factory('BeerFactory', ['$http', '$window',
-      function($http, $window) {
+    .factory('BeerFactory', ['$http', '$window', '$q', '$state', 'UtilFactory',
+      function($http, $window, $q, $state, UtilFactory) {
         // dummy data === initial training set
-        var tutorialCards = [{
-          beer_name: "Welcome to NextBeer, the intelligent beer discovery app!",
-          beer_image_url: "./dist/img/beer.png"
-        }, {
-          beer_name: "Swipe right on beers you like or want to try. Swipe left on the rest!",
-          beer_image_url: "./dist/img/swipe-right.png"
-        }, {
-          beer_name: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
-          beer_image_url: "./dist/img/tab.png"
-        }];
-        var initTrainingSet = [{
-          beer_id: 104,
-          beer_name: "Samuel Adams Boston Lager",
-          beer_image_url: "./dist/img/samadams.jpg"
-        }, {
-          beer_id: 754,
-          beer_name: "Guinness Draught",
-          beer_image_url: "./dist/img/guinness.jpg"
-        }, {
-          beer_id: 355,
-          beer_name: "Dead Guy Ale",
-          beer_image_url: "./dist/img/deadguy.jpg"
-        }, {
-          beer_id: 1904,
-          beer_name: "Sierra Nevada Celebration Ale",
-          beer_image_url: "./dist/img/sierranevada.jpg"
-        }, {
-          beer_id: 680,
-          beer_name: "Brooklyn Black Chocolate Stout",
-          beer_image_url: "./dist/img/blackchocolate.jpg"
-        }, {
-          beer_id: 1212,
-          beer_name: "Blue Moon Belgian White",
-          beer_image_url: "./dist/img/bluemoon.jpg"
-        }];
 
         var beerRecQueue = _.union(tutorialCards, initTrainingSet);
         // this should be changed to POST
@@ -79,11 +81,14 @@
         var getSelectedBeer = function() {
           return selectedBeer;
         };
+
         // used in recommend.js
-        var passSelectedBeer = function(index) {
+        var passSelectedBeer = function(beerName) {
           // caching this in the closure scope
-          console.log(beerRecQueue[index]);
-          selectedBeer = beerRecQueue[index];
+          selectedBeer = _.find(beerRecQueue, function(beer) {
+            return beer.beer_name === beerName;
+          });
+          $state.go('app.detail');
         };
 
         return {
@@ -98,15 +103,13 @@
       }
     ])
 
-  .factory('UserFactory', ['$http', '$window',
-    function($http, $window) {
+  .factory('UserFactory', ['$http', '$window', 'UtilFactory',
+    function($http, $window, UtilFactory) {
       var userIdGrabber = function() {
         return $http({
           method: 'POST',
           url: config.baseUrl + '/user'
-        }).catch(function(err) {
-          console.log(err);
-        });
+        }).catch(UtilFactory.errorHandler);
       };
       var setHeader = function(token) {
         $http.defaults.headers.common.Authorization = token;
@@ -116,5 +119,17 @@
         setHeader: setHeader
       };
     }
-  ]);
+  ])
+    .factory('UtilFactory', [
+
+      function() {
+        var errorHandler = function(err) {
+          console.log("following error happened");
+          throw err;
+        };
+        return {
+          errorHandler: errorHandler
+        }
+      }
+    ]);
 })();
