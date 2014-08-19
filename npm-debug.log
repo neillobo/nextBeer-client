@@ -1,0 +1,142 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'ionic',
+1 verbose cli   'cordova',
+1 verbose cli   'ios-sim' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.26
+4 verbose node symlink /usr/local/bin/node
+5 verbose cache add [ 'ionic', null ]
+6 verbose cache add name=undefined spec="ionic" args=["ionic",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'ionic',
+7 verbose parsed url   path: 'ionic',
+7 verbose parsed url   href: 'ionic' }
+8 verbose cache add [ 'cordova', null ]
+9 verbose cache add name=undefined spec="cordova" args=["cordova",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'cordova',
+10 verbose parsed url   path: 'cordova',
+10 verbose parsed url   href: 'cordova' }
+11 verbose cache add [ 'ios-sim', null ]
+12 verbose cache add name=undefined spec="ios-sim" args=["ios-sim",null]
+13 verbose parsed url { protocol: null,
+13 verbose parsed url   slashes: null,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: null,
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: null,
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: 'ios-sim',
+13 verbose parsed url   path: 'ios-sim',
+13 verbose parsed url   href: 'ios-sim' }
+14 silly lockFile 00d10074-ionic ionic
+15 verbose lock ionic /Users/caly/.npm/00d10074-ionic.lock
+16 silly lockFile a98f2055-cordova cordova
+17 verbose lock cordova /Users/caly/.npm/a98f2055-cordova.lock
+18 silly lockFile 6af69284-ios-sim ios-sim
+19 verbose lock ios-sim /Users/caly/.npm/6af69284-ios-sim.lock
+20 silly lockFile 00d10074-ionic ionic
+21 silly lockFile 00d10074-ionic ionic
+22 silly lockFile a98f2055-cordova cordova
+23 silly lockFile a98f2055-cordova cordova
+24 verbose addNamed [ 'ionic', '' ]
+25 verbose addNamed [ null, '*' ]
+26 silly lockFile 966fc04a-ionic ionic@
+27 verbose lock ionic@ /Users/caly/.npm/966fc04a-ionic.lock
+28 verbose addNamed [ 'cordova', '' ]
+29 verbose addNamed [ null, '*' ]
+30 silly lockFile de8d9fad-cordova cordova@
+31 verbose lock cordova@ /Users/caly/.npm/de8d9fad-cordova.lock
+32 silly lockFile 6af69284-ios-sim ios-sim
+33 silly lockFile 6af69284-ios-sim ios-sim
+34 verbose addNamed [ 'ios-sim', '' ]
+35 verbose addNamed [ null, '*' ]
+36 silly lockFile 03dce7cc-ios-sim ios-sim@
+37 verbose lock ios-sim@ /Users/caly/.npm/03dce7cc-ios-sim.lock
+38 silly addNameRange { name: 'cordova', range: '*', hasData: false }
+39 silly addNameRange { name: 'ionic', range: '*', hasData: false }
+40 silly addNameRange { name: 'ios-sim', range: '*', hasData: false }
+41 verbose url raw ios-sim
+42 verbose url resolving [ 'https://registry.npmjs.org/', './ios-sim' ]
+43 verbose url resolved https://registry.npmjs.org/ios-sim
+44 info trying registry request attempt 1 at 16:18:08
+45 verbose etag "EY1TWYT31IWYNYGYFSOIWUW8P"
+46 http GET https://registry.npmjs.org/ios-sim
+47 verbose url raw ionic
+48 verbose url resolving [ 'https://registry.npmjs.org/', './ionic' ]
+49 verbose url resolved https://registry.npmjs.org/ionic
+50 info trying registry request attempt 1 at 16:18:09
+51 verbose etag "8XWO69RS426406BKLZIFOREKN"
+52 http GET https://registry.npmjs.org/ionic
+53 verbose url raw cordova
+54 verbose url resolving [ 'https://registry.npmjs.org/', './cordova' ]
+55 verbose url resolved https://registry.npmjs.org/cordova
+56 info trying registry request attempt 1 at 16:18:09
+57 verbose etag "D3SGE0FN65VTIDSN5HDZE2GHC"
+58 http GET https://registry.npmjs.org/cordova
+59 http 304 https://registry.npmjs.org/ios-sim
+60 silly registry.get cb [ 304,
+60 silly registry.get   { date: 'Mon, 18 Aug 2014 23:18:11 GMT',
+60 silly registry.get     server: 'Apache',
+60 silly registry.get     via: '1.1 varnish',
+60 silly registry.get     'last-modified': 'Mon, 18 Aug 2014 23:18:11 GMT',
+60 silly registry.get     'cache-control': 'max-age=60',
+60 silly registry.get     etag: '"EY1TWYT31IWYNYGYFSOIWUW8P"',
+60 silly registry.get     'x-served-by': 'cache-sjc3125-SJC',
+60 silly registry.get     'x-cache': 'MISS',
+60 silly registry.get     'x-cache-hits': '0',
+60 silly registry.get     'x-timer': 'S1408403891.903496,VS0,VE90',
+60 silly registry.get     vary: 'Accept',
+60 silly registry.get     'content-length': '0',
+60 silly registry.get     'keep-alive': 'timeout=10, max=50',
+60 silly registry.get     connection: 'Keep-Alive' } ]
+61 verbose etag ios-sim from cache
+62 silly addNameRange number 2 { name: 'ios-sim', range: '*', hasData: true }
+63 silly addNameRange versions [ 'ios-sim',
+63 silly addNameRange   [ '1.8.0', '1.8.1', '1.8.2', '1.9.0', '2.0.0', '2.0.1' ] ]
+64 verbose addNamed [ 'ios-sim', '2.0.1' ]
+65 verbose addNamed [ '2.0.1', '2.0.1' ]
+66 silly lockFile c13d98a8-ios-sim-2-0-1 ios-sim@2.0.1
+67 verbose lock ios-sim@2.0.1 /Users/caly/.npm/c13d98a8-ios-sim-2-0-1.lock
+68 silly lockFile c13d98a8-ios-sim-2-0-1 ios-sim@2.0.1
+69 silly lockFile c13d98a8-ios-sim-2-0-1 ios-sim@2.0.1
+70 silly lockFile 03dce7cc-ios-sim ios-sim@
+71 silly lockFile 03dce7cc-ios-sim ios-sim@
+72 error Error: EACCES, open '/Users/caly/.npm/ios-sim/2.0.1/package/package.json'
+72 error  { [Error: EACCES, open '/Users/caly/.npm/ios-sim/2.0.1/package/package.json']
+72 error   errno: 3,
+72 error   code: 'EACCES',
+72 error   path: '/Users/caly/.npm/ios-sim/2.0.1/package/package.json' }
+73 error Please try running this command again as root/Administrator.
+74 error System Darwin 13.1.0
+75 error command "node" "/usr/local/bin/npm" "install" "-g" "ionic" "cordova" "ios-sim"
+76 error cwd /Users/caly/nextBeer/nextBeer-client
+77 error node -v v0.10.26
+78 error npm -v 1.4.14
+79 error path /Users/caly/.npm/ios-sim/2.0.1/package/package.json
+80 error code EACCES
+81 error errno 3
+82 error stack Error: EACCES, open '/Users/caly/.npm/ios-sim/2.0.1/package/package.json'
+83 verbose exit [ 3, true ]
