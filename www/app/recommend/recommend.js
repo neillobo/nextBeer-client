@@ -31,7 +31,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     };
 
     $scope.cardSwiped = function(index) {
-      console.log('card swiped');
       if (this.swipeCard && this.swipeCard.positive) {
         // why do we send this back to the queue?
         // BeerFactory.addToQueue($scope.beers[index]);

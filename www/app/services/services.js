@@ -21,27 +21,40 @@
   var initTrainingSet = [{
     beer_id: 104,
     beer_name: "Samuel Adams Boston Lager",
-    beer_image_url: "./dist/img/samadams.jpg"
+    beer_image_url: "./dist/img/samadams.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
+
   }, {
     beer_id: 754,
     beer_name: "Guinness Draught",
-    beer_image_url: "./dist/img/guinness.jpg"
+    beer_image_url: "./dist/img/guinness.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
   }, {
     beer_id: 355,
     beer_name: "Dead Guy Ale",
-    beer_image_url: "./dist/img/deadguy.jpg"
+    beer_image_url: "./dist/img/deadguy.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
   }, {
     beer_id: 1904,
     beer_name: "Sierra Nevada Celebration Ale",
-    beer_image_url: "./dist/img/sierranevada.jpg"
+    beer_image_url: "./dist/img/sierranevada.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
   }, {
     beer_id: 680,
     beer_name: "Brooklyn Black Chocolate Stout",
-    beer_image_url: "./dist/img/blackchocolate.jpg"
+    beer_image_url: "./dist/img/blackchocolate.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
   }, {
     beer_id: 1212,
     beer_name: "Blue Moon Belgian White",
-    beer_image_url: "./dist/img/bluemoon.jpg"
+    beer_image_url: "./dist/img/bluemoon.jpg",
+    beer_style: "dragon ball",
+    beer_abv: "3"
   }];
 
   angular.module('app.services', [])
@@ -109,14 +122,30 @@
         return $http({
           method: 'POST',
           url: config.baseUrl + '/user'
-        }).catch(UtilFactory.errorHandler);
+        });
       };
+
       var setHeader = function(token) {
         $http.defaults.headers.common.Authorization = token;
       };
+
+      var enableToken = function() {
+        if (!$window.localStorage.getItem('Token')) {
+          userIdGrabber()
+            .then(function(result) {
+              $window.localStorage.setItem('Token', result.data.token);
+              setHeader(result.data.token);
+            })
+            .catch(UtilFactory.errorHandler);
+        } else {
+          // if token already exists, we set the autorization header
+          // setHeader doesn't persist so we need to set it every time this app gets run
+          setHeader($window.localStorage.getItem('Token'));
+        }
+      };
+
       return {
-        userIdGrabber: userIdGrabber,
-        setHeader: setHeader
+        enableToken: enableToken
       };
     }
   ])

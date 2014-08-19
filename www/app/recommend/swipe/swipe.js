@@ -186,9 +186,9 @@
         }, duration * 1000);
       } else {
         // Fly left
-        console.log(this.rotationAngle, 'angle');
-        console.log(this.rotationDirection, 'direction');
-        console.log(this.rotationAngle + (this.rotationDirection * 0.6), 'result');
+        // console.log(this.rotationAngle, 'angle');
+        // console.log(this.rotationDirection, 'direction');
+        // console.log(this.rotationAngle + (this.rotationDirection * 0.6), 'result');
         var rotateTo = -(this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * 0.4);
         var duration = this.rotationAngle ? 0.2 : 0.5;
         this.el.style[TRANSITION] = '-webkit-transform ' + duration + 's ease-in-out';

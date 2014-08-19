@@ -13,16 +13,7 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
         StatusBar.styleDefault();
       }
     });
-    if (!$window.localStorage.getItem('Token')) {
-      UserFactory.userIdGrabber().then(function(result) {
-        $window.localStorage.setItem('Token', result.data.token);
-        UserFactory.setHeader(result.data.token);
-      });
-    } else {
-      // if token already exists, we set the autorization header
-      // setHeader doesn't persist so we need to set it every time this app gets run
-      UserFactory.setHeader($window.localStorage.getItem('Token'));
-    }
+    UserFactory.enableToken();
   }
 ])
 
