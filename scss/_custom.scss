@@ -7,11 +7,9 @@
 // -------------------------------
 // Cards
 // -------------------------------
-
 .pane {
   background-color: $item-divider-bg;
 }
-
 /* Recommend view */
 
 .swipe-cards {
@@ -20,22 +18,19 @@
 .swipe-card {
   @extend .card;
   border-radius: 5px;
-
   .title {
     @extend .item;
     background-color: $energized;
     color: $button-energized-text;
     padding: 7px 5px 0px;
-    white-space:normal;
+    white-space: normal;
   }
-
   img {
     margin: 0 auto;
     display: block;
     max-width: 100%;
   }
 }
-
 /* Card detail view */
 
 .card-detail {
@@ -47,26 +42,38 @@
     margin-bottom: 0px;
   }
 }
-
 /* My Beers view */
 
 .mybeer {
-  .item-thumbnail-left > img:first-child {
-    left: $item-thumbnail-margin + 15;
-    max-width: $item-thumbnail-width * 0.7;
+  .item-thumbnail-left > img {
+    left: $item-thumbnail-margin + 25;
+    max-width: $item-thumbnail-width * 0.5;
   }
+  .item-thumbnail-left > .training {
+    left: $item-thumbnail-margin + 20;
+    top: $item-thumbnail-width * .25;
+    max-width: $item-thumbnail-width * 0.5 + 10;
+  }
+  h2 {
+    margin-top: 10px;
+  }
+  .item-thumbnail-left {
+    // min-height: $item-thumbnail-height * 0.5;
 
+  }
   .item-content {
     padding-top: $item-thumbnail-width/3;
   }
-
-  .item-thumbnail-left:after {
-    content: url("../../dist/img/border_gradient.png");
-    margin-left: $item-thumbnail-width/2;
-  }
-
-  .item {
-    border:none;
-  }
 }
+
+  // doesn't work very well across different screen sizes
+  // replaced with plain simple border.
+  // .item-thumbnail-left:after {
+  //   position:relative;
+  //   left: -$item-thumbnail-width + 10;
+  //   content: url("../../dist/img/border_gradient.png");
+  // }
+  // .item {
+  //   border:none;
+  // }
 

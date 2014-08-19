@@ -22,6 +22,7 @@
   }];
 
   var initTrainingSet = [{
+    trainingId: 1,
     beer_id: 104,
     beer_name: "Samuel Adams Boston Lager",
     beer_image_url: "./dist/img/samadams.jpg",
@@ -29,30 +30,35 @@
     beer_abv: "3"
 
   }, {
+    trainingId: 2,
     beer_id: 754,
     beer_name: "Guinness Draught",
     beer_image_url: "./dist/img/guinness.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
+    trainingId: 3,
     beer_id: 355,
     beer_name: "Dead Guy Ale",
     beer_image_url: "./dist/img/deadguy.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
+    trainingId: 4,
     beer_id: 1904,
     beer_name: "Sierra Nevada Celebration Ale",
     beer_image_url: "./dist/img/sierranevada.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
+    trainingId: 5,
     beer_id: 680,
     beer_name: "Brooklyn Black Chocolate Stout",
     beer_image_url: "./dist/img/blackchocolate.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
+    trainingId: 6,
     beer_id: 1212,
     beer_name: "Blue Moon Belgian White",
     beer_image_url: "./dist/img/bluemoon.jpg",
@@ -162,7 +168,7 @@
       };
 
       var updateTutorialProgress = function(completedTutorial) {
-        console.log(completedTutorial,'completedTutorial');
+        console.log(completedTutorial, 'completedTutorial');
         var tutorials = getTutorials();
         var remainingTutorials = _.filter(tutorials, function(tutorial) {
           return tutorial.tutorialId !== completedTutorial.tutorialId;
@@ -182,6 +188,7 @@
     }
   ])
     .factory('UtilFactory', [
+
       function() {
         var errorHandler = function(err) {
           console.log("following error happened");

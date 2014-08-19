@@ -43,7 +43,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         rating = -1;
       }
       return {
-        beer_id: beer.beer_id,
+        beer_id: swipedBeer.beer_id,
         beer_rating: rating
       };
     };
