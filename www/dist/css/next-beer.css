@@ -6999,7 +6999,8 @@ a.button {
   .swipe-card .title {
     background-color: #f0b840;
     color: #fff;
-    padding: 7px 0px 0px; }
+    padding: 7px 5px 0px;
+    white-space: normal; }
   .swipe-card img {
     margin: 0 auto;
     display: block;

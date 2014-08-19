@@ -1,8 +1,8 @@
-(function(){
+(function() {
   // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
-    baseUrl : 'http://next-beer.herokuapp.com/api/v2'
+    baseUrl: 'http://next-beer.herokuapp.com/api/v2'
   };
   // cache the selectedBeer for previous page nav
   var selectedBeer;
@@ -11,7 +11,17 @@
     .factory('BeerFactory', ['$http', '$window',
       function($http, $window) {
         // dummy data === initial training set
-        var beerRecQueue = [{
+        var tutorialCards = [{
+          beer_name: "Welcome to NextBeer, the intelligent beer discovery app!",
+          beer_image_url: "./dist/img/beer.png"
+        }, {
+          beer_name: "Swipe right on beers you like or want to try. Swipe left on the rest!",
+          beer_image_url: "./dist/img/swipe-right.png"
+        }, {
+          beer_name: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
+          beer_image_url: "./dist/img/tab.png"
+        }];
+        var initTrainingSet = [{
           beer_id: 104,
           beer_name: "Samuel Adams Boston Lager",
           beer_image_url: "./dist/img/samadams.jpg"
@@ -37,6 +47,7 @@
           beer_image_url: "./dist/img/bluemoon.jpg"
         }];
 
+        var beerRecQueue = _.union(tutorialCards, initTrainingSet);
         // this should be changed to POST
         var sendRating = function(beerReview) {
           return $http({

@@ -5,28 +5,7 @@
   </ion-nav-buttons>
   <ion-content style="overflow:scroll" ng-controller="CardsCtrl">
     <swipe-cards>
-      <swipe-card class="start-card">
-      <span>
-        <p>Welcome to NextBeer, the intelligent beer discovery app!</p>
-        <img class="beerIcon" src="../dist/img/beer_icon.png">
-      </span>
-      </swipe-card>
-       <swipe-card class="start-card">
-         <span>
-          <p>Welcome to NextBeer, the intelligent beer discovery app!</p>
-          <img class="neilsIcon" src="http://icons.iconarchive.com/icons/iconshock/brilliant-food/256/beer-icon.png">
-        </span>
-      </swipe-card>
-      <swipe-card class="start-card2">
-      <span>
-        <p>Swipe right on beers you like or want to try. <br>Swipe left on the rest!</p>
-        <br>
-          <img class="arrows" src="../dist/img/arrow-swipe-icon.png">
-          <img class="arrows" src="../dist/img/right-swipe-icon.png">
-        <br></br>
-        <p>Click a beer to see its details, or navigate to "My Beers" in the side menu to see beers you liked.</p>
-      </span>
-      </swipe-card>
+
       <swipe-card ng-repeat="beer in beers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
         <img ng-src="{{beer.beer_image_url}}" ng-click="passSelectedBeer($index)" ui-sref="app.detail">
         <div class="title">

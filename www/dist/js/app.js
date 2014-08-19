@@ -39,41 +39,6 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
   }
 ]);
 
-angular.module('app.detail', [])
-.run(function() {
-
-})
-
-.config(['$stateProvider',
-    function($stateProvider) {
-      $stateProvider
-        .state('app.detail', {
-          url: "/detail",
-          views: {
-            'menuContent': {
-              templateUrl: "app/detail/detail.html"
-            }
-          }
-        });
-    }
-  ])
-
-.controller('detailCtrl', ['$scope', 'BeerFactory',
-  function($scope, BeerFactory) {
-    $scope.beerDetails = BeerFactory.getSelectedBeer() || {
-          beer_id: 104,
-          beer_name: "Samuel Adams Boston Lager",
-          // beer_image_url: "./dist/img/samadams.jpg",
-          beer_image_url: "http://cdn.beeradvocate.com/im/beers/11757.jpg",
-          beer_abv: 3,
-          beer_style: 'IPA'
-        };
-    $scope.addToMyBeers = function() {
-      console.log('saving this to my beer', $scope.beerDetails);
-      BeerFactory.addToMyBeers($scope.beerDetails);
-    };
-  }
-]);
 angular.module('app.mybeers', [])
 
 .run(function() {
@@ -99,80 +64,11 @@ angular.module('app.mybeers', [])
   };
 }]);
 
-// app.recommend.swipe is a sub module to app.recommend
-angular.module('app.recommend', ['app.recommend.swipe'])
-
-.run(function() {
-
-})
-
-.config(['$stateProvider',
-  function($stateProvider) {
-    $stateProvider
-      .state('app.recommend', {
-        url: "/recommend",
-        views: {
-          'menuContent': {
-            templateUrl: "app/recommend/recommend.html"
-          }
-        }
-      });
-  }
-])
-
-.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
-  function($window, $scope, BeerFactory) {
-
-    $scope.beers = BeerFactory.beerRecQueue;
-    // default rating
-    var beerRating = 0;
-    var addCard = function(result) {
-      var recommendedBeer = result.data;
-      $scope.beers.push(recommendedBeer);
-    };
-
-    $scope.cardSwiped = function(index) {
-      console.log('card swiped');
-      if (this.swipeCard && this.swipeCard.positive) {
-        // why do we send this back to the queue?
-        // BeerFactory.addToQueue($scope.beers[index]);
-        beerRating = 1;
-        // explicity preference, therefore put into mybeer
-        BeerFactory.addToMyBeers($scope.beers[index]);
-      } else {
-        beerRating = -1;
-      }
-      var swipedBeer = $scope.beers[index];
-      var beerReview = {
-        beer_id: swipedBeer.beer_id,
-        beer_rating: beerRating
-      };
-      // swipe a beer, you will get recommendation of another beer
-      BeerFactory.sendRating(beerReview)
-        .then(addCard)
-        .catch(function(err) {
-          console.log(err);
-        });
-    };
-
-    $scope.cardDestroyed = function(index) {
-      $scope.beers.splice(index, 1);
-    };
-
-    $scope.passSelectedBeer = function(index) {
-      // on click event, we send the selected beer
-      // to service.js to show details of that beer
-      BeerFactory.passSelectedBeer(index);
-    };
-  }
-]);
-
-
-(function(){
+(function() {
   // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
-    baseUrl : 'http://next-beer.herokuapp.com/api/v2'
+    baseUrl: 'http://next-beer.herokuapp.com/api/v2'
   };
   // cache the selectedBeer for previous page nav
   var selectedBeer;
@@ -181,7 +77,17 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     .factory('BeerFactory', ['$http', '$window',
       function($http, $window) {
         // dummy data === initial training set
-        var beerRecQueue = [{
+        var tutorialCards = [{
+          beer_name: "Welcome to NextBeer, the intelligent beer discovery app!",
+          beer_image_url: "./dist/img/beer.png"
+        }, {
+          beer_name: "Swipe right on beers you like or want to try. Swipe left on the rest!",
+          beer_image_url: "./dist/img/swipe-right.png"
+        }, {
+          beer_name: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
+          beer_image_url: "./dist/img/tab.png"
+        }];
+        var initTrainingSet = [{
           beer_id: 104,
           beer_name: "Samuel Adams Boston Lager",
           beer_image_url: "./dist/img/samadams.jpg"
@@ -207,6 +113,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
           beer_image_url: "./dist/img/bluemoon.jpg"
         }];
 
+        var beerRecQueue = _.union(tutorialCards, initTrainingSet);
         // this should be changed to POST
         var sendRating = function(beerReview) {
           return $http({
@@ -278,6 +185,110 @@ angular.module('app.recommend', ['app.recommend.swipe'])
   ]);
 })();
 
+// app.recommend.swipe is a sub module to app.recommend
+angular.module('app.recommend', ['app.recommend.swipe'])
+
+.run(function() {
+
+})
+
+.config(['$stateProvider',
+  function($stateProvider) {
+    $stateProvider
+      .state('app.recommend', {
+        url: "/recommend",
+        views: {
+          'menuContent': {
+            templateUrl: "app/recommend/recommend.html"
+          }
+        }
+      });
+  }
+])
+
+.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory',
+  function($window, $scope, BeerFactory) {
+
+    $scope.beers = BeerFactory.beerRecQueue;
+    // default rating
+    var beerRating = 0;
+    var addCard = function(result) {
+      var recommendedBeer = result.data;
+      $scope.beers.push(recommendedBeer);
+    };
+
+    $scope.cardSwiped = function(index) {
+      console.log('card swiped');
+      if (this.swipeCard && this.swipeCard.positive) {
+        // why do we send this back to the queue?
+        // BeerFactory.addToQueue($scope.beers[index]);
+        beerRating = 1;
+        // explicity preference, therefore put into mybeer
+        BeerFactory.addToMyBeers($scope.beers[index]);
+      } else {
+        beerRating = -1;
+      }
+      var swipedBeer = $scope.beers[index];
+      var beerReview = {
+        beer_id: swipedBeer.beer_id,
+        beer_rating: beerRating
+      };
+      // swipe a beer, you will get recommendation of another beer
+      BeerFactory.sendRating(beerReview)
+        .then(addCard)
+        .catch(function(err) {
+          console.log(err);
+        });
+    };
+
+    $scope.cardDestroyed = function(index) {
+      $scope.beers.splice(index, 1);
+    };
+
+    $scope.passSelectedBeer = function(index) {
+      // on click event, we send the selected beer
+      // to service.js to show details of that beer
+      BeerFactory.passSelectedBeer(index);
+    };
+  }
+]);
+
+
+angular.module('app.detail', [])
+.run(function() {
+
+})
+
+.config(['$stateProvider',
+    function($stateProvider) {
+      $stateProvider
+        .state('app.detail', {
+          url: "/detail",
+          views: {
+            'menuContent': {
+              templateUrl: "app/detail/detail.html"
+            }
+          }
+        });
+    }
+  ])
+
+.controller('detailCtrl', ['$scope', 'BeerFactory',
+  function($scope, BeerFactory) {
+    $scope.beerDetails = BeerFactory.getSelectedBeer() || {
+          beer_id: 104,
+          beer_name: "Samuel Adams Boston Lager",
+          // beer_image_url: "./dist/img/samadams.jpg",
+          beer_image_url: "http://cdn.beeradvocate.com/im/beers/11757.jpg",
+          beer_abv: 3,
+          beer_style: 'IPA'
+        };
+    $scope.addToMyBeers = function() {
+      console.log('saving this to my beer', $scope.beerDetails);
+      BeerFactory.addToMyBeers($scope.beerDetails);
+    };
+  }
+]);
 /* jshint -W004 */
 (function(ionic) {
   // Get transform origin poly

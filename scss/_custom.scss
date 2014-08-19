@@ -25,7 +25,8 @@
     @extend .item;
     background-color: $energized;
     color: $button-energized-text;
-    padding: 7px 0px 0px;
+    padding: 7px 5px 0px;
+    white-space:normal;
   }
 
   img {
