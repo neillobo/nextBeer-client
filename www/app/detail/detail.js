@@ -15,8 +15,8 @@ angular.module('app.detail', [])
   }
 ])
 
-.controller('detailCtrl', ['$scope', 'BeerFactory', '$state',
-  function($scope, BeerFactory, $state) {
+.controller('detailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state',
+  function($scope, BeerFactory, UtilFactory, $state) {
     var beer = BeerFactory.getSelectedBeer();
     if (!beer) {
       // in case, there's nothing to show
@@ -36,5 +36,16 @@ angular.module('app.detail', [])
       // should show a pop-up for confirmation
       // $state.go('app.recommend');
     };
+    $scope.showPopUp = function() {
+      var config = {
+        title: 'Remove this from Fav',
+        template: 'Are you sure you want to delete this?'
+      };
+      var cb = function(res){
+        // callback after user clicks on a button
+        console.log('user confirmed!!', res)
+      }
+      UtilFactory.showConfirmPopUp(config, cb);
+    }
   }
 ]);

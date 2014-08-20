@@ -67,8 +67,8 @@
   }];
 
   angular.module('app.services', [])
-    .factory('BeerFactory', ['$http', '$window', '$q', '$state', 'UtilFactory', 'UserFactory',
-      function($http, $window, $q, $state, UtilFactory, UserFactory) {
+    .factory('BeerFactory', ['$http', '$window', '$state', 'UtilFactory', 'UserFactory',
+      function($http, $window, $state, UtilFactory, UserFactory) {
         // dummy data === initial training set
         var tutorials = UserFactory.getTutorials();
         var beerRecQueue;
@@ -102,7 +102,6 @@
           var myBeers = getMyBeers() || {};
           // added a favorite state which's being used in detail view
           beer.isFavorite = true;
-          console.log('added to mybeer', beer);
           // we use an object to deduplicate the list
           myBeers[beer.beer_name] = beer;
           $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
@@ -110,9 +109,7 @@
 
         var removeFromMyBeers = function(beer) {
           var myBeers = getMyBeers();
-          console.log('remove this: ',beer.beer_name);
           delete myBeers[beer.beer_name];
-          console.log('removed?: ', myBeers);
           $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
         };
 
@@ -123,17 +120,17 @@
 
         // used in recommend.js
         var navToDetail = function(beerName) {
-          // caching this in the closure scope
-          selectedBeer = _.find(beerRecQueue, function(beer) {
-            return beer.beer_name === beerName;
+          // we fetch the metadata from myBeerList
+          // the order (mybeer -> beerRecQueue) should be preserved
+          // to retrieve correct 'fav' status.
+          var myBeers = getMyBeers();
+          // caching selectedBeer in the closure scope
+          selectedBeer = _.find(myBeers, function(val, key) {
+            return key === beerName;
           });
           if (!selectedBeer) {
-            // in case, we can't find the meta data from the queue
-            // we fetch the metadata from myBeerList
-            var myBeers = getMyBeers();
-            // we've implemented myBeerList as an object
-            selectedBeer = _.find(myBeers, function(val, key) {
-              return key === beerName;
+            selectedBeer = _.find(beerRecQueue, function(beer) {
+              return beer.beer_name === beerName;
             });
           }
           // later, we'll want to handle the 2 cases separately for better performance
@@ -155,7 +152,7 @@
 
   .factory('UserFactory', ['$http', '$window', 'UtilFactory',
     function($http, $window, UtilFactory) {
-      var userIdGrabber = function() {
+      var userTokenGrabber = function() {
         return $http({
           method: 'POST',
           url: config.baseUrl + '/user'
@@ -168,7 +165,7 @@
 
       var enableToken = function() {
         if (!$window.localStorage.getItem('Token')) {
-          userIdGrabber()
+          userTokenGrabber()
             .then(function(result) {
               $window.localStorage.setItem('Token', result.data.token);
               setHeader(result.data.token);
@@ -190,7 +187,6 @@
       };
 
       var updateTutorialProgress = function(completedTutorial) {
-        console.log(completedTutorial, 'completedTutorial');
         var tutorials = getTutorials();
         var remainingTutorials = _.filter(tutorials, function(tutorial) {
           return tutorial.tutorialId !== completedTutorial.tutorialId;
@@ -209,16 +205,22 @@
       };
     }
   ])
-    .factory('UtilFactory', [
 
-      function() {
-        var errorHandler = function(err) {
-          console.log("following error happened");
-          throw err;
-        };
-        return {
-          errorHandler: errorHandler
-        }
+  .factory('UtilFactory', ['$ionicPopup',
+    function($ionicPopup) {
+      var errorHandler = function(err) {
+        throw err;
+      };
+      var showPopUp;
+      var showConfirmPopUp = function(config, cb) {
+        // c.f. http://ionicframework.com/docs/api/service/$ionicPopup/
+        $ionicPopup.confirm(config).then(cb).catch(errorHandler);
+      };
+      return {
+        errorHandler: errorHandler,
+        showConfirmPopUp: showConfirmPopUp
+        // removePopUp: removePopUp
       }
-    ]);
+    }
+  ]);
 })();
