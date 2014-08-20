@@ -21,7 +21,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
 
 .controller('CardsCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
   function($window, $scope, BeerFactory, UserFactory, UtilFactory) {
-    var addCard = function(result) {
+    var addRecommendedBeer = function(result) {
       var recommendedBeer = result.data;
       $scope.beers.push(recommendedBeer);
     };
@@ -29,11 +29,14 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     var makeBeerReview = function(index) {
       var rating;
       var swipedBeer = $scope.beers[index];
-      // handle the case where swipedBeer === tutorial
       if (swipedBeer.tutorialId) {
-        var swipedTutorial = swipedBeer;
-        UserFactory.updateTutorialProgress(swipedTutorial);
+        // swipedBeer === tutorial
+        UserFactory.updateTutorialProgress(swipedBeer);
         return null;
+      }
+      if (swipedBeer.trainingId){
+        // swipedBeer === training beer
+        UserFactory.updateTrainingBeer(swipedBeer);
       }
       if (this.swipeCard && this.swipeCard.positive) {
         rating = 1;
@@ -56,7 +59,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         // only make a request if it's not a tutorial
         // swipe a beer, you will get recommendation of another beer
         BeerFactory.sendRating(review)
-          .then(addCard)
+          .then(addRecommendedBeer)
           .catch(UtilFactory.errorHandler);
       }
     };
