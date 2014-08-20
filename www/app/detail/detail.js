@@ -28,8 +28,8 @@ angular.module('app.detail', [])
 
     // pop up for delete confirmation for an item from myBeer
     var config = {
-      title: 'Remove this from Fav',
-      template: 'Are you sure you want to delete this?'
+      title: 'Remove this from Favs',
+      template: 'Are you sure you want to remove this?'
     };
     var removeFromMyBeers = function(isConfirmed) {
       isConfirmed && BeerFactory.removeFromMyBeers(beer);

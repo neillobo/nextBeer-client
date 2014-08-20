@@ -19,7 +19,7 @@
     tutorialImgUrl: "./dist/img/swipe-right.png"
   }, {
     tutorialId: 3,
-    tutorialName: "Click a beer to see its details , or navigate to My Beers in the side menu to see beers you liked.",
+    tutorialName: "Click a beer to see its details, or navigate to My Beers in the side menu to see beers you liked.",
     tutorialImgUrl: "./dist/img/tab.png"
   }];
 
@@ -27,7 +27,7 @@
     trainingId: 1,
     beer_id: 104,
     beer_name: "Samuel Adams Boston Lager",
-    beer_image_url: "./dist/img/samadams.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/104.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
 
@@ -35,35 +35,35 @@
     trainingId: 2,
     beer_id: 754,
     beer_name: "Guinness Draught",
-    beer_image_url: "./dist/img/guinness.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/754.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
     trainingId: 3,
     beer_id: 355,
     beer_name: "Dead Guy Ale",
-    beer_image_url: "./dist/img/deadguy.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/355.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
     trainingId: 4,
     beer_id: 1904,
     beer_name: "Sierra Nevada Celebration Ale",
-    beer_image_url: "./dist/img/sierranevada.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/1904.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
     trainingId: 5,
     beer_id: 680,
     beer_name: "Brooklyn Black Chocolate Stout",
-    beer_image_url: "./dist/img/blackchocolate.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/680.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }, {
     trainingId: 6,
     beer_id: 1212,
     beer_name: "Blue Moon Belgian White",
-    beer_image_url: "./dist/img/bluemoon.jpg",
+    beer_image_url: "http://cdn.beeradvocate.com/im/beers/1212.jpg",
     beer_style: "dragon ball",
     beer_abv: "3"
   }];
