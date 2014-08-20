@@ -8,10 +8,27 @@
 // Cards
 // -------------------------------
 .pane {
-  background-color: $item-divider-bg;
+   background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0203/0907/0_fix_dots-yellows_with_FFB400-FFE61A_shop_preview.png"); 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;       
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 /* Recommend view */
 
+&.bar-black {
+  background-color: #000;
+
+  .button {
+    color: #fff;
+  }
+  .title {
+    color: #fff;
+  }
+}
 .swipe-cards {
   text-align: center;
 }
