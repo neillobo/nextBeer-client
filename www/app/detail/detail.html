@@ -16,10 +16,10 @@
           <p>{{beer.beer_style}}</p>
         </div>
       </div>
-      <button ng-hide="{{beer.isFavorite}}" ng-click="addToMyBeers()" class="button button-block button-energized">
+      <button ng-if="!beer.isFavorite" ng-click="addToMyBeers()" class="button button-block button-energized">
         <i class="icon ion-heart"></i>&nbsp;Add to Favs
       </button>
-      <button ng-show="{{beer.isFavorite}}" ng-click="removeFromMyBeers()" class="button button-block button-assertive">
+      <button ng-if="beer.isFavorite" ng-click="showPopUp()" class="button button-block button-assertive">
         <i class="icon ion-trash-b"></i>&nbsp;Remove from Favs
       </button>
     </div>

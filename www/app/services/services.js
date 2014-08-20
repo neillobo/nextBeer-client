@@ -7,6 +7,8 @@
   // cache the selectedBeer for previous page nav
   var selectedBeer;
 
+  // ideally we should use $resource or make a
+  // GET request to fetch the initial training set
   var tutorialCards = [{
     tutorialId: 1,
     tutorialName: "Welcome to NextBeer, the intelligent beer discovery app!",
@@ -21,7 +23,7 @@
     tutorialImgUrl: "./dist/img/tab.png"
   }];
 
-  var initTrainingSet = [{
+  var initTrainingBeers = [{
     trainingId: 1,
     beer_id: 104,
     beer_name: "Samuel Adams Boston Lager",
@@ -67,95 +69,95 @@
   }];
 
   angular.module('app.services', [])
-    .factory('BeerFactory', ['$http', '$window', '$q', '$state', 'UtilFactory', 'UserFactory',
-      function($http, $window, $q, $state, UtilFactory, UserFactory) {
-        // dummy data === initial training set
-        var tutorials = UserFactory.getTutorials();
-        var beerRecQueue;
-        if (tutorials.length > 0) {
-          beerRecQueue = _.union(tutorialCards, initTrainingSet);
-        } else {
-          beerRecQueue = initTrainingSet;
-        }
+  // all non-user-specific and beer-specific operations go here
+  .factory('BeerFactory', ['$http', '$window', '$state', 'UtilFactory', 'UserFactory',
+    function($http, $window, $state, UtilFactory, UserFactory) {
+      var tutorials = UserFactory.getTutorials();
+      var trainingBeers = UserFactory.getTrainingBeers();
+      var beerRecQueue;
+      if (tutorials.length > 0) {
+        beerRecQueue = _.union(tutorialCards, trainingBeers);
+      } else {
+        beerRecQueue = trainingBeers;
+      }
 
-        // this should be changed to POST
-        var sendRating = function(beerReview) {
-          return $http({
-            method: 'POST',
-            url: config.baseUrl + "/rate",
-            data: beerReview
-          });
-        };
+      var sendRating = function(beerReview) {
+        return $http({
+          method: 'POST',
+          url: config.baseUrl + "/rate",
+          data: beerReview
+        });
+      };
 
-        var addToQueue = function(beer) {
-          beerRecQueue.push(beer);
-        };
+      var addToQueue = function(beer) {
+        beerRecQueue.push(beer);
+      };
 
-        var getMyBeers = function(beer) {
-          return JSON.parse($window.localStorage.getItem('myBeers'));
-        };
+      var getMyBeers = function(beer) {
+        return JSON.parse($window.localStorage.getItem('myBeers'));
+      };
 
-        var addToMyBeers = function(beer) {
-          // currently a user's selected items persist in the local storage
-          // but it should eventually persist on the db/server
-          // we can only store string typed data in localstorage
-          var myBeers = getMyBeers() || {};
-          // added a favorite state which's being used in detail view
-          beer.isFavorite = true;
-          console.log('added to mybeer', beer);
-          // we use an object to deduplicate the list
-          myBeers[beer.beer_name] = beer;
-          $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
-        };
+      var addToMyBeers = function(beer) {
+        // currently a user's selected items persist in the local storage
+        // but it should eventually persist on the db/server
+        // we can only store string typed data in localstorage
+        var myBeers = getMyBeers() || {};
+        // added a favorite state which's being used in detail view
+        beer.isFavorite = true;
+        // we use an object to deduplicate the list
+        myBeers[beer.beer_name] = beer;
+        $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
+      };
 
-        var removeFromMyBeers = function(beer) {
-          var myBeers = getMyBeers();
-          console.log('remove this: ',beer.beer_name);
-          delete myBeers[beer.beer_name];
-          console.log('removed?: ', myBeers);
-          $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
-        };
+      var removeFromMyBeers = function(beer) {
+        var myBeers = getMyBeers();
+        delete myBeers[beer.beer_name];
+        $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
+      };
 
-        // used in detail.js
-        var getSelectedBeer = function() {
-          return selectedBeer;
-        };
+      // used in detail.js
+      var getSelectedBeer = function() {
+        return selectedBeer;
+      };
 
-        // used in recommend.js
-        var navToDetail = function(beerName) {
-          // caching this in the closure scope
+      // used in recommend.js
+      var navToDetail = function(beerName) {
+        // we fetch the metadata from myBeerList
+        // the order (mybeer -> beerRecQueue) should be preserved
+        // to retrieve correct 'fav' status.
+        var myBeers = getMyBeers();
+        // caching selectedBeer in the closure scope
+        selectedBeer = _.find(myBeers, function(val, key) {
+          return key === beerName;
+        });
+        if (!selectedBeer) {
           selectedBeer = _.find(beerRecQueue, function(beer) {
             return beer.beer_name === beerName;
           });
-          if (!selectedBeer) {
-            // in case, we can't find the meta data from the queue
-            // we fetch the metadata from myBeerList
-            var myBeers = getMyBeers();
-            // we've implemented myBeerList as an object
-            selectedBeer = _.find(myBeers, function(val, key) {
-              return key === beerName;
-            });
-          }
-          // later, we'll want to handle the 2 cases separately for better performance
-          $state.go('app.detail');
-        };
+        }
+        // later, we'll want to handle the 2 cases separately for better performance
+        $state.go('app.detail');
+      };
 
-        return {
-          addToQueue: addToQueue,
-          addToMyBeers: addToMyBeers,
-          beerRecQueue: beerRecQueue,
-          getMyBeers: getMyBeers,
-          getSelectedBeer: getSelectedBeer,
-          removeFromMyBeers: removeFromMyBeers,
-          sendRating: sendRating,
-          navToDetail: navToDetail
-        };
-      }
-    ])
-
+      return {
+        addToQueue: addToQueue,
+        addToMyBeers: addToMyBeers,
+        beerRecQueue: beerRecQueue,
+        getMyBeers: getMyBeers,
+        getSelectedBeer: getSelectedBeer,
+        removeFromMyBeers: removeFromMyBeers,
+        sendRating: sendRating,
+        navToDetail: navToDetail
+      };
+    }
+  ])
+  // all user-specific operations go here
   .factory('UserFactory', ['$http', '$window', 'UtilFactory',
     function($http, $window, UtilFactory) {
-      var userIdGrabber = function() {
+      /**
+       * USER TOKEN
+       */
+      var userTokenGrabber = function() {
         return $http({
           method: 'POST',
           url: config.baseUrl + '/user'
@@ -168,7 +170,7 @@
 
       var enableToken = function() {
         if (!$window.localStorage.getItem('Token')) {
-          userIdGrabber()
+          userTokenGrabber()
             .then(function(result) {
               $window.localStorage.setItem('Token', result.data.token);
               setHeader(result.data.token);
@@ -181,6 +183,9 @@
         }
       };
 
+      /**
+       * TUTORIAL CARDS
+       */
       var getTutorials = function() {
         return JSON.parse($window.localStorage.getItem('Tutorial'));
       };
@@ -190,35 +195,65 @@
       };
 
       var updateTutorialProgress = function(completedTutorial) {
-        console.log(completedTutorial, 'completedTutorial');
         var tutorials = getTutorials();
         var remainingTutorials = _.filter(tutorials, function(tutorial) {
           return tutorial.tutorialId !== completedTutorial.tutorialId;
         });
         $window.localStorage.setItem('Tutorial', JSON.stringify(remainingTutorials));
       };
-
       // if there's no existing tutorial in localstorage, we initialize with the complete tutorial cards
       // this will be run when this factory gets instantiated
       initializeTutorials();
 
+      /**
+       * INITIAL TRAINING DATA
+       * - the dummy data is at top of this script
+       * - we shall phase this out once server keeps track of
+       * - any beers that users liked or disliked
+       * - for now, client keeps track of what training cards were swiped
+       */
+      var getTrainingBeers = function() {
+        return JSON.parse($window.localStorage.getItem('TrainingBeers'));
+      };
+
+      var initializeTrainingBeers = function() {
+        !!getTrainingBeers() || $window.localStorage.setItem('TrainingBeers', JSON.stringify(initTrainingBeers));
+      };
+
+      var updateTrainingBeer = function(swipedTrainingBeer) {
+        var TrainingBeers = getTrainingBeers();
+        var remainingTrainingBeers = _.filter(TrainingBeers, function(trainingBeer) {
+          return trainingBeer.beer_id !== swipedTrainingBeer.beer_id;
+        });
+        $window.localStorage.setItem('TrainingBeers', JSON.stringify(remainingTrainingBeers));
+      };
+      initializeTrainingBeers();
+
       return {
         enableToken: enableToken,
         getTutorials: getTutorials,
-        updateTutorialProgress: updateTutorialProgress
+        updateTutorialProgress: updateTutorialProgress,
+        getTrainingBeers: getTrainingBeers,
+        updateTrainingBeer: updateTrainingBeer
       };
     }
   ])
-    .factory('UtilFactory', [
-
-      function() {
-        var errorHandler = function(err) {
-          console.log("following error happened");
-          throw err;
-        };
-        return {
-          errorHandler: errorHandler
-        }
+  // non-beer, non-user-related operations go here
+  .factory('UtilFactory', ['$ionicPopup',
+    function($ionicPopup) {
+      var errorHandler = function(err) {
+        throw err;
+      };
+      var showPopUp;
+      var showConfirmPopUp = function(config, cb) {
+        // c.f. http://ionicframework.com/docs/api/service/$ionicPopup/
+        $ionicPopup.confirm(config).then(cb).catch(errorHandler);
+      };
+      return {
+        errorHandler: errorHandler,
+        showConfirmPopUp: showConfirmPopUp
+        // removePopUp: removePopUp
       }
-    ]);
+    }
+  ]);
 })();

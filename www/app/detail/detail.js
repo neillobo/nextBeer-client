@@ -15,26 +15,30 @@ angular.module('app.detail', [])
   }
 ])
 
-.controller('detailCtrl', ['$scope', 'BeerFactory', '$state',
-  function($scope, BeerFactory, $state) {
+.controller('detailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state',
+  function($scope, BeerFactory, UtilFactory, $state) {
     var beer = BeerFactory.getSelectedBeer();
-    if (!beer) {
-      // in case, there's nothing to show
-      // fall back to recommend view
-      // the trainsition is very slow.
-      // let's find a faster way to do this
-      $state.go('app.recommend');
-    }
+    // if there's nothing to show, no point to transition to detail
+    !beer && $state.go('app.recommend');
     $scope.beer = beer;
+
     $scope.addToMyBeers = function() {
       BeerFactory.addToMyBeers(beer);
-      // should give visual feedback to users
-      // $state.go('app.recommend');
     };
-    $scope.removeFromMyBeers = function() {
-      BeerFactory.removeFromMyBeers(beer);
-      // should show a pop-up for confirmation
-      // $state.go('app.recommend');
+
+    // pop up for delete confirmation for an item from myBeer
+    var config = {
+      title: 'Remove this from Fav',
+      template: 'Are you sure you want to delete this?'
     };
+    var removeFromMyBeers = function(isConfirmed) {
+      isConfirmed && BeerFactory.removeFromMyBeers(beer);
+      // show an 'add to fav' option back again
+      // this is not a good practice but we have it for now
+      $scope.beer.isFavorite = false;
+    };
+    $scope.showPopUp = function() {
+      UtilFactory.showConfirmPopUp(config, removeFromMyBeers);
+    }
   }
 ]);
