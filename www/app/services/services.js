@@ -91,18 +91,29 @@
           beerRecQueue.push(beer);
         };
 
+        var getMyBeers = function(beer) {
+          return JSON.parse($window.localStorage.getItem('myBeers'));
+        };
+
         var addToMyBeers = function(beer) {
           // currently a user's selected items persist in the local storage
           // but it should eventually persist on the db/server
           // we can only store string typed data in localstorage
-          var myBeers = JSON.parse($window.localStorage.getItem('myBeers')) || {};
+          var myBeers = getMyBeers() || {};
+          // added a favorite state which's being used in detail view
+          beer.isFavorite = true;
+          console.log('added to mybeer', beer);
           // we use an object to deduplicate the list
           myBeers[beer.beer_name] = beer;
           $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
         };
 
-        var getMyBeers = function(beer) {
-          return JSON.parse($window.localStorage.getItem('myBeers'));
+        var removeFromMyBeers = function(beer) {
+          var myBeers = getMyBeers();
+          console.log('remove this: ',beer.beer_name);
+          delete myBeers[beer.beer_name];
+          console.log('removed?: ', myBeers);
+          $window.localStorage.setItem('myBeers', JSON.stringify(myBeers));
         };
 
         // used in detail.js
@@ -111,22 +122,33 @@
         };
 
         // used in recommend.js
-        var passSelectedBeer = function(beerName) {
+        var navToDetail = function(beerName) {
           // caching this in the closure scope
           selectedBeer = _.find(beerRecQueue, function(beer) {
             return beer.beer_name === beerName;
           });
+          if (!selectedBeer) {
+            // in case, we can't find the meta data from the queue
+            // we fetch the metadata from myBeerList
+            var myBeers = getMyBeers();
+            // we've implemented myBeerList as an object
+            selectedBeer = _.find(myBeers, function(val, key) {
+              return key === beerName;
+            });
+          }
+          // later, we'll want to handle the 2 cases separately for better performance
           $state.go('app.detail');
         };
 
         return {
-          beerRecQueue: beerRecQueue,
           addToQueue: addToQueue,
           addToMyBeers: addToMyBeers,
+          beerRecQueue: beerRecQueue,
           getMyBeers: getMyBeers,
-          sendRating: sendRating,
           getSelectedBeer: getSelectedBeer,
-          passSelectedBeer: passSelectedBeer
+          removeFromMyBeers: removeFromMyBeers,
+          sendRating: sendRating,
+          navToDetail: navToDetail
         };
       }
     ])

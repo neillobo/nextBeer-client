@@ -18,9 +18,12 @@ angular.module('app.detail', [])
 
 .controller('detailCtrl', ['$scope', 'BeerFactory',
   function($scope, BeerFactory) {
-    $scope.beerDetails = BeerFactory.getSelectedBeer();
+    $scope.beer = BeerFactory.getSelectedBeer();
     $scope.addToMyBeers = function() {
-      BeerFactory.addToMyBeers($scope.beerDetails);
+      BeerFactory.addToMyBeers($scope.beer);
+    };
+    $scope.hello = function() {
+      BeerFactory.removeFromMyBeers($scope.beer);
     };
   }
 ]);

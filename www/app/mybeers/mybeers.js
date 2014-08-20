@@ -1,3 +1,4 @@
+
 angular.module('app.mybeers', [])
 
 .run(function() {
@@ -21,9 +22,9 @@ angular.module('app.mybeers', [])
 .controller('MyBeersCtrl', ['$scope', 'BeerFactory',
   function($scope, BeerFactory) {
     $scope.myBeers = BeerFactory.getMyBeers();
-    $scope.passSelectedBeer = function(beerName) {
+    $scope.passSelectedBeer = function(beer) {
       /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
-      BeerFactory.passSelectedBeer(beerName);
+      BeerFactory.navToDetail(beer.beer_name);
     };
   }
 ]);

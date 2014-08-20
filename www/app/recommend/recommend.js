@@ -30,7 +30,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       var rating;
       var swipedBeer = $scope.beers[index];
       // handle the case where swipedBeer === tutorial
-      if (swipedBeer.tutorialId){
+      if (swipedBeer.tutorialId) {
         var swipedTutorial = swipedBeer;
         UserFactory.updateTutorialProgress(swipedTutorial);
         return null;
@@ -65,9 +65,11 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       $scope.beers.splice(index, 1);
     };
 
-    $scope.passSelectedBeer = function(beerName) {
-      /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
-      BeerFactory.passSelectedBeer(beerName);
+    $scope.passSelectedBeer = function(beer) {
+      // we can't pass index as the index of mybeers
+      // won't be compatible with thebeerRecQue
+      // handle the  tutorial edge case
+      !beer.tutorialId && BeerFactory.navToDetail(beer.beer_name);
     };
   }
 ]);
