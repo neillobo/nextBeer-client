@@ -4,7 +4,8 @@ www/bower_components/
 www/lib/
 
 # build
-www/dist/
+www/dist/js
+www/dist/js
 platforms/
 
 # common files

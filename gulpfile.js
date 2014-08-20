@@ -65,7 +65,7 @@ gulp.task('watch', function() {
     // gulp.watch(paths.test, ['test']);
 });
 
-gulp.task('bundle', ['bundleApp', 'bundleDependencies']);
+gulp.task('bundle', ['sass', 'bundleApp', 'bundleDependencies']);
 
 gulp.task('bundleApp', function(done) {
     return gulp.src(paths.scripts)
