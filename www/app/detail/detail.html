@@ -4,21 +4,23 @@
   </ion-nav-buttons>
   <ion-content ng-controller="detailCtrl">
     <div class='card-detail'>
-      <img ng-src="{{beerDetails.beer_image_url}}">
-      <h4>{{beerDetails.beer_name}}</h4>
+      <img ng-src="{{beer.beer_image_url}}">
+      <h4>{{beer.beer_name}}</h4>
       <div class='row'>
         <div class='col right-border'>
           <h4>ABV</h4>
-          <p>{{beerDetails.beer_abv}}&nbsp;%</p>
+          <p>{{beer.beer_abv}}&nbsp;%</p>
         </div>
         <div class='col'>
           <h4>Style</h4>
-          <p>{{beerDetails.beer_style}}</p>
+          <p>{{beer.beer_style}}</p>
         </div>
       </div>
-      <button ng-click="addToMyBeers()" class="button button-block button-energized">
-        <i class="
-icon ion-heart"></i>&nbsp;Add to Favs
+      <button ng-hide="{{beer.isFavorite}}" ng-click="addToMyBeers()" class="button button-block button-energized">
+        <i class="icon ion-heart"></i>&nbsp;Add to Favs
+      </button>
+      <button ng-show="{{beer.isFavorite}}" ng-click="removeFromMyBeers()" class="button button-block button-assertive">
+        <i class="icon ion-trash-b"></i>&nbsp;Remove from Favs
       </button>
     </div>
   </ion-content>

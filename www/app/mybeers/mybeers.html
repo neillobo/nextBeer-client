@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list class="mybeer" ng-controller="MyBeersCtrl">
-      <ion-item class="item item-thumbnail-left" ng-repeat="beer in myBeers" ng-click="passSelectedBeer('{{beer.beer_name}}')">
+      <ion-item class="item item-thumbnail-left" ng-repeat="beer in myBeers" ng-click="passSelectedBeer({{beer}})">
         <img ng-class="{training: '{{beer.trainingId}}' > 0}" ng-src="{{beer.beer_image_url}}">
         <h2>{{beer.beer_name}}</h2>
         <p>{{beer.beer_abv}}%</p>
