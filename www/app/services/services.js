@@ -81,7 +81,6 @@
         beerRecQueue = trainingBeers;
       }
 
-      // this should be changed to POST
       var sendRating = function(beerReview) {
         return $http({
           method: 'POST',

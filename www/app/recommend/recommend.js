@@ -2,7 +2,8 @@
 angular.module('app.recommend', ['app.recommend.swipe'])
 
 .run(function() {
-
+  // dev logger
+  console.log('$$#$#$#$if you do not see any items, it is because you have swiped all items already. to reset, delete items on localstorage on your brwoser console.');
 })
 
 .config(['$stateProvider',
@@ -34,7 +35,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         UserFactory.updateTutorialProgress(swipedBeer);
         return null;
       }
-      if (swipedBeer.trainingId){
+      if (swipedBeer.trainingId) {
         // swipedBeer === training beer
         UserFactory.updateTrainingBeer(swipedBeer);
       }
