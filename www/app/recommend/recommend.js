@@ -13,14 +13,15 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         url: "/recommend",
         views: {
           'views': {
-            templateUrl: "app/recommend/recommend.html"
+            templateUrl: "app/recommend/recommend.html",
+            controller: "RecommendCtrl"
           }
         }
       });
   }
 ])
 
-.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
+.controller('RecommendCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
   function($window, $scope, BeerFactory, UserFactory, UtilFactory) {
     var addRecommendedBeer = function(result) {
       var recommendedBeer = result.data;

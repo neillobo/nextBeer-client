@@ -7,7 +7,8 @@ angular.module('app.tutorial', [])
           url: "/tutorial",
           views: {
             'views': {
-              templateUrl: "app/tutorial/tutorial.html"
+              templateUrl: "app/tutorial/tutorial.html",
+              controller: "TutorialCtrl"
             }
           }
         });

@@ -3,7 +3,7 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon icon ion-ios7-heart" ui-sref="app.mybeers"></button>
   </ion-nav-buttons>
-  <ion-content style="overflow:scroll" ng-controller="CardsCtrl">
+  <ion-content style="overflow:scroll">
     <swipe-cards>
       <swipe-card ng-repeat="beer in beers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-click="passSelectedBeer({{beer}})">
         <img ng-src="{{beer.beer_image_url}}">

@@ -8,15 +8,16 @@ angular.module('app.detail', [])
         url: "/detail",
         views: {
           'views': {
-            templateUrl: "app/detail/detail.html"
+            templateUrl: "app/detail/detail.html",
+            controller: "DetailCtrl"
           }
         }
       });
   }
 ])
 
-.controller('DetailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state',
-  function($scope, BeerFactory, UtilFactory, $state) {
+.controller('DetailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state', '$rootScope',
+  function($scope, BeerFactory, UtilFactory, $state, $rootScope) {
     var beer = BeerFactory.getSelectedBeer();
     // if there's nothing to show, no point to transition to detail
     !beer && $state.go('app.recommend');
@@ -46,6 +47,10 @@ angular.module('app.detail', [])
         $scope.beer.isFavorite = false;
       };
       UtilFactory.showConfirmPopUp(config, removeFromMyBeers);
+    };
+
+    $scope.navToPrev = function(){
+      $state.go($rootScope.prevState);
     };
   }
 ]);

@@ -11,7 +11,8 @@ angular.module('app.mybeers', [])
         url: "/mybeers",
         views: {
           'views': {
-            templateUrl: "app/mybeers/mybeers.html"
+            templateUrl:"app/mybeers/mybeers.html",
+            controller: "MyBeersCtrl"
           }
         }
       });
