@@ -10,9 +10,6 @@
   "_comment": "ionic is in active development. Some of things that this app uses rely on the bleeding-edge commits. e.g. slide-box, swipe-card",
   "resolutions": {
     "ionic": "1.0.0-beta.10-nightly-323",
-    "angular-ui-router": "0.2.10",
-    "angular": "~1.2.12",
-    "angular-animate": "~1.2.17",
-    "angular-sanitize": "~1.2.17"
+    "angular": "~1.2.12"
   }
 }
