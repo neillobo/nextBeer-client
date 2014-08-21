@@ -7029,12 +7029,12 @@ a {
 
 .custom-card-button, .swipe-card .title, .card-detail .button-block {
   color: #fff;
-  background-color: #FF8F00;
   box-shadow: 0 4px #8b4621; }
 
 .swipe-card {
   position: relative; }
   .swipe-card .title {
+    background-color: #FF8F00;
     padding: 13px 10px;
     position: absolute;
     bottom: 3px;

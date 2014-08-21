@@ -26,7 +26,8 @@ angular.module('app.detail', [])
     $scope.showAlertPopUp = function() {
       var config = {
         title: 'The beer has been added to Favs',
-        cancelType: 'make-invisible'
+        cancelType: 'make-invisible',
+        okType: "button-energized"
       };
       var addToMyBeers = function() {
         BeerFactory.addToMyBeers(beer);

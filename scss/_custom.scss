@@ -69,11 +69,11 @@ a {
 .swipe-card {
   @extend .card;
   @extend .custom-card;
-  background-color: $beer-orange;
   position: relative;
   .title {
     @extend .item;
     @extend .custom-card-button;
+    background-color: $beer-orange;
     padding: 13px 10px;
     position: absolute;
     bottom: 3px;
