@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services'])
+angular.module('app', ['ionic', 'app.tutorial', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services'])
 
 .run(['$ionicPlatform', '$window', 'UserFactory',
   function($ionicPlatform, $window, UserFactory) {
@@ -25,6 +25,7 @@ angular.module('app', ['ionic', 'app.recommend', 'app.detail', 'app.mybeers', 'a
         abstract: true,
         templateUrl: "app/app.html"
       });
+    // on every first time load, we nav to welcome view
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/recommend');
   }

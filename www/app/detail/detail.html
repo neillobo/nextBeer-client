@@ -2,7 +2,7 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content ng-controller="detailCtrl">
+  <ion-content ng-controller="DetailCtrl">
     <div class='card-detail'>
       <img ng-src="{{beer.beer_image_url}}">
       <h4>{{beer.beer_name}}</h4>
@@ -16,10 +16,10 @@
           <p>{{beer.beer_style}}</p>
         </div>
       </div>
-      <button ng-if="!beer.isFavorite" ng-click="addToMyBeers()" class="button button-block button-energized">
+      <button ng-if="!beer.isFavorite" ng-click="showAlertPopUp()" class="button button-block button-energized">
         <i class="icon ion-heart"></i>&nbsp;Add to Favs
       </button>
-      <button ng-if="beer.isFavorite" ng-click="showPopUp()" class="button button-block button-assertive">
+      <button ng-if="beer.isFavorite" ng-click="showConfirmPopUp()" class="button button-block button-assertive">
         <i class="icon ion-trash-b"></i>&nbsp;Remove from Favs
       </button>
     </div>

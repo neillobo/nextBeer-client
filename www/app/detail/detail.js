@@ -22,23 +22,30 @@ angular.module('app.detail', [])
     !beer && $state.go('app.recommend');
     $scope.beer = beer;
 
-    $scope.addToMyBeers = function() {
-      BeerFactory.addToMyBeers(beer);
+    $scope.showAlertPopUp = function() {
+      var config = {
+        title: 'The beer has been added to Favs'
+        // template: 'Are you sure you want to remove this?'
+      };
+      var addToMyBeers = function() {
+        BeerFactory.addToMyBeers(beer);
+      }
+      UtilFactory.showAlertPopUp(config, addToMyBeers);
     };
 
     // pop up for delete confirmation for an item from myBeer
-    var config = {
-      title: 'Remove this from Favs',
-      template: 'Are you sure you want to remove this?'
-    };
-    var removeFromMyBeers = function(isConfirmed) {
-      isConfirmed && BeerFactory.removeFromMyBeers(beer);
-      // show an 'add to fav' option back again
-      // this is not a good practice but we have it for now
-      $scope.beer.isFavorite = false;
-    };
-    $scope.showPopUp = function() {
+    $scope.showConfirmPopUp = function() {
+      var config = {
+        title: 'Remove this from Favs',
+        template: 'Are you sure you want to remove this?'
+      };
+      var removeFromMyBeers = function(isConfirmed) {
+        isConfirmed && BeerFactory.removeFromMyBeers(beer);
+        // show an 'add to fav' option back again
+        // this is not a good practice but we have it for now
+        $scope.beer.isFavorite = false;
+      };
       UtilFactory.showConfirmPopUp(config, removeFromMyBeers);
-    }
+    };
   }
 ]);

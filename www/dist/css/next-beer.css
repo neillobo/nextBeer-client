@@ -6987,21 +6987,32 @@ a.button {
  * later these should be split across multiple appropriate files when it gets too large
  */
 .pane {
-  background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0203/0907/0_fix_dots-yellows_with_FFB400-FFE61A_shop_preview.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  webkit-background-size: cover;
-  background-size: cover; }
+  background-color: #f8f8f8; }
 
+a {
+  color: #D39819; }
+
+/* tutorial */
+.button.button-energized.button-clear.no-animation {
+  font-weight: 500;
+  color: #D39819; }
+
+.slider {
+  height: 100%; }
+
+.slider-slide {
+  padding-top: 100px;
+  background-color: #fff;
+  text-align: center; }
+  .slider-slide li, .slider-slide p {
+    color: #a2a2a2; }
+  .slider-slide h3 {
+    padding-top: 10px; }
+  .slider-slide img {
+    padding: 30px 0 0; }
+
+/* header & background */
 /* Recommend view */
-.bar-black {
-  background-color: #000; }
-  .bar-black .button {
-    color: #fff; }
-  .bar-black .title {
-    color: #fff; }
-
 .swipe-cards {
   text-align: center; }
 

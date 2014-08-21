@@ -1,0 +1,36 @@
+<ion-view ng-controller="TutorialCtrl">
+  <ion-nav-buttons side="left">
+    <button class="button button-energized button-clear no-animation" ng-click="startApp()" ng-if="!slideIndex">
+      Skip
+    </button>
+    <button class="button button-energized button-clear no-animation" ng-click="previous()" ng-if="!isSlideAtBegin()">
+      Previous
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-energized button-clear no-animation" ng-click="next()" ng-if="!isSlideAtEnd()">
+      Next
+    </button>
+    <button class="button button-energized button-clear no-animation" ng-click="onComplete()" ng-if="isSlideAtEnd()">Done</button>
+  </ion-nav-buttons>
+  <ion-slide-box does-continue="false" on-slide-changed="slideChanged(index)">
+    <ion-slide>
+      <h3>Welcome to NextBeer</h3>
+      <img class="padding" src="./dist/img/beer-sm.png" alt="beer-logo">
+      <ul>
+        <li>Swipe or tap "Next" to begin.</li>
+        <li>Learn how to get started in 3 easy steps.</li>
+      </ul>
+    </ion-slide>
+    <ion-slide ng-repeat="slide in slides">
+      <h4>{{$index+1}}.&nbsp;{{slide.title}}</h4>
+      <ul>
+        <li ng-repeat="item in slide.items">{{item}}</li>
+      </ul>
+      <figure class="padding-top">
+        <img ng-src="{{slide.img}}" alt="{{slide.imgDescription}}">
+      </figure>
+      <figcaption>some descriptive screenshot</figcaption>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>
