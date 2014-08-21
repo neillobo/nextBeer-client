@@ -31,9 +31,7 @@ angular.module('app.tutorial', [])
     !$scope.isSlideAtBegin() && $ionicSlideBoxDelegate.previous();
   };
   $scope.slideChanged = function(index) {
-    console.log('index: ', index);
-    console.log('begin', $scope.isSlideAtBegin());
-    console.log('end', $scope.isSlideAtEnd());
     $scope.slideIndex = index;
+    $ionicSlideBoxDelegate.stop();
   };
 });
