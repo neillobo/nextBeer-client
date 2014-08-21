@@ -3406,14 +3406,14 @@ a.subdued {
   .tab-item.tab-item-active.tab-item-dark, .tab-item.active.tab-item-dark, .tab-item.activated.tab-item-dark {
     color: #444; }
 
-.item.tabs, .swipe-card .tabs.title {
+.item.tabs, .swipe-card button.tabs {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
   padding: 0; }
-  .item.tabs .icon:before, .item.tabs .swipe-card .tabs.title, .swipe-card .item.tabs .tabs.title {
+  .item.tabs .icon:before, .item.tabs .swipe-card button.tabs, .swipe-card .item.tabs button.tabs {
     position: relative; }
 
 .tab-item.disabled, .tab-item[disabled] {
@@ -3659,7 +3659,7 @@ a.subdued {
  * Items
  * --------------------------------------------------
  */
-.item, .swipe-card .title {
+.item, .swipe-card button {
   border-color: #ddd;
   background-color: #fff;
   color: #444;
@@ -3671,24 +3671,24 @@ a.subdued {
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
-  .item h2, .item .swipe-card .title, .swipe-card .item .title {
+  .item h2, .item .swipe-card button, .swipe-card .item button {
     margin: 0 0 4px 0;
     font-size: 16px; }
-  .item h3, .item .swipe-card .title, .swipe-card .item .title {
+  .item h3, .item .swipe-card button, .swipe-card .item button {
     margin: 0 0 4px 0;
     font-size: 14px; }
-  .item h4, .item .swipe-card .title, .swipe-card .item .title {
+  .item h4, .item .swipe-card button, .swipe-card .item button {
     margin: 0 0 4px 0;
     font-size: 12px; }
-  .item h5, .item .swipe-card .title, .swipe-card .item .title, .item h6, .item .swipe-card .title, .swipe-card .item .title {
+  .item h5, .item .swipe-card button, .swipe-card .item button, .item h6, .item .swipe-card button, .swipe-card .item button {
     margin: 0 0 3px 0;
     font-size: 10px; }
-  .item p, .item .swipe-card .title, .swipe-card .item .title {
+  .item p, .item .swipe-card button, .swipe-card .item button {
     color: #666;
     font-size: 14px; }
-  .item h1:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h2:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h3:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h4:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h5:last-child, .item .swipe-card .title, .swipe-card .item .title, .item h6:last-child, .item .swipe-card .title, .swipe-card .item .title, .item p:last-child, .item .swipe-card .title, .swipe-card .item .title {
+  .item h1:last-child, .item .swipe-card button, .swipe-card .item button, .item h2:last-child, .item .swipe-card button, .swipe-card .item button, .item h3:last-child, .item .swipe-card button, .swipe-card .item button, .item h4:last-child, .item .swipe-card button, .swipe-card .item button, .item h5:last-child, .item .swipe-card button, .swipe-card .item button, .item h6:last-child, .item .swipe-card button, .swipe-card .item button, .item p:last-child, .item .swipe-card button, .swipe-card .item button {
     margin-bottom: 0; }
-  .item .badge, .item .swipe-card .title, .swipe-card .item .title {
+  .item .badge, .item .swipe-card button, .swipe-card .item button {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-flex;
@@ -3697,91 +3697,91 @@ a.subdued {
     position: absolute;
     top: 15px;
     right: 30px; }
-  .item.item-button-right .badge, .item.item-button-right .swipe-card .item-button-right.title, .swipe-card .item.item-button-right .item-button-right.title {
+  .item.item-button-right .badge, .item.item-button-right .swipe-card button.item-button-right, .swipe-card .item.item-button-right button.item-button-right {
     right: 65px; }
-  .item.item-divider .badge, .item.item-divider .swipe-card .item-divider.title, .swipe-card .item.item-divider .item-divider.title {
+  .item.item-divider .badge, .item.item-divider .swipe-card button.item-divider, .swipe-card .item.item-divider button.item-divider {
     top: 8px; }
-  .item .badge + .badge, .item .badge + .swipe-card .title, .swipe-card .item .badge + .title {
+  .item .badge + .badge, .item .badge + .swipe-card button, .swipe-card .item .badge + button {
     margin-right: 5px; }
-  .item.item-light, .swipe-card .item-light.title {
+  .item.item-light, .swipe-card button.item-light {
     border-color: #ddd;
     background-color: #fff;
     color: #444; }
-  .item.item-stable, .swipe-card .item-stable.title {
+  .item.item-stable, .swipe-card button.item-stable {
     border-color: #b2b2b2;
     background-color: #f8f8f8;
     color: #444; }
-  .item.item-positive, .swipe-card .item-positive.title {
+  .item.item-positive, .swipe-card button.item-positive {
     border-color: #145fd7;
     background-color: #4a87ee;
     color: #fff; }
-  .item.item-calm, .swipe-card .item-calm.title {
+  .item.item-calm, .swipe-card button.item-calm {
     border-color: #1aacc3;
     background-color: #43cee6;
     color: #fff; }
-  .item.item-assertive, .swipe-card .item-assertive.title {
+  .item.item-assertive, .swipe-card button.item-assertive {
     border-color: #cc2311;
     background-color: #ef4e3a;
     color: #fff; }
-  .item.item-balanced, .swipe-card .item-balanced.title {
+  .item.item-balanced, .swipe-card button.item-balanced {
     border-color: #498f24;
     background-color: #66cc33;
     color: #fff; }
-  .item.item-energized, .swipe-card .item-energized.title {
+  .item.item-energized, .swipe-card button.item-energized {
     border-color: #d39211;
     background-color: #f0b840;
     color: #fff; }
-  .item.item-royal, .swipe-card .item-royal.title {
+  .item.item-royal, .swipe-card button.item-royal {
     border-color: #552bdf;
     background-color: #8a6de9;
     color: #fff; }
-  .item.item-dark, .swipe-card .item-dark.title {
+  .item.item-dark, .swipe-card button.item-dark {
     border-color: #111;
     background-color: #444;
     color: #fff; }
-  .item[ng-click]:hover, .swipe-card [ng-click].title:hover {
+  .item[ng-click]:hover, .swipe-card button[ng-click]:hover {
     cursor: pointer; }
 
-.item.active, .swipe-card .active.title, .item.activated, .swipe-card .activated.title, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated, .item .swipe-card .title, .swipe-card .item .title {
+.item.active, .swipe-card button.active, .item.activated, .swipe-card button.activated, .item-complex.active .item-content, .item-complex.activated .item-content, .item .item-content.active, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated, .item .swipe-card button, .swipe-card .item button {
   border-color: #ccc;
   background-color: #D9D9D9; }
-  .item.active.item-light, .swipe-card .active.item-light.title, .item.activated.item-light, .swipe-card .activated.item-light.title, .item-complex.active .item-content.item-light, .item-complex.activated .item-content.item-light, .item .item-content.active.item-light, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-light, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-light, .swipe-card button.active.item-light, .item.activated.item-light, .swipe-card button.activated.item-light, .item-complex.active .item-content.item-light, .item-complex.activated .item-content.item-light, .item .item-content.active.item-light, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-light, .item .swipe-card button, .swipe-card .item button {
     border-color: #ccc;
     background-color: #fafafa; }
-  .item.active.item-stable, .swipe-card .active.item-stable.title, .item.activated.item-stable, .swipe-card .activated.item-stable.title, .item-complex.active .item-content.item-stable, .item-complex.activated .item-content.item-stable, .item .item-content.active.item-stable, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-stable, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-stable, .swipe-card button.active.item-stable, .item.activated.item-stable, .swipe-card button.activated.item-stable, .item-complex.active .item-content.item-stable, .item-complex.activated .item-content.item-stable, .item .item-content.active.item-stable, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-stable, .item .swipe-card button, .swipe-card .item button {
     border-color: #a2a2a2;
     background-color: #e5e5e5; }
-  .item.active.item-positive, .swipe-card .active.item-positive.title, .item.activated.item-positive, .swipe-card .activated.item-positive.title, .item-complex.active .item-content.item-positive, .item-complex.activated .item-content.item-positive, .item .item-content.active.item-positive, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-positive, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-positive, .swipe-card button.active.item-positive, .item.activated.item-positive, .swipe-card button.activated.item-positive, .item-complex.active .item-content.item-positive, .item-complex.activated .item-content.item-positive, .item .item-content.active.item-positive, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-positive, .item .swipe-card button, .swipe-card .item button {
     border-color: #145fd7;
     background-color: #145fd7; }
-  .item.active.item-calm, .swipe-card .active.item-calm.title, .item.activated.item-calm, .swipe-card .activated.item-calm.title, .item-complex.active .item-content.item-calm, .item-complex.activated .item-content.item-calm, .item .item-content.active.item-calm, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-calm, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-calm, .swipe-card button.active.item-calm, .item.activated.item-calm, .swipe-card button.activated.item-calm, .item-complex.active .item-content.item-calm, .item-complex.activated .item-content.item-calm, .item .item-content.active.item-calm, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-calm, .item .swipe-card button, .swipe-card .item button {
     border-color: #1aacc3;
     background-color: #1aacc3; }
-  .item.active.item-assertive, .swipe-card .active.item-assertive.title, .item.activated.item-assertive, .swipe-card .activated.item-assertive.title, .item-complex.active .item-content.item-assertive, .item-complex.activated .item-content.item-assertive, .item .item-content.active.item-assertive, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-assertive, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-assertive, .swipe-card button.active.item-assertive, .item.activated.item-assertive, .swipe-card button.activated.item-assertive, .item-complex.active .item-content.item-assertive, .item-complex.activated .item-content.item-assertive, .item .item-content.active.item-assertive, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-assertive, .item .swipe-card button, .swipe-card .item button {
     border-color: #cc2311;
     background-color: #cc2311; }
-  .item.active.item-balanced, .swipe-card .active.item-balanced.title, .item.activated.item-balanced, .swipe-card .activated.item-balanced.title, .item-complex.active .item-content.item-balanced, .item-complex.activated .item-content.item-balanced, .item .item-content.active.item-balanced, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-balanced, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-balanced, .swipe-card button.active.item-balanced, .item.activated.item-balanced, .swipe-card button.activated.item-balanced, .item-complex.active .item-content.item-balanced, .item-complex.activated .item-content.item-balanced, .item .item-content.active.item-balanced, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-balanced, .item .swipe-card button, .swipe-card .item button {
     border-color: #498f24;
     background-color: #498f24; }
-  .item.active.item-energized, .swipe-card .active.item-energized.title, .item.activated.item-energized, .swipe-card .activated.item-energized.title, .item-complex.active .item-content.item-energized, .item-complex.activated .item-content.item-energized, .item .item-content.active.item-energized, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-energized, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-energized, .swipe-card button.active.item-energized, .item.activated.item-energized, .swipe-card button.activated.item-energized, .item-complex.active .item-content.item-energized, .item-complex.activated .item-content.item-energized, .item .item-content.active.item-energized, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-energized, .item .swipe-card button, .swipe-card .item button {
     border-color: #d39211;
     background-color: #d39211; }
-  .item.active.item-royal, .swipe-card .active.item-royal.title, .item.activated.item-royal, .swipe-card .activated.item-royal.title, .item-complex.active .item-content.item-royal, .item-complex.activated .item-content.item-royal, .item .item-content.active.item-royal, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-royal, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-royal, .swipe-card button.active.item-royal, .item.activated.item-royal, .swipe-card button.activated.item-royal, .item-complex.active .item-content.item-royal, .item-complex.activated .item-content.item-royal, .item .item-content.active.item-royal, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-royal, .item .swipe-card button, .swipe-card .item button {
     border-color: #552bdf;
     background-color: #552bdf; }
-  .item.active.item-dark, .swipe-card .active.item-dark.title, .item.activated.item-dark, .swipe-card .activated.item-dark.title, .item-complex.active .item-content.item-dark, .item-complex.activated .item-content.item-dark, .item .item-content.active.item-dark, .item .swipe-card .title, .swipe-card .item .title, .item .item-content.activated.item-dark, .item .swipe-card .title, .swipe-card .item .title {
+  .item.active.item-dark, .swipe-card button.active.item-dark, .item.activated.item-dark, .swipe-card button.activated.item-dark, .item-complex.active .item-content.item-dark, .item-complex.activated .item-content.item-dark, .item .item-content.active.item-dark, .item .swipe-card button, .swipe-card .item button, .item .item-content.activated.item-dark, .item .swipe-card button, .swipe-card .item button {
     border-color: #000;
     background-color: #262626; }
 
-.item, .swipe-card .title, .item h1, .item .swipe-card .title, .swipe-card .item .title, .item h2, .item .swipe-card .title, .swipe-card .item .title, .item h3, .item .swipe-card .title, .swipe-card .item .title, .item h4, .item .swipe-card .title, .swipe-card .item .title, .item h5, .item .swipe-card .title, .swipe-card .item .title, .item h6, .item .swipe-card .title, .swipe-card .item .title, .item p, .item .swipe-card .title, .swipe-card .item .title, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+.item, .swipe-card button, .item h1, .item .swipe-card button, .swipe-card .item button, .item h2, .item .swipe-card button, .swipe-card .item button, .item h3, .item .swipe-card button, .swipe-card .item button, .item h4, .item .swipe-card button, .swipe-card .item button, .item h5, .item .swipe-card button, .swipe-card .item button, .item h6, .item .swipe-card button, .swipe-card .item button, .item p, .item .swipe-card button, .swipe-card .item button, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
 
-a.item, .swipe-card a.title {
+a.item {
   color: inherit;
   text-decoration: none; }
-  a.item:hover, .swipe-card a.title:hover, a.item:focus, .swipe-card a.title:focus {
+  a.item:hover, a.item:focus {
     text-decoration: none; }
 
 /**
@@ -3793,7 +3793,7 @@ a.item, .swipe-card a.title {
  * Basically .item-complex removes any default settings which
  * .item added, so that .item-content looks them as just .item.
  */
-.item-complex, a.item.item-complex, .swipe-card a.item-complex.title, button.item.item-complex, .swipe-card button.item-complex.title {
+.item-complex, a.item.item-complex, button.item.item-complex, .swipe-card button.item-complex {
   padding: 0; }
 
 .item-complex .item-content, .item-radio .item-content {
@@ -3808,7 +3808,7 @@ a.item-content {
   color: inherit;
   text-decoration: none; }
 
-.item-text-wrap .item, .item-text-wrap .swipe-card .title, .swipe-card .item-text-wrap .title, .item-text-wrap .item-content, .item-text-wrap, .item-text-wrap h1, .item-text-wrap h2, .item-text-wrap h3, .item-text-wrap h4, .item-text-wrap h5, .item-text-wrap h6, .item-text-wrap p, .item-complex.item-text-wrap .item-content, .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
+.item-text-wrap .item, .item-text-wrap .swipe-card button, .swipe-card .item-text-wrap button, .item-text-wrap .item-content, .item-text-wrap, .item-text-wrap h1, .item-text-wrap h2, .item-text-wrap h3, .item-text-wrap h4, .item-text-wrap h5, .item-text-wrap h6, .item-text-wrap p, .item-complex.item-text-wrap .item-content, .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
   overflow: visible;
   white-space: normal; }
 
@@ -3904,7 +3904,7 @@ a.item-content {
     width: 32px;
     text-align: center; }
 
-.item .fill-icon, .item .swipe-card .title, .swipe-card .item .title {
+.item .fill-icon, .item .swipe-card button, .swipe-card .item button {
   min-width: 30px;
   min-height: 30px;
   font-size: 28px; }
@@ -3982,7 +3982,7 @@ a.item-content {
     font-size: 18px;
     line-height: 32px; }
 
-.item-button-right, a.item.item-button-right, .swipe-card a.item-button-right.title, button.item.item-button-right, .swipe-card button.item-button-right.title {
+.item-button-right, a.item.item-button-right, button.item.item-button-right, .swipe-card button.item-button-right {
   padding-right: 75px; }
 
 .item-button-right > .button, .item-button-right .item-content > .button, .item-button-right > .buttons, .item-button-right .item-content > .buttons {
@@ -4283,32 +4283,32 @@ a.item-content {
   padding-bottom: 1px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
 
-.card .item:first-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:first-child, .swipe-card .card .title:first-child, .list-inset .item:first-child, .list-inset .swipe-card .title:first-child, .swipe-card .list-inset .title:first-child, .padding > .list .item:first-child, .padding > .list .card-detail, .padding > .list .swipe-card .title:first-child, .swipe-card .padding > .list .title:first-child {
+.card .item:first-child, .card .swipe-card, .card .card-detail, .card .swipe-card button:first-child, .swipe-card .card button:first-child, .list-inset .item:first-child, .list-inset .swipe-card button:first-child, .swipe-card .list-inset button:first-child, .padding > .list .item:first-child, .padding > .list .card-detail, .padding > .list .swipe-card button:first-child, .swipe-card .padding > .list button:first-child {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px; }
-  .card .item:first-child .item-content, .card .item:first-child .swipe-card, .card .item:first-child .card-detail, .card .item:first-child .swipe-card .title:first-child, .swipe-card .card .item:first-child .title:first-child, .list-inset .item:first-child .item-content, .list-inset .item:first-child .swipe-card .title:first-child, .swipe-card .list-inset .item:first-child .title:first-child, .padding > .list .item:first-child .item-content, .padding > .list .item:first-child .card-detail, .padding > .list .item:first-child .swipe-card .title:first-child, .swipe-card .padding > .list .item:first-child .title:first-child {
+  .card .item:first-child .item-content, .card .item:first-child .swipe-card, .card .item:first-child .card-detail, .card .item:first-child .swipe-card button:first-child, .swipe-card .card .item:first-child button:first-child, .list-inset .item:first-child .item-content, .list-inset .item:first-child .swipe-card button:first-child, .swipe-card .list-inset .item:first-child button:first-child, .padding > .list .item:first-child .item-content, .padding > .list .item:first-child .card-detail, .padding > .list .item:first-child .swipe-card button:first-child, .swipe-card .padding > .list .item:first-child button:first-child {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px; }
-.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:last-child, .swipe-card .card .title:last-child, .list-inset .item:last-child, .list-inset .swipe-card .title:last-child, .swipe-card .list-inset .title:last-child, .padding > .list .item:last-child, .padding > .list .card-detail, .padding > .list .swipe-card .title:last-child, .swipe-card .padding > .list .title:last-child {
+.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card button:last-child, .swipe-card .card button:last-child, .list-inset .item:last-child, .list-inset .swipe-card button:last-child, .swipe-card .list-inset button:last-child, .padding > .list .item:last-child, .padding > .list .card-detail, .padding > .list .swipe-card button:last-child, .swipe-card .padding > .list button:last-child {
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px; }
-  .card .item:last-child .item-content, .card .item:last-child .swipe-card, .card .item:last-child .card-detail, .card .item:last-child .swipe-card .title:last-child, .swipe-card .card .item:last-child .title:last-child, .list-inset .item:last-child .item-content, .list-inset .item:last-child .swipe-card .title:last-child, .swipe-card .list-inset .item:last-child .title:last-child, .padding > .list .item:last-child .item-content, .padding > .list .item:last-child .card-detail, .padding > .list .item:last-child .swipe-card .title:last-child, .swipe-card .padding > .list .item:last-child .title:last-child {
+  .card .item:last-child .item-content, .card .item:last-child .swipe-card, .card .item:last-child .card-detail, .card .item:last-child .swipe-card button:last-child, .swipe-card .card .item:last-child button:last-child, .list-inset .item:last-child .item-content, .list-inset .item:last-child .swipe-card button:last-child, .swipe-card .list-inset .item:last-child button:last-child, .padding > .list .item:last-child .item-content, .padding > .list .item:last-child .card-detail, .padding > .list .item:last-child .swipe-card button:last-child, .swipe-card .padding > .list .item:last-child button:last-child {
     border-bottom-right-radius: 2px;
     border-bottom-left-radius: 2px; }
 
-.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card .title:last-child, .swipe-card .card .title:last-child, .list-inset .item:last-child, .list-inset .swipe-card .title:last-child, .swipe-card .list-inset .title:last-child {
+.card .item:last-child, .card .swipe-card, .card .card-detail, .card .swipe-card button:last-child, .swipe-card .card button:last-child, .list-inset .item:last-child, .list-inset .swipe-card button:last-child, .swipe-card .list-inset button:last-child {
   margin-bottom: -1px; }
 
-.card .item, .card .swipe-card, .card .card-detail, .card .swipe-card .title, .swipe-card .card .title, .list-inset .item, .list-inset .swipe-card .title, .swipe-card .list-inset .title, .padding > .list .item, .padding > .list .card-detail, .padding > .list .swipe-card .title, .swipe-card .padding > .list .title, .padding-horizontal > .list .item, .padding-horizontal > .list .card-detail, .padding-horizontal > .list .swipe-card .title, .swipe-card .padding-horizontal > .list .title {
+.card .item, .card .swipe-card, .card .card-detail, .card .swipe-card button, .swipe-card .card button, .list-inset .item, .list-inset .swipe-card button, .swipe-card .list-inset button, .padding > .list .item, .padding > .list .card-detail, .padding > .list .swipe-card button, .swipe-card .padding > .list button, .padding-horizontal > .list .item, .padding-horizontal > .list .card-detail, .padding-horizontal > .list .swipe-card button, .swipe-card .padding-horizontal > .list button {
   margin-right: 0;
   margin-left: 0; }
-  .card .item.item-input input, .card .item.item-input .swipe-card, .card .item.item-input .card-detail, .card .item.item-input .swipe-card .item-input.title, .swipe-card .card .item.item-input .item-input.title, .list-inset .item.item-input input, .list-inset .item.item-input .swipe-card .item-input.title, .swipe-card .list-inset .item.item-input .item-input.title, .padding > .list .item.item-input input, .padding > .list .item.item-input .card-detail, .padding > .list .item.item-input .swipe-card .item-input.title, .swipe-card .padding > .list .item.item-input .item-input.title, .padding-horizontal > .list .item.item-input input, .padding-horizontal > .list .item.item-input .card-detail, .padding-horizontal > .list .item.item-input .swipe-card .item-input.title, .swipe-card .padding-horizontal > .list .item.item-input .item-input.title {
+  .card .item.item-input input, .card .item.item-input .swipe-card, .card .item.item-input .card-detail, .card .item.item-input .swipe-card button.item-input, .swipe-card .card .item.item-input button.item-input, .list-inset .item.item-input input, .list-inset .item.item-input .swipe-card button.item-input, .swipe-card .list-inset .item.item-input button.item-input, .padding > .list .item.item-input input, .padding > .list .item.item-input .card-detail, .padding > .list .item.item-input .swipe-card button.item-input, .swipe-card .padding > .list .item.item-input button.item-input, .padding-horizontal > .list .item.item-input input, .padding-horizontal > .list .item.item-input .card-detail, .padding-horizontal > .list .item.item-input .swipe-card button.item-input, .swipe-card .padding-horizontal > .list .item.item-input button.item-input {
     padding-right: 44px; }
 
-.padding-left > .list .item, .padding-left > .list .card-detail, .padding-left > .list .swipe-card .title, .swipe-card .padding-left > .list .title {
+.padding-left > .list .item, .padding-left > .list .card-detail, .padding-left > .list .swipe-card button, .swipe-card .padding-left > .list button {
   margin-left: 0; }
 
-.padding-right > .list .item, .padding-right > .list .card-detail, .padding-right > .list .swipe-card .title, .swipe-card .padding-right > .list .title {
+.padding-right > .list .item, .padding-right > .list .card-detail, .padding-right > .list .swipe-card button, .swipe-card .padding-right > .list button {
   margin-right: 0; }
 
 /**
@@ -7027,20 +7027,22 @@ a {
   border-radius: 10px;
   background-color: #eef2f3; }
 
-.custom-card-button, .swipe-card .title, .card-detail .button-block {
+.custom-card-button, .swipe-card button, .card-detail button {
   color: #fff;
-  box-shadow: 0 4px #8b4621; }
+  border: none;
+  box-shadow: 0 4px #8b4621;
+  bottom: 3px;
+  width: 100%; }
 
 .swipe-card {
   position: relative; }
-  .swipe-card .title {
+  .swipe-card button {
+    padding: 0;
+    margin: 0;
     background-color: #FF8F00;
-    padding: 13px 10px;
     position: absolute;
-    bottom: 3px;
-    width: 100%;
     white-space: normal; }
-    .swipe-card .title p {
+    .swipe-card button p {
       margin: 0;
       font-weight: 600; }
   .swipe-card img {
