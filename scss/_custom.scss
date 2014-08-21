@@ -4,31 +4,29 @@
  */
 
 // Variables
-$beer-brown: #D39819;
-$beer-orange: $button-energized-active-border;
-$description-text-color:$button-stable-active-border;
+ $beer-brown:rgb(139, 70, 33);
+ $beer-orange:#FF8F00;
+ $beer-gray:rgb(238, 242, 243);
+ $bar-beer-text:#fff !important;
 // -------------------------------
 // Cards
 // -------------------------------
 .pane {
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 a {
   color: $beer-brown;
 }
 .make-invisible {
-  display:none;
+  display: none;
 }
 /* tutorial */
 
-// below is really bad... will fix this later
+// the implementation below is really bad... will fix this later
 .button.button-energized.button-clear.no-animation {
   font-weight: $headings-font-weight;
   color: $beer-brown;
 }
-// above
-
-
 .slider {
   height: 100%;
 }
@@ -37,7 +35,7 @@ a {
   background-color: #fff;
   text-align: center;
   li, p {
-    color: $description-text-color;
+    color: $beer-gray;
   }
   h3 {
     padding-top: 10px;
@@ -48,6 +46,13 @@ a {
 }
 /* header & background */
 
+.bar {
+  &.bar-energized {
+    background-color: $beer-brown;
+  }
+}
+
+
 /* Recommend view */
 
 .swipe-cards {
@@ -55,18 +60,30 @@ a {
 }
 .swipe-card {
   @extend .card;
-  border-radius: 5px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: $beer-gray;
+  position:relative;
   .title {
     @extend .item;
-    background-color: $energized;
     color: $button-energized-text;
-    padding: 7px 5px 0px;
+    background-color: $beer-orange;
+    box-shadow: 0 4px $beer-brown;
+    padding: 13px 10px;
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
     white-space: normal;
+    p {
+      font-weight: $headings-font-weight + 200;
+      margin:0;
+    }
   }
   img {
     margin: 0 auto;
     display: block;
-    max-width: 100%;
+    max-height: 300px;
+    border-radius:50%;
   }
 }
 /* Card detail view */
@@ -78,6 +95,9 @@ a {
   border-radius: 5px;
   .button-block {
     margin-bottom: 0px;
+  }
+  img {
+    height: 250px;
   }
 }
 /* My Beers view */

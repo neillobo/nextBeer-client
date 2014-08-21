@@ -27,6 +27,7 @@ angular.module('app', ['ionic', 'app.tutorial', 'app.recommend', 'app.mybeers', 
       }
     });
     UserFactory.enableToken();
+    // ideally we should use ion-nav-back-button but it's a little tricky to use with for a specific route
     $rootScope.$on('$stateChangeSuccess', function(e, to, toParams, from, fromParams) {
       // we cache the prev state to enable users to go back
       $rootScope.prevState = from.name;
