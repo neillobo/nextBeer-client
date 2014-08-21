@@ -2,7 +2,7 @@
   // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
-    baseUrl: 'http://next-beer.herokuapp.com/api/v3'
+    baseUrl: 'http://0.0.0.0:5000/api/v3'
   };
   // cache the selectedBeer for previous page nav
   var selectedBeer;
