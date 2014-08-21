@@ -12,7 +12,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       .state('app.recommend', {
         url: "/recommend",
         views: {
-          'menuContent': {
+          'views': {
             templateUrl: "app/recommend/recommend.html"
           }
         }

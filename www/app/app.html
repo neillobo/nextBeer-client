@@ -1,22 +1,10 @@
-<ion-side-menus>
-  <ion-pane ion-side-menu-content drag-content="false">
-    <ion-nav-bar class="bar-black nav-title-slide-ios7">
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-light">
-      <h1 class="title">NextBeer</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.recommend">
-          <i class="icon ion-beer"></i>&nbsp;Recommended
-        </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.mybeers">
-          <i class="icon ion-ios7-heart"></i>&nbsp;My Favs
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>
+<ion-nav-bar class="bar-black" animation="nav-title-slide-ios7">
+  <ion-nav-back-button class="button-clear">
+    <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view name="views">
+  <ion-view>
+    <!-- sub-views for main view-->
+  </ion-view>
+</ion-nav-view>

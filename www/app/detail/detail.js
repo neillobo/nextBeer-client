@@ -7,7 +7,7 @@ angular.module('app.detail', [])
       .state('app.detail', {
         url: "/detail",
         views: {
-          'menuContent': {
+          'views': {
             templateUrl: "app/detail/detail.html"
           }
         }

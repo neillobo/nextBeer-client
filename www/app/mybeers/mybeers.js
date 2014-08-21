@@ -10,7 +10,7 @@ angular.module('app.mybeers', [])
       .state('app.mybeers', {
         url: "/mybeers",
         views: {
-          'menuContent': {
+          'views': {
             templateUrl: "app/mybeers/mybeers.html"
           }
         }

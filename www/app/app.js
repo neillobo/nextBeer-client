@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'app.tutorial', 'app.recommend', 'app.detail', 'app.mybeers', 'app.services'])
+angular.module('app', ['ionic', 'app.tutorial', 'app.recommend', 'app.mybeers', 'app.detail', 'app.services'])
 
 .run(['$ionicPlatform', '$window', 'UserFactory',
   function($ionicPlatform, $window, UserFactory) {
