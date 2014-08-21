@@ -15,7 +15,7 @@ angular.module('app.detail', [])
   }
 ])
 
-.controller('detailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state',
+.controller('DetailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state',
   function($scope, BeerFactory, UtilFactory, $state) {
     var beer = BeerFactory.getSelectedBeer();
     // if there's nothing to show, no point to transition to detail
