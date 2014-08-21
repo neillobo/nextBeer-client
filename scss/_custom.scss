@@ -84,11 +84,11 @@ a {
     left: $item-thumbnail-margin + 25;
     max-width: $item-thumbnail-width * 0.5;
   }
-  .item-thumbnail-left > .training {
-    left: $item-thumbnail-margin + 20;
-    top: $item-thumbnail-width * .25;
-    max-width: $item-thumbnail-width * 0.5 + 10;
-  }
+  // .item-thumbnail-left > .training {
+  //   left: $item-thumbnail-margin + 20;
+  //   top: $item-thumbnail-width * .25;
+  //   max-width: $item-thumbnail-width * 0.5 + 10;
+  // }
   h2 {
     margin-top: 10px;
   }

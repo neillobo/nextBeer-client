@@ -2,7 +2,8 @@
   // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
-    baseUrl: 'http://next-beer.herokuapp.com/api/v3'
+    baseUrl: 'http://next-beer.herokuapp.com/api/v3',
+    defaultState: 'app.recommend'
   };
   // cache the selectedBeer for previous page nav
   var selectedBeer;
@@ -191,8 +192,8 @@
     }
   ])
   // non-beer, non-user-related operations go here
-  .factory('UtilFactory', ['$ionicPopup',
-    function($ionicPopup) {
+  .factory('UtilFactory', ['$ionicPopup','$rootScope', '$state',
+    function($ionicPopup, $rootScope, $state) {
       var errorHandler = function(err) {
         throw err;
       };
@@ -203,10 +204,18 @@
       var showAlertPopUp = function(config, cb) {
         $ionicPopup.confirm(config).then(cb).catch(errorHandler);
       };
+      var navToPrevState = function(){
+        $state.go($rootScope.prevState);
+      };
+      var navToDefaultState = function(){
+        $state.go(config.defaultState);
+      };
       return {
         errorHandler: errorHandler,
         showConfirmPopUp: showConfirmPopUp,
-        showAlertPopUp: showAlertPopUp
+        showAlertPopUp: showAlertPopUp,
+        navToPrevState: navToPrevState,
+        navToDefaultState: navToDefaultState
       }
     }
   ]);

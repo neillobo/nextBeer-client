@@ -16,11 +16,11 @@ angular.module('app.detail', [])
   }
 ])
 
-.controller('DetailCtrl', ['$scope', 'BeerFactory', 'UtilFactory', '$state', '$rootScope',
-  function($scope, BeerFactory, UtilFactory, $state, $rootScope) {
+.controller('DetailCtrl', ['$scope', 'BeerFactory', 'UtilFactory',
+  function($scope, BeerFactory, UtilFactory) {
     var beer = BeerFactory.getSelectedBeer();
     // if there's nothing to show, no point to transition to detail
-    !beer && $state.go('app.recommend');
+    !beer && UtilFactory.navToDefaultState();
     $scope.beer = beer;
 
     $scope.showAlertPopUp = function() {
@@ -30,7 +30,8 @@ angular.module('app.detail', [])
       };
       var addToMyBeers = function() {
         BeerFactory.addToMyBeers(beer);
-      }
+        UtilFactory.navToPrevState();
+      };
       UtilFactory.showAlertPopUp(config, addToMyBeers);
     };
 
@@ -42,15 +43,10 @@ angular.module('app.detail', [])
       };
       var removeFromMyBeers = function(isConfirmed) {
         isConfirmed && BeerFactory.removeFromMyBeers(beer);
-        // show an 'add to fav' option back again
-        // this is not a good practice but we have it for now
-        $scope.beer.isFavorite = false;
+        UtilFactory.navToPrevState();
       };
       UtilFactory.showConfirmPopUp(config, removeFromMyBeers);
     };
-
-    $scope.navToPrev = function(){
-      $state.go($rootScope.prevState);
-    };
+    $scope.navToPrev = UtilFactory.navToPrevState;
   }
 ]);
