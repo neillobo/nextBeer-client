@@ -5,11 +5,11 @@
   </ion-nav-buttons>
   <ion-content>
     <swipe-cards>
-      <swipe-card ng-repeat="beer in beers" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)" ng-click="passSelectedBeer({{beer}})">
+      <swipe-card ng-repeat="beer in beers" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)" ng-click="passSelectedBeer({{beer}})">
         <img ng-src="{{beer.beer_image_url}}">
-        <div class="title">
+        <button class="button button-energized">
           <p>{{beer.beer_name}}</p>
-        </div>
+        </button>
       </swipe-card>
     </swipe-cards>
   </ion-content>
