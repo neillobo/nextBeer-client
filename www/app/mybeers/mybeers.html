@@ -2,10 +2,14 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon icon ion-beer" ui-sref="app.recommend"></button>
   </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="toggleEditMode()">Edit</button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list class="mybeer">
       <ion-item class="item item-thumbnail-left" ng-repeat="beer in myBeers" ng-click="passSelectedBeer({{beer}})">
-        <img ng-src="{{beer.beer_image_url}}">
+        <img ng-if="!isEditMode" ng-src="{{beer.beer_image_url}}">
+        <i class="edit-mode icon button-icon ion-ios7-minus" ng-if="isEditMode"></i>
         <h2>{{beer.beer_name}}</h2>
         <p>{{beer.beer_abv}}%</p>
       </ion-item>

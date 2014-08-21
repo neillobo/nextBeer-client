@@ -26,5 +26,9 @@ angular.module('app.mybeers', [])
       /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
       BeerFactory.navToDetail(beer.beer_name);
     };
+    $scope.isEditMode = false;
+    $scope.toggleEditMode = function(){
+      $scope.isEditMode = !$scope.isEditMode;
+    };
   }
 ]);

@@ -51,39 +51,43 @@ a {
     background-color: $beer-brown;
   }
 }
-
-
 /* Recommend view */
 
 .swipe-cards {
   text-align: center;
 }
+.custom-card {
+  margin: 20px;
+  border-radius: 10px;
+  background-color: $beer-gray;
+}
+.custom-card-button {
+  color: $button-energized-text;
+  background-color: $beer-orange;
+  box-shadow: 0 4px $beer-brown;
+}
 .swipe-card {
   @extend .card;
-  margin: 20px;
-  border-radius: 15px;
-  background-color: $beer-gray;
-  position:relative;
+  @extend .custom-card;
+  position: relative;
   .title {
     @extend .item;
-    color: $button-energized-text;
-    background-color: $beer-orange;
-    box-shadow: 0 4px $beer-brown;
+    @extend .custom-card-button;
     padding: 13px 10px;
     position: absolute;
     bottom: 3px;
     width: 100%;
     white-space: normal;
     p {
-      font-weight: $headings-font-weight + 200;
-      margin:0;
+      margin: 0;
+      font-weight: $headings-font-weight + 100;
     }
   }
   img {
     margin: 0 auto;
     display: block;
     max-height: 300px;
-    border-radius:50%;
+    border-radius: 50%;
   }
 }
 /* Card detail view */
@@ -91,13 +95,14 @@ a {
 .card-detail {
   @extend .list;
   @extend .card;
+  @extend .custom-card;
   text-align: center;
-  border-radius: 5px;
   .button-block {
-    margin-bottom: 0px;
+    @extend .custom-card-button;
   }
   img {
     height: 250px;
+    border-radius: 50%;
   }
 }
 /* My Beers view */
@@ -106,6 +111,12 @@ a {
   .item-thumbnail-left > img {
     left: $item-thumbnail-margin + 25;
     max-width: $item-thumbnail-width * 0.5;
+    border-radius:50%;
+  }
+  .edit-mode {
+    left: $item-thumbnail-margin + 25;
+    top: $item-thumbnail-height/3;
+    position:absolute;
   }
   // .item-thumbnail-left > .training {
   //   left: $item-thumbnail-margin + 20;

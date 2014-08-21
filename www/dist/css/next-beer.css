@@ -7022,23 +7022,27 @@ a {
 .swipe-cards {
   text-align: center; }
 
-.swipe-card {
+.custom-card, .swipe-card, .card-detail {
   margin: 20px;
-  border-radius: 15px;
-  background-color: #eef2f3;
+  border-radius: 10px;
+  background-color: #eef2f3; }
+
+.custom-card-button, .swipe-card .title, .card-detail .button-block {
+  color: #fff;
+  background-color: #FF8F00;
+  box-shadow: 0 4px #8b4621; }
+
+.swipe-card {
   position: relative; }
   .swipe-card .title {
-    color: #fff;
-    background-color: #FF8F00;
-    box-shadow: 0 4px #8b4621;
     padding: 13px 10px;
     position: absolute;
     bottom: 3px;
     width: 100%;
     white-space: normal; }
     .swipe-card .title p {
-      font-weight: 700;
-      margin: 0; }
+      margin: 0;
+      font-weight: 600; }
   .swipe-card img {
     margin: 0 auto;
     display: block;
@@ -7047,17 +7051,20 @@ a {
 
 /* Card detail view */
 .card-detail {
-  text-align: center;
-  border-radius: 5px; }
-  .card-detail .button-block {
-    margin-bottom: 0px; }
+  text-align: center; }
   .card-detail img {
-    height: 250px; }
+    height: 250px;
+    border-radius: 50%; }
 
 /* My Beers view */
 .mybeer .item-thumbnail-left > img {
   left: 35px;
-  max-width: 40px; }
+  max-width: 40px;
+  border-radius: 50%; }
+.mybeer .edit-mode {
+  left: 35px;
+  top: 26.66667px;
+  position: absolute; }
 .mybeer h2 {
   margin-top: 10px; }
 .mybeer .item-content {
