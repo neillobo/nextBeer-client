@@ -13,7 +13,7 @@ var paths = {
     sass: ['./scss/**/*.scss'],
     scripts: ['./www/app/**/*.js'],
     specs: ['specs/**/*.js'],
-    html: [],
+    html: ['./www/app/**/*.html'],
     lib: [
         './www/lib/ionic/**/ionic.bundle.js',
         './www/lib/lodash/**/lodash.js',
@@ -62,6 +62,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['bundle']);
     gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.html);
     // gulp.watch(paths.test, ['test']);
 });
 

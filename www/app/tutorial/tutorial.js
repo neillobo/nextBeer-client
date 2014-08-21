@@ -13,25 +13,48 @@ angular.module('app.tutorial', [])
         });
     }
   ])
-.controller('TutorialCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
-  // Called to navigate to the main app
-  $scope.isSlideAtEnd = function() {
-    return $ionicSlideBoxDelegate.currentIndex() === $ionicSlideBoxDelegate.slidesCount() - 1;
-  };
-  $scope.isSlideAtBegin = function() {
-    return $ionicSlideBoxDelegate.currentIndex() === 0;
-  };
-  $scope.startApp = function() {
-    $state.go('app.recommend');
-  };
-  $scope.next = function() {
-    !$scope.isSlideAtEnd() && $ionicSlideBoxDelegate.next();
-  };
-  $scope.previous = function() {
-    !$scope.isSlideAtBegin() && $ionicSlideBoxDelegate.previous();
-  };
-  $scope.slideChanged = function(index) {
-    $scope.slideIndex = index;
-    $ionicSlideBoxDelegate.stop();
-  };
-});
+  .controller('TutorialCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+    var slides = [{
+        title: "your preference...",
+        items: ["Swipe right on beers you like or want to try.", "Swipe left on the rest."],
+        img: "http://placepuppy.it/150/250",
+        imgDesciption: ""
+      }, {
+        title: "discover beers...",
+        items: ["check new recommendations bubbling up.", "see the details"],
+        img: "http://placepuppy.it/150/250",
+        imgDesciption: ""
+      }, {
+        title: "collect beers you like...",
+        items: ["how to add a beer to myBeer"],
+        img: "http://placepuppy.it/150/250",
+        imgDesciption: ""
+      }, {
+        title: "what did we miss?",
+        items: ["something..."],
+        img: "http://placepuppy.it/150/250",
+        imgDesciption: ""
+      }];
+
+    $scope.slides = slides;
+    // Called to navigate to the main app
+    $scope.isSlideAtEnd = function() {
+      return $ionicSlideBoxDelegate.currentIndex() === $ionicSlideBoxDelegate.slidesCount() - 1;
+    };
+    $scope.isSlideAtBegin = function() {
+      return $ionicSlideBoxDelegate.currentIndex() === 0;
+    };
+    $scope.onComplete = function() {
+      $state.go('app.recommend');
+    };
+    $scope.next = function() {
+      !$scope.isSlideAtEnd() && $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function() {
+      !$scope.isSlideAtBegin() && $ionicSlideBoxDelegate.previous();
+    };
+    $scope.slideChanged = function(index) {
+      $scope.slideIndex = index;
+      $ionicSlideBoxDelegate.stop();
+    };
+  });
