@@ -183,17 +183,27 @@
         $window.localStorage.setItem('TrainingBeers', JSON.stringify(remainingTrainingBeers));
       };
       initializeTrainingBeers();
-
+      /**
+       * TUTORIAL
+       */
+      var isTutorialDone = function() {
+        return $window.localStorage.getItem('FirstLoad') === "false" ? false : true;
+      };
+      var onCompleteTutorial = function() {
+        $window.localStorage.setItem('FirstLoad', "false");
+      };
       return {
         enableToken: enableToken,
         getTrainingBeers: getTrainingBeers,
-        updateTrainingBeer: updateTrainingBeer
+        updateTrainingBeer: updateTrainingBeer,
+        isTutorialDone: isTutorialDone,
+        onCompleteTutorial: onCompleteTutorial
       };
     }
   ])
   // non-beer, non-user-related operations go here
-  .factory('UtilFactory', ['$ionicPopup','$rootScope', '$state',
-    function($ionicPopup, $rootScope, $state) {
+  .factory('UtilFactory', ['$ionicPlatform', '$ionicPopup', '$rootScope', '$state', '$window',
+    function($ionicPlatform, $ionicPopup, $rootScope, $state, $window) {
       var errorHandler = function(err) {
         throw err;
       };
@@ -204,18 +214,44 @@
       var showAlertPopUp = function(config, cb) {
         $ionicPopup.confirm(config).then(cb).catch(errorHandler);
       };
-      var navToPrevState = function(){
+      var navToPrevState = function() {
         $state.go($rootScope.prevState);
       };
-      var navToDefaultState = function(){
+      var navToDefaultState = function() {
         $state.go(config.defaultState);
+      };
+      var navToTutorial = function() {
+        $state.go("app.tutorial");
+      };
+      var trackPrevState = function() {
+        // ideally we should use ion-nav-back-button but it's a little tricky to use with for a specific route
+        $rootScope.$on('$stateChangeSuccess', function(e, to, toParams, from, fromParams) {
+          // we cache the prev state to enable users to go back
+          $rootScope.prevState = from.name;
+        })
+      };
+      var enableCordova = function() {
+        $ionicPlatform.ready(function() {
+          // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+          // for form inputs)
+          if ($window.cordova && $window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          }
+          if ($window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+          }
+        });
       };
       return {
         errorHandler: errorHandler,
+        enableCordova: enableCordova,
         showConfirmPopUp: showConfirmPopUp,
         showAlertPopUp: showAlertPopUp,
         navToPrevState: navToPrevState,
-        navToDefaultState: navToDefaultState
+        navToDefaultState: navToDefaultState,
+        navToTutorial: navToTutorial,
+        trackPrevState: trackPrevState
       }
     }
   ]);

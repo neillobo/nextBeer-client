@@ -6998,7 +6998,7 @@ a {
 /* tutorial */
 .button.button-energized.button-clear.no-animation {
   font-weight: 500;
-  color: #8b4621; }
+  color: #fff !important; }
 
 .slider {
   height: 100%; }
@@ -7008,7 +7008,7 @@ a {
   background-color: #fff;
   text-align: center; }
   .slider-slide li, .slider-slide p {
-    color: #eef2f3; }
+    color: #a2a2a2; }
   .slider-slide h3 {
     padding-top: 10px; }
   .slider-slide img {

@@ -7,6 +7,7 @@
  $beer-brown:rgb(139, 70, 33);
  $beer-orange:#FF8F00;
  $beer-gray:rgb(238, 242, 243);
+ $beer-gray-text:#a2a2a2;
  $bar-beer-text:#fff !important;
 // -------------------------------
 // Cards
@@ -25,7 +26,7 @@ a {
 // the implementation below is really bad... will fix this later
 .button.button-energized.button-clear.no-animation {
   font-weight: $headings-font-weight;
-  color: $beer-brown;
+  color: $bar-beer-text;
 }
 .slider {
   height: 100%;
@@ -35,7 +36,7 @@ a {
   background-color: #fff;
   text-align: center;
   li, p {
-    color: $beer-gray;
+    color: $beer-gray-text;
   }
   h3 {
     padding-top: 10px;
@@ -111,12 +112,12 @@ a {
   .item-thumbnail-left > img {
     left: $item-thumbnail-margin + 25;
     max-width: $item-thumbnail-width * 0.5;
-    border-radius:50%;
+    border-radius: 50%;
   }
   .edit-mode {
     left: $item-thumbnail-margin + 25;
     top: $item-thumbnail-height/3;
-    position:absolute;
+    position: absolute;
   }
   // .item-thumbnail-left > .training {
   //   left: $item-thumbnail-margin + 20;
