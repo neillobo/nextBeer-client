@@ -6992,6 +6992,9 @@ a.button {
 a {
   color: #D39819; }
 
+.make-invisible {
+  display: none; }
+
 /* tutorial */
 .button.button-energized.button-clear.no-animation {
   font-weight: 500;

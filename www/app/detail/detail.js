@@ -25,8 +25,8 @@ angular.module('app.detail', [])
 
     $scope.showAlertPopUp = function() {
       var config = {
-        title: 'The beer has been added to Favs'
-        // template: 'Are you sure you want to remove this?'
+        title: 'The beer has been added to Favs',
+        cancelType: 'make-invisible'
       };
       var addToMyBeers = function() {
         BeerFactory.addToMyBeers(beer);
@@ -38,8 +38,11 @@ angular.module('app.detail', [])
     // pop up for delete confirmation for an item from myBeer
     $scope.showConfirmPopUp = function() {
       var config = {
-        title: 'Remove this from Favs',
-        template: 'Are you sure you want to remove this?'
+        title: "Remove this from Favs",
+        template: "<p>Are you sure you want to remove this?</p>",
+        cancelText: "Cancel",
+        okText: "Remove",
+        okType: "button-assertive"
       };
       var removeFromMyBeers = function(isConfirmed) {
         isConfirmed && BeerFactory.removeFromMyBeers(beer);
