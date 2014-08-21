@@ -172,6 +172,7 @@
     transitionOut: function(positive) {
       var self = this;
       if((positive === true) || (this.x > 0)) {
+        console.log('fly right');
         // Fly right
         var rotateTo = (this.rotationAngle + (this.rotationDirection * 0.6)) || (Math.random() * -0.4);
         var duration = this.rotationAngle ? 0.2 : 0.5;
@@ -185,6 +186,7 @@
           self.onDestroy && self.onDestroy(true);
         }, duration * 1000);
       } else {
+        console.log('fly left');
         // Fly left
         // console.log(this.rotationAngle, 'angle');
         // console.log(this.rotationDirection, 'direction');
@@ -288,7 +290,7 @@
       replace: true,
       transclude: true,
       scope: {
-        onSwipe: '&',
+        onCardSwipe: '&',
         onDestroy: '&'
       },
       compile: function(element, attr) {
@@ -300,7 +302,7 @@
             el: el,
             onSwipe: function() {
               $timeout(function() {
-                $scope.onSwipe();
+                $scope.onCardSwipe();
               });
             },
             onDestroy: function() {
