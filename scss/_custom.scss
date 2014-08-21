@@ -4,28 +4,30 @@
  */
 
 // Variables
-$beer-brown: #D39819;
-$beer-orange: $button-energized-active-border;
-$description-text-color:$button-stable-active-border;
+ $beer-brown:rgb(139, 70, 33);
+ $beer-orange:#FF8F00;
+ $beer-gray:rgb(238, 242, 243);
+ $beer-gray-text:#a2a2a2;
+ $bar-beer-text:#fff !important;
 // -------------------------------
 // Cards
 // -------------------------------
 .pane {
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 a {
   color: $beer-brown;
 }
+.make-invisible {
+  display: none;
+}
 /* tutorial */
 
-// below is really bad... will fix this later
+// the implementation below is really bad... will fix this later
 .button.button-energized.button-clear.no-animation {
   font-weight: $headings-font-weight;
-  color: $beer-brown;
+  color: $bar-beer-text;
 }
-// above
-
-
 .slider {
   height: 100%;
 }
@@ -34,7 +36,7 @@ a {
   background-color: #fff;
   text-align: center;
   li, p {
-    color: $description-text-color;
+    color: $beer-gray-text;
   }
   h3 {
     padding-top: 10px;
@@ -45,25 +47,48 @@ a {
 }
 /* header & background */
 
+.bar {
+  &.bar-energized {
+    background-color: $beer-brown;
+  }
+}
 /* Recommend view */
 
 .swipe-cards {
   text-align: center;
 }
+.custom-card {
+  margin: 20px;
+  border-radius: 10px;
+  background-color: $beer-gray;
+}
+.custom-card-button {
+  color: $button-energized-text;
+  box-shadow: 0 4px $beer-brown;
+}
 .swipe-card {
   @extend .card;
-  border-radius: 5px;
+  @extend .custom-card;
+  background-color: $beer-orange;
+  position: relative;
   .title {
     @extend .item;
-    background-color: $energized;
-    color: $button-energized-text;
-    padding: 7px 5px 0px;
+    @extend .custom-card-button;
+    padding: 13px 10px;
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
     white-space: normal;
+    p {
+      margin: 0;
+      font-weight: $headings-font-weight + 100;
+    }
   }
   img {
     margin: 0 auto;
     display: block;
-    max-width: 100%;
+    max-height: 300px;
+    border-radius: 50%;
   }
 }
 /* Card detail view */
@@ -71,10 +96,14 @@ a {
 .card-detail {
   @extend .list;
   @extend .card;
+  @extend .custom-card;
   text-align: center;
-  border-radius: 5px;
   .button-block {
-    margin-bottom: 0px;
+    @extend .cust om-card-button;
+  }
+  img {
+    height: 250px;
+    border-radius: 50%;
   }
 }
 /* My Beers view */
@@ -83,12 +112,18 @@ a {
   .item-thumbnail-left > img {
     left: $item-thumbnail-margin + 25;
     max-width: $item-thumbnail-width * 0.5;
+    border-radius: 50%;
   }
-  .item-thumbnail-left > .training {
-    left: $item-thumbnail-margin + 20;
-    top: $item-thumbnail-width * .25;
-    max-width: $item-thumbnail-width * 0.5 + 10;
+  .edit-mode {
+    left: $item-thumbnail-margin + 25;
+    top: $item-thumbnail-height/3;
+    position: absolute;
   }
+  // .item-thumbnail-left > .training {
+  //   left: $item-thumbnail-margin + 20;
+  //   top: $item-thumbnail-width * .25;
+  //   max-width: $item-thumbnail-width * 0.5 + 10;
+  // }
   h2 {
     margin-top: 10px;
   }

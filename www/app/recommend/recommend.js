@@ -12,15 +12,16 @@ angular.module('app.recommend', ['app.recommend.swipe'])
       .state('app.recommend', {
         url: "/recommend",
         views: {
-          'menuContent': {
-            templateUrl: "app/recommend/recommend.html"
+          'views': {
+            templateUrl: "app/recommend/recommend.html",
+            controller: "RecommendCtrl"
           }
         }
       });
   }
 ])
 
-.controller('CardsCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
+.controller('RecommendCtrl', ['$window', '$scope', 'BeerFactory', 'UserFactory', 'UtilFactory',
   function($window, $scope, BeerFactory, UserFactory, UtilFactory) {
     var addRecommendedBeer = function(result) {
       var recommendedBeer = result.data;
@@ -30,13 +31,9 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     var makeBeerReview = function(index) {
       var rating;
       var swipedBeer = $scope.beers[index];
-      if (swipedBeer.tutorialId) {
-        // swipedBeer === tutorial
-        UserFactory.updateTutorialProgress(swipedBeer);
-        return null;
-      }
       if (swipedBeer.trainingId) {
         // swipedBeer === training beer
+        // this should be removed once we fetch training set from server
         UserFactory.updateTrainingBeer(swipedBeer);
       }
       if (this.swipeCard && this.swipeCard.positive) {
@@ -56,13 +53,10 @@ angular.module('app.recommend', ['app.recommend.swipe'])
 
     $scope.cardSwiped = function(index) {
       var review = makeBeerReview.call(this, index);
-      if (review) {
-        // only make a request if it's not a tutorial
-        // swipe a beer, you will get recommendation of another beer
-        BeerFactory.sendRating(review)
-          .then(addRecommendedBeer)
-          .catch(UtilFactory.errorHandler);
-      }
+      // swipe a beer, you will get recommendation of another beer
+      review && BeerFactory.sendRating(review)
+        .then(addRecommendedBeer)
+        .catch(UtilFactory.errorHandler);
     };
 
     $scope.cardDestroyed = function(index) {
@@ -70,10 +64,7 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     };
 
     $scope.passSelectedBeer = function(beer) {
-      // we can't pass index as the index of mybeers
-      // won't be compatible with thebeerRecQue
-      // handle the  tutorial edge case
-      !beer.tutorialId && BeerFactory.navToDetail(beer.beer_name);
+      BeerFactory.navToDetail(beer.beer_name);
     };
   }
 ]);

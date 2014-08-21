@@ -10,8 +10,9 @@ angular.module('app.mybeers', [])
       .state('app.mybeers', {
         url: "/mybeers",
         views: {
-          'menuContent': {
-            templateUrl: "app/mybeers/mybeers.html"
+          'views': {
+            templateUrl:"app/mybeers/mybeers.html",
+            controller: "MyBeersCtrl"
           }
         }
       });
@@ -24,6 +25,10 @@ angular.module('app.mybeers', [])
     $scope.passSelectedBeer = function(beer) {
       /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
       BeerFactory.navToDetail(beer.beer_name);
+    };
+    $scope.isEditMode = false;
+    $scope.toggleEditMode = function(){
+      $scope.isEditMode = !$scope.isEditMode;
     };
   }
 ]);

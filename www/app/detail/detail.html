@@ -1,8 +1,8 @@
 <ion-view title="Details">
   <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button class="button button-icon icon ion-ios7-arrow-left" ng-click="navToPrev()"></button>
   </ion-nav-buttons>
-  <ion-content ng-controller="DetailCtrl">
+  <ion-content>
     <div class='card-detail'>
       <img ng-src="{{beer.beer_image_url}}">
       <h4>{{beer.beer_name}}</h4>
