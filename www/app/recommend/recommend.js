@@ -37,11 +37,11 @@ angular.module('app.recommend', ['app.recommend.swipe'])
         UserFactory.updateTrainingBeer(swipedBeer);
       }
       if (this.swipeCard && this.swipeCard.positive) {
-        rating = 1;
+        rating = 5;
         // take right-swiping as an implicit request
         BeerFactory.addToMyBeers(swipedBeer);
       } else {
-        rating = -1;
+        rating = 1;
       }
       return {
         beer_id: swipedBeer.beer_id,
