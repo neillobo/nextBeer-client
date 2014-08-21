@@ -7059,16 +7059,12 @@ a {
 /* My Beers view */
 .mybeer .item-thumbnail-left > img {
   left: 35px;
-<<<<<<< HEAD
   max-width: 40px;
   border-radius: 50%; }
 .mybeer .edit-mode {
   left: 35px;
   top: 26.66667px;
   position: absolute; }
-=======
-  max-width: 40px; }
->>>>>>> add default route to fall back to
 .mybeer h2 {
   margin-top: 10px; }
 .mybeer .item-content {

@@ -64,12 +64,12 @@ a {
 }
 .custom-card-button {
   color: $button-energized-text;
-  background-color: $beer-orange;
   box-shadow: 0 4px $beer-brown;
 }
 .swipe-card {
   @extend .card;
   @extend .custom-card;
+  background-color: $beer-orange;
   position: relative;
   .title {
     @extend .item;
@@ -99,7 +99,7 @@ a {
   @extend .custom-card;
   text-align: center;
   .button-block {
-    @extend .custom-card-button;
+    @extend .cust om-card-button;
   }
   img {
     height: 250px;

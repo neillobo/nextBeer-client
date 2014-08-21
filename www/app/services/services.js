@@ -1,5 +1,4 @@
-(function() {
-  // iife is here to preserve the following config variables
+(function() { // iife is here to preserve the following config variables
   // change this url—whether prod or local
   var config = {
     baseUrl: 'http://next-beer.herokuapp.com/api/v3',
@@ -251,6 +250,7 @@
         navToPrevState: navToPrevState,
         navToDefaultState: navToDefaultState,
         trackPrevState: trackPrevState
+      }
     }
   ]);
 })();
