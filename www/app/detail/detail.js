@@ -24,8 +24,7 @@ angular.module('app.detail', [])
 
     $scope.showAlertPopUp = function() {
       var config = {
-        title: 'The beer has been added to Favs',
-        okText: ''
+        title: 'The beer has been added to Favs'
         // template: 'Are you sure you want to remove this?'
       };
       var addToMyBeers = function() {

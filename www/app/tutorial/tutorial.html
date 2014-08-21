@@ -1,21 +1,21 @@
-<ion-view>
+<ion-view ng-controller="TutorialCtrl">
   <ion-nav-buttons side="left">
     <button class="button button-positive button-clear no-animation" ng-click="startApp()" ng-if="!slideIndex">
       Skip
     </button>
-    <button class="button button-positive button-clear no-animation" ng-click="previous()" ng-if="slideIndex > 0">
+    <button class="button button-positive button-clear no-animation" ng-click="previous()" ng-if="!isSlideAtBegin()">
       Previous
     </button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button button-positive button-clear no-animation" ng-click="next()" ng-if="slideIndex != 2">
+    <button class="button button-positive button-clear no-animation" ng-click="next()" ng-if="!isSlideAtEnd()">
       Next
     </button>
-    <button class="button button-positive button-clear no-animation" ng-click="startApp()" ng-if="slideIndex == 2">
-      Start using MyApp
+    <button class="button button-positive button-clear no-animation" ng-click="startApp()" ng-if="isSlideAtEnd()">
+      Get started
     </button>
   </ion-nav-buttons>
-  <ion-slide-box on-slide-changed="slideChanged(index)">
+  <ion-slide-box on-slide-changed="slideChanged(index)" >
     <ion-slide>
       <h3>Welcome to NextBeer</h3>
       <div id="logo">
@@ -25,37 +25,69 @@
       <p>Swipe or tap "Next" to begin.</p>
     </ion-slide>
     <ion-slide>
-      <h3>1. tell us about your preference.</h3>
+      <h4>1. your preference...</h4>
       <div id="list">
         <ol>
           <li>Swipe right on beers you like or want to try.</li>
           <li>Swipe left on the rest.</li>
         </ol>
       </div>
+      <div class="row">
+        <div class="col">
+          <figure>
+            <img src="http://placepuppy.it/150/250" alt="">
+          </figure>
+          <figcaption>some screenshot</figcaption>
+        </div>
+      </div>
     </ion-slide>
     <ion-slide>
-      <h3>2. discover beers you want to try out.</h3>
+      <h4>2. discover beers...</h4>
       <div id="list">
         <ol>
           <li>check new recommendations bubbling up.</li>
           <li>see the details</li>
         </ol>
       </div>
-    </ion-slide>
-    <ion-slide>
-      <h3>3. collect beers you like</h3>
-      <div id="list">
-        <ol>
-          <li>click to add the item to the mybeer list</li>
-        </ol>
+      <div class="row">
+        <div class="col">
+          <figure>
+            <img src="http://placepuppy.it/150/250" alt="">
+          </figure>
+          <figcaption>some screenshot</figcaption>
+        </div>
       </div>
     </ion-slide>
     <ion-slide>
-      <h3>4. keep swiping</h3>
+      <h4>3. collect beers you like...</h4>
       <div id="list">
         <ol>
-          <li>click to add the item to the mybeer list</li>
+          <li>how to add a beer to myBeer</li>
         </ol>
+      </div>
+      <div class="row">
+        <div class="col">
+          <figure>
+            <img src="http://placepuppy.it/150/250" alt="">
+          </figure>
+          <figcaption>some screenshot</figcaption>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <h4>4. what did we miss?</h4>
+      <div id="list">
+        <ol>
+          <li>some steps....</li>
+        </ol>
+      </div>
+      <div class="row">
+        <div class="col">
+          <figure>
+            <img src="http://placepuppy.it/150/250" alt="">
+          </figure>
+          <figcaption>some screenshot</figcaption>
+        </div>
       </div>
     </ion-slide>
   </ion-slide-box>
