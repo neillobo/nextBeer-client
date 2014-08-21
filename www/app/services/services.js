@@ -250,9 +250,7 @@
         showAlertPopUp: showAlertPopUp,
         navToPrevState: navToPrevState,
         navToDefaultState: navToDefaultState,
-        navToTutorial: navToTutorial,
         trackPrevState: trackPrevState
-      }
     }
   ]);
 })();
