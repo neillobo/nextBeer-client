@@ -6991,7 +6991,6 @@ a.button {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  webkit-background-size: cover;
   background-size: cover; }
 
 /* Recommend view */

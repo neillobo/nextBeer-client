@@ -244,15 +244,17 @@
       var errorHandler = function(err) {
         throw err;
       };
-      var showPopUp;
       var showConfirmPopUp = function(config, cb) {
         // c.f. http://ionicframework.com/docs/api/service/$ionicPopup/
         $ionicPopup.confirm(config).then(cb).catch(errorHandler);
       };
+      var showAlertPopUp = function(config, cb) {
+        $ionicPopup.confirm(config).then(cb).catch(errorHandler);
+      };
       return {
         errorHandler: errorHandler,
-        showConfirmPopUp: showConfirmPopUp
-        // removePopUp: removePopUp
+        showConfirmPopUp: showConfirmPopUp,
+        showAlertPopUp: showAlertPopUp
       }
     }
   ]);

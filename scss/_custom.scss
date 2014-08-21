@@ -8,20 +8,16 @@
 // Cards
 // -------------------------------
 .pane {
-   background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0203/0907/0_fix_dots-yellows_with_FFB400-FFE61A_shop_preview.png"); 
-    background-repeat: no-repeat; 
-    background-position: center;
-    background-attachment: fixed;       
-    webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0203/0907/0_fix_dots-yellows_with_FFB400-FFE61A_shop_preview.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }
-/* Recommend view */
 
+/* Recommend view */
 &.bar-black {
   background-color: #000;
-
   .button {
     color: #fff;
   }
@@ -29,6 +25,7 @@
     color: #fff;
   }
 }
+
 .swipe-cards {
   text-align: center;
 }
@@ -82,15 +79,13 @@
     padding-top: $item-thumbnail-width/3;
   }
 }
-
-  // doesn't work very well across different screen sizes
-  // replaced with plain simple border.
-  // .item-thumbnail-left:after {
-  //   position:relative;
-  //   left: -$item-thumbnail-width + 10;
-  //   content: url("../../dist/img/border_gradient.png");
-  // }
-  // .item {
-  //   border:none;
-  // }
-
+// doesn't work very well across different screen sizes
+// replaced with plain simple border.
+// .item-thumbnail-left:after {
+//   position:relative;
+//   left: -$item-thumbnail-width + 10;
+//   content: url("../../dist/img/border_gradient.png");
+// }
+// .item {
+//   border:none;
+// }

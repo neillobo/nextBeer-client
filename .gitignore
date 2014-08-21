@@ -10,3 +10,7 @@ platforms/
 
 # common files
 .DS_store
+
+
+# msc.
+npm-debug.log
