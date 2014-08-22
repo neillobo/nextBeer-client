@@ -52,7 +52,6 @@ angular.module('app.recommend', ['app.recommend.swipe'])
     $scope.beers = BeerFactory.beerRecQueue;
 
     $scope.cardSwiped = function(index) {
-      console.log('card swiped');
       var review = makeBeerReview.call(this, index);
       // swipe a beer, you will get recommendation of another beer
       review && BeerFactory.sendRating(review)

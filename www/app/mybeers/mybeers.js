@@ -22,19 +22,29 @@ angular.module('app.mybeers', [])
 .controller('MyBeersCtrl', ['$scope', 'BeerFactory',
   function($scope, BeerFactory) {
     $scope.myBeers = BeerFactory.getMyBeers();
-    $scope.passSelectedBeer = function(beer) {
+     $scope.isEditMode = false;
+     $scope.editText = "Remove"
+
+     $scope.passSelectedBeer = function(beer) {
       /* we can't pass index as the index of mybeers won't be compatible with thebeerRecQue */
       if(!$scope.isEditMode){
       BeerFactory.navToDetail(beer.beer_name);
+
       }
     };
-    $scope.isEditMode = false;
+   
     $scope.toggleEditMode = function(){
       $scope.isEditMode = !$scope.isEditMode;
+      if($scope.isEditMode){
+        $scope.editText = "Done"
+      } else {
+        $scope.editText = "Edit"
+      }
     };
 
     $scope.deleteSelectedBeer = function(beer) {
-      BeerFactory.removeFromMyBeers(swipedBeer);
+      BeerFactory.removeFromMyBeers(beer);
+      $scope.myBeers = BeerFactory.getMyBeers();
     }
   }
 ]);
