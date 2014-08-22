@@ -2,22 +2,17 @@
   var slides = [{
     title: "NextBeer Learns Your Preferences",
     items: ["Swipe right on beers you like or want to try.", "Swipe left on the rest!"],
-    img: "http://placepuppy.it/150/250",
+    img: "./dist/img/beer_queue.png",
     imgDesciption: ""
   }, {
     title: "Discover New Beers",
-    items: ["Personalized beer recommendations will appear.", "Click any beer to see its details"],
-    img: "http://placepuppy.it/150/250",
+    items: ["Now you can scroll through your personalized recommendations.", "Click any beer to see its details"],
+    img: "./dist/img/beer_details.png",
     imgDesciption: ""
   }, {
-    title: "Save beers you like",
-    items: ["Click 'Add to Favs' to save a beer"],
-    img: "http://placepuppy.it/150/250",
-    imgDesciption: ""
-  }, {
-    title: "what did we miss?",
-    items: ["something..."],
-    img: "http://placepuppy.it/150/250",
+    title: "Save Beers You Like",
+    items: ["Click 'Add to Favs' to save a beer."],
+    img: "./dist/img/fav_beers.png",
     imgDesciption: ""
   }];
 
