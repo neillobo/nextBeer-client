@@ -7012,7 +7012,10 @@ a {
   .slider-slide h3 {
     padding-top: 10px; }
   .slider-slide img {
-    padding: 30px 0 0; }
+    padding: 10px 0 0; }
+
+.scale {
+  max-height: 65%; }
 
 /* header & background */
 .bar.bar-energized {
