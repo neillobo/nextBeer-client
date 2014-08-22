@@ -9,7 +9,7 @@
     <ion-list class="mybeer">
       <ion-item class="item item-thumbnail-left" ng-repeat="beer in myBeers" ng-click="passSelectedBeer({{beer}})">
         <img ng-if="!isEditMode" ng-src="{{beer.beer_image_url}}">
-        <i class="edit-mode icon button-icon ion-ios7-minus" ng-if="isEditMode"></i>
+        <i class="edit-mode icon button-icon ion-ios7-minus" ng-if="isEditMode" ng-click="deleteSelectedBeer({{beer}})"> </i>
         <h2>{{beer.beer_name}}</h2>
         <p>{{beer.beer_abv}}%</p>
       </ion-item>

@@ -7,9 +7,5 @@
     "angular-lodash": "~0.1.0",
     "lodash": "~2.4.1"
   },
-  "_comment": "ionic is in active development. Some of things that this app uses rely on the bleeding-edge commits. e.g. slide-box, swipe-card",
-  "resolutions": {
-    "ionic": "1.0.0-beta.10-nightly-323",
-    "angular": "~1.2.12"
-  }
+  "_comment": "ionic is in active development. Some of things that this app uses rely on the bleeding-edge commits. e.g. slide-box, swipe-card"
 }
