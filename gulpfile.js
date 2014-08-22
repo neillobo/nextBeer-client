@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     karma = require('gulp-karma'),
+    yargs = require('yargs').argv,
     shell = require('gulp-shell');
 
 var paths = {
@@ -35,17 +36,25 @@ gulp.task('default', ['watch']);
 // for live reload and preview
 gulp.task('preview', ['lint', 'bundle'], shell.task(['ionic serve']));
 
-// run the app before ...
-gulp.task('run', ['lint', 'test'], shell.task(['ionic build ios && ionic emulate ios && ionic run ios']));
+// build the app
+// expecting 'gulp emulate -p ios/android'
+gulp.task('emulate', ['lint', 'bundle'], function() {
+    var platforms = ['IOS', 'ANDROID'];
+    if (platforms.indexOf(yargs.p.toUpperCase()) > -1) {
+        var platform = yargs.p.toLowerCase();
+        var command = "".concat(' ionic platform ios','ionic build ', platform, '&& ionic build ', platform, '&& ionic emulate ', platform);
+        shell.task([command])
+    }
+});
 
 // for testing
-gulp.task('test', function(){
+gulp.task('test', function() {
     return gulp.src(paths.specs)
-    .pipe(karma({
-        configFile: 'karma.conf.js',
-        action: 'run'
-    }))
-    .on('error', errorHandler);
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', errorHandler);
 });
 
 

@@ -1,54 +1,50 @@
 # Next Beer
-
-> Recommendation app that gives beer suggestions and pairing recommendations
-
-## Team
-
-  - __Product Owner__: Neil Lobo
-  - __Scrum Master__: Boris Verkhovskiy
-  - __Development Team Members__: Caly Moss, DH Lee
+> a mobile app that lets you discover new beer you might find interesting.
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
+1. [Use Cases](#use-cases)
+1. [Architecture](#architecture)
 1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
+1. [Authors](#authors)
 1. [Contributing](#contributing)
 
-## Usage
+## Use Cases
+- At a bar or supermarket, when you want to discover a new beer to try tout
+- Collect the beers you like
 
-> Some usage instructions
+## Architecture
 
+### Client
+- Cordova: cross-platform mobile developement.
+- Ionic Framework: css framework for Cordova.
+- Angular.js
 
-## Requirements
-
-- Node 0.10.x
-
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+### Server
+- Flask: an API server.
+- Python app: using item-based collaborative filtering to predict preference of users.
 
 ## Development
-
 ### Installing Dependencies
 
-We don't want you to go through the laundry list of dependencies manually. Just let Gulp install all dependencies for you. If you feel uncomfortable delegating this job to Gulp, check the gulpfile.js file to see what it will install for you.
-
 ```sh
-npm install -g gulp # sudo, if appropriate
-gulp install # from the project root directory
+npm install
+bower install
+gulp preview # to run the app locally
 ```
 
+### Gulp
+There are three gulp commands with which you will mainly interface with the app.
+- gulp watch: watch for any changes in your development directory.
+- gulp preview: bundle the app and serve locally. It DOES livereload on any changes.
+- gulp build -p [platform name]: build the app from www/ to platforms/ and run an emulator for a test.
 
-### Tasks
 
-See the projects backlog in asana [here](https://LINKTOYOURASANA.com)
-
+## Authors
+  - Boris Verkhovskiy
+  - Caly Moss
+  - DH Lee
+  - Neil Lobo
 
 ## Contributing
-
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
